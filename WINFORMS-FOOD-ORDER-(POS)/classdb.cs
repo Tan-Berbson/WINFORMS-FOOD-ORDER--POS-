@@ -17,6 +17,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 conn.Open();
                 ADMINACC(conn);
+                PRODUCTS(conn);
             }
         }
          private static void ADMINACC(SqliteConnection conn)
@@ -29,6 +30,20 @@ namespace WINFORMS_FOOD_ORDER__POS_
             Execute(conn, query);
 
         }
+        private static void PRODUCTS(SqliteConnection conn)
+        {
+            string query = @"CREATE TABLE IF NOT EXISTS PRODUCTS (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                       
+                        ADMINNAME TEXT NOT NULL,
+                        PRODUCTIMAGE BLOB,
+                        PRODUCTNAME TEXT NOT NULL,
+                        PRODUCTPRICE TEXT NOT NULL
+                       
+                    );";
+            Execute(conn, query);
+        }
+
         private static void Execute(SqliteConnection conn, string query)
         {
             using (var cmd = new SqliteCommand(query, conn))

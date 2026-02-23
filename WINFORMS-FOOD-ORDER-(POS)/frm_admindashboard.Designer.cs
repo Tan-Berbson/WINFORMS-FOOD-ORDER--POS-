@@ -39,6 +39,7 @@
             panel2 = new Panel();
             dgv_product = new DataGridView();
             panel3 = new Panel();
+            btn_addimage = new Button();
             btn_deleteproduct = new Button();
             btn_updateproductifno = new Button();
             label2 = new Label();
@@ -149,14 +150,17 @@
             // 
             // dgv_product
             // 
+            dgv_product.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_product.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_product.Location = new Point(3, 43);
             dgv_product.Name = "dgv_product";
             dgv_product.Size = new Size(740, 583);
             dgv_product.TabIndex = 0;
+            dgv_product.CellFormatting += dgv_product_CellFormatting;
             // 
             // panel3
             // 
+            panel3.Controls.Add(btn_addimage);
             panel3.Controls.Add(btn_deleteproduct);
             panel3.Controls.Add(btn_updateproductifno);
             panel3.Controls.Add(label2);
@@ -169,6 +173,16 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(322, 639);
             panel3.TabIndex = 0;
+            // 
+            // btn_addimage
+            // 
+            btn_addimage.Location = new Point(219, 44);
+            btn_addimage.Name = "btn_addimage";
+            btn_addimage.Size = new Size(75, 23);
+            btn_addimage.TabIndex = 3;
+            btn_addimage.Text = "Add Image";
+            btn_addimage.UseVisualStyleBackColor = true;
+            btn_addimage.Click += btn_addimage_Click;
             // 
             // btn_deleteproduct
             // 
@@ -214,6 +228,7 @@
             btn_add.TabIndex = 4;
             btn_add.Text = "Add  New Product";
             btn_add.UseVisualStyleBackColor = true;
+            btn_add.Click += btn_add_Click;
             // 
             // txt_productprice
             // 
@@ -233,16 +248,18 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = SystemColors.ActiveCaption;
             pictureBox1.Location = new Point(35, 69);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(259, 226);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // panel5
             // 
             panel5.Controls.Add(label5);
-            panel5.Location = new Point(11, 151);
+            panel5.Location = new Point(11, 150);
             panel5.Name = "panel5";
             panel5.Size = new Size(747, 35);
             panel5.TabIndex = 0;
@@ -270,7 +287,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(3, 1);
+            label6.Location = new Point(3, 0);
             label6.Name = "label6";
             label6.Size = new Size(300, 28);
             label6.TabIndex = 1;
@@ -341,5 +358,6 @@
         private Label label5;
         private Label label4;
         private Label label6;
+        private Button btn_addimage;
     }
 }

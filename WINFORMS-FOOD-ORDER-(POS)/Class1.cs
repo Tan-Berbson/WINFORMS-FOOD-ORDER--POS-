@@ -5,6 +5,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
+using System.IO;
+using System.Data;
 
 namespace WINFORMS_FOOD_ORDER__POS_
 {
@@ -49,6 +51,64 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     }
                 }
             }
+            public bool InsertProduct(string adminname, string imagePath, string productname, string productprice)
+            {
+                using (SqliteConnection connection = db.GetConnection())
+                {
+                    string query = "INSERT INTO PRODUCTS (ADMINNAME, PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE) " +
+"VALUES (@A, @IMG, @P, @PR)";
+                    using (SqliteCommand cmd = new SqliteCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@A", adminname);
+                        byte[] imageBytes = File.ReadAllBytes(imagePath);
+                        cmd.Parameters.AddWithValue("@IMG", imageBytes);
+                        cmd.Parameters.AddWithValue("@P", productname);
+                        cmd.Parameters.AddWithValue("@PR", productprice);
+
+                       
+                        connection.Open();
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+
+            }
+            public class produtlist
+            {
+                public int ProductID { get; set; }
+                public byte[] ProductImage { get; set; }
+                public string ProductName { get; set; }
+                public string Productprice { get; set; }
+                public string ProductNumber => $"ProductNumber#{ProductID}";
+
+            }
+            public List<produtlist> loadproducts(string manager)
+            {
+                List<produtlist> products = new List<produtlist>();
+                using (SqliteConnection connection = db.GetConnection())
+                {
+                    string query = "SELECT id , PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE FROM PRODUCTS WHERE ADMINNAME = @A";
+                    SqliteCommand cmd = new SqliteCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@A", manager);
+                    connection.Open();
+
+                    SqliteDataReader reader = cmd.ExecuteReader();
+
+                    while(reader.Read())
+                    {
+                        products.Add(new produtlist
+                        {
+                            ProductID = Convert.ToInt32(reader["id"]),
+                            ProductImage = (byte[])reader["PRODUCTIMAGE"],
+                            ProductName = reader["PRODUCTNAME"].ToString(),
+                            Productprice = reader["PRODUCTPRICE"].ToString()
+                        });
+                    }
+                    return products;
+                }
+                
+            }
+
+
         }
 
     }
