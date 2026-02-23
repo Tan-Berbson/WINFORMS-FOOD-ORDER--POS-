@@ -27,9 +27,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 f.Show();
                 this.Hide();
             }
+            else if(login.logincashier(txt_username.Text,txt_password.Text))
+            {
+                MessageBox.Show("Log In Successfully Cashier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
             else
             {
-                MessageBox.Show("Log In Failed Check Your Username and Password","Information",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Log In Failed Check Your Username and Password", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

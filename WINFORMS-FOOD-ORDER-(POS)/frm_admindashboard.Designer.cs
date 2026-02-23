@@ -120,6 +120,7 @@
             btn_cashier.TabIndex = 11;
             btn_cashier.Text = "Cashier account";
             btn_cashier.UseVisualStyleBackColor = true;
+            btn_cashier.Click += btn_cashier_Click;
             // 
             // btn_systeminfo
             // 

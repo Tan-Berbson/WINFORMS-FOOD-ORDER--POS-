@@ -127,5 +127,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 }
             }
         }
+
+        private void btn_cashier_Click(object sender, EventArgs e)
+        {
+            frm_createacccashier f = new frm_createacccashier(txt_username.Text);
+            f.Show();
+            this.Hide();
+        }
     }
 }

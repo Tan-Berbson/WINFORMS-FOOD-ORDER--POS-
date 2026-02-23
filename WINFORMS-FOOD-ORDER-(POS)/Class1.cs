@@ -51,6 +51,37 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     }
                 }
             }
+            public bool logincashier(string username, string password)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM CASHIERACC WHERE USERNAME = @U AND PASSWORD = @P";
+                    using (SqliteCommand cmd = new SqliteCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@U", username);
+                        cmd.Parameters.AddWithValue("@P", password);
+                        con.Open();
+                        long resut = (long)cmd.ExecuteScalar();
+                        return resut == 1;
+                    }
+                }
+            }
+            public bool signupcashier(string adminusername, string username,string password) 
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "INSERT INTO CASHIERACC (ADMINUSERNAME, USERNAME, PASSWORD) VALUES (@AU,@U,@P)";
+                    using (SqliteCommand cmd = new SqliteCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@AU", adminusername);
+                        cmd.Parameters.AddWithValue("@U", username);
+                        cmd.Parameters.AddWithValue("@P", password);
+                        con.Open();
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+
             public bool InsertProduct(string adminname, string imagePath, string productname, string productprice)
             {
                 using (SqliteConnection connection = db.GetConnection())

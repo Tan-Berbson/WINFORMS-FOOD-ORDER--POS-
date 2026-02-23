@@ -18,12 +18,24 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 conn.Open();
                 ADMINACC(conn);
                 PRODUCTS(conn);
+                CASHIERACC(conn);
             }
         }
          private static void ADMINACC(SqliteConnection conn)
          {
             string query = @"CREATE TABLE IF NOT EXISTS ADMINACC (
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                USERNAME TEXT NOT NULL UNIQUE,
+                                PASSWORD TEXT NOT NULL
+                            );";
+            Execute(conn, query);
+
+        }
+        private static void CASHIERACC(SqliteConnection conn)
+        {
+            string query = @"CREATE TABLE IF NOT EXISTS CASHIERACC (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                ADMINUSERNAME TEXT NOT NULL,
                                 USERNAME TEXT NOT NULL UNIQUE,
                                 PASSWORD TEXT NOT NULL
                             );";
