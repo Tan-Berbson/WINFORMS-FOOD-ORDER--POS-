@@ -27,12 +27,19 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 MessageBox.Show("Cashier Account Create Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
+
             }
             else
             {
-               MessageBox.Show("Account Create Failed","Information",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Username already exists. Please choose another username.", "Create Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            frm_admindashboard f = new frm_admindashboard(txt_managername.Text);
+            f.Show();   
+            this.Close();
         }
     }
 }

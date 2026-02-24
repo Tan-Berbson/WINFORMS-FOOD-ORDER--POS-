@@ -22,6 +22,35 @@ namespace WINFORMS_FOOD_ORDER__POS_
         }
         public class auth
         {
+            public bool UsernameExistsAdmin(string username)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM ADMINACC WHERE USERNAME = @UA";
+                   
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@UA", username);
+
+                    con.Open();
+                    long resut = (long)cmd.ExecuteScalar();
+                    return resut == 1;
+                }
+            }
+            public bool UsernameExistsCashier(string username)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM CASHIERACC WHERE USERNAME = @UA";
+
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@UA", username);
+
+                    con.Open();
+                    long resut = (long)cmd.ExecuteScalar();
+                    return resut == 1;
+                }
+            }
+
             public bool loginadmin(string username, string password)
             {
                 using (SqliteConnection con = db.GetConnection())
@@ -39,6 +68,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
             public bool signupadmin(string username, string password)
             {
+                if (UsernameExistsAdmin(username))
+                    return false;
+                if (UsernameExistsCashier(username))
+                    return false;
                 using (SqliteConnection con = db.GetConnection())
                 {
                     string query = "INSERT INTO ADMINACC (USERNAME,PASSWORD) VALUES (@U,@P)";
@@ -68,6 +101,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
             public bool signupcashier(string adminusername, string username,string password) 
             {
+                if (UsernameExistsAdmin(username))
+                    return false;
+                if (UsernameExistsCashier(username))
+                    return false;
                 using (SqliteConnection con = db.GetConnection())
                 {
                     string query = "INSERT INTO CASHIERACC (ADMINUSERNAME, USERNAME, PASSWORD) VALUES (@AU,@U,@P)";

@@ -30,6 +30,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
             else if(login.logincashier(txt_username.Text,txt_password.Text))
             {
                 MessageBox.Show("Log In Successfully Cashier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frm_cashierDashboard f = new frm_cashierDashboard(txt_username.Text);
+                f.Show();
+                this.Hide();
 
             }
             else

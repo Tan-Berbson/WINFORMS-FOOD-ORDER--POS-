@@ -43,6 +43,7 @@
             // 
             txt_managername.Location = new Point(326, 12);
             txt_managername.Name = "txt_managername";
+            txt_managername.ReadOnly = true;
             txt_managername.Size = new Size(100, 23);
             txt_managername.TabIndex = 0;
             // 
@@ -105,6 +106,7 @@
             btn_back.TabIndex = 5;
             btn_back.Text = "back";
             btn_back.UseVisualStyleBackColor = true;
+            btn_back.Click += btn_back_Click;
             // 
             // frm_createacccashier
             // 

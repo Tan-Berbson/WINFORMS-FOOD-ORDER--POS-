@@ -155,6 +155,7 @@
             dgv_product.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_product.Location = new Point(3, 43);
             dgv_product.Name = "dgv_product";
+            dgv_product.ReadOnly = true;
             dgv_product.Size = new Size(740, 583);
             dgv_product.TabIndex = 0;
             dgv_product.CellFormatting += dgv_product_CellFormatting;
