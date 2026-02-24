@@ -37,9 +37,25 @@
             pictureboxlogo = new PictureBox();
             panel2 = new Panel();
             panel11 = new Panel();
+            button3 = new Button();
+            pictureBox4 = new PictureBox();
+            txt_productprice4 = new TextBox();
+            txt_productnanme4 = new TextBox();
             panel9 = new Panel();
+            button2 = new Button();
+            pictureBox3 = new PictureBox();
+            txt_productprice3 = new TextBox();
+            txt_productnanme3 = new TextBox();
             panel8 = new Panel();
+            button1 = new Button();
+            pictureBox2 = new PictureBox();
+            txt_productprice2 = new TextBox();
+            txt_productnanme2 = new TextBox();
             panel10 = new Panel();
+            btn_order1 = new Button();
+            txt_productprice1 = new TextBox();
+            txt_productnanme1 = new TextBox();
+            pictureBox1 = new PictureBox();
             panel4 = new Panel();
             panel3 = new Panel();
             panel7 = new Panel();
@@ -52,6 +68,14 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
+            panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel7.SuspendLayout();
             panel6.SuspendLayout();
@@ -138,31 +162,175 @@
             // 
             // panel11
             // 
+            panel11.Controls.Add(button3);
+            panel11.Controls.Add(pictureBox4);
+            panel11.Controls.Add(txt_productprice4);
+            panel11.Controls.Add(txt_productnanme4);
             panel11.Location = new Point(391, 408);
             panel11.Name = "panel11";
             panel11.Size = new Size(268, 288);
             panel11.TabIndex = 4;
             // 
+            // button3
+            // 
+            button3.Location = new Point(52, 242);
+            button3.Name = "button3";
+            button3.Size = new Size(174, 29);
+            button3.TabIndex = 31;
+            button3.Text = "Order";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Location = new Point(52, 28);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(174, 111);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 28;
+            pictureBox4.TabStop = false;
+            // 
+            // txt_productprice4
+            // 
+            txt_productprice4.Location = new Point(52, 211);
+            txt_productprice4.Name = "txt_productprice4";
+            txt_productprice4.Size = new Size(174, 23);
+            txt_productprice4.TabIndex = 30;
+            // 
+            // txt_productnanme4
+            // 
+            txt_productnanme4.Location = new Point(52, 167);
+            txt_productnanme4.Name = "txt_productnanme4";
+            txt_productnanme4.Size = new Size(174, 23);
+            txt_productnanme4.TabIndex = 29;
+            // 
             // panel9
             // 
+            panel9.Controls.Add(button2);
+            panel9.Controls.Add(pictureBox3);
+            panel9.Controls.Add(txt_productprice3);
+            panel9.Controls.Add(txt_productnanme3);
             panel9.Location = new Point(65, 408);
             panel9.Name = "panel9";
             panel9.Size = new Size(268, 288);
             panel9.TabIndex = 4;
             // 
+            // button2
+            // 
+            button2.Location = new Point(43, 242);
+            button2.Name = "button2";
+            button2.Size = new Size(174, 29);
+            button2.TabIndex = 27;
+            button2.Text = "Order";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Location = new Point(43, 28);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(174, 111);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 24;
+            pictureBox3.TabStop = false;
+            // 
+            // txt_productprice3
+            // 
+            txt_productprice3.Location = new Point(43, 211);
+            txt_productprice3.Name = "txt_productprice3";
+            txt_productprice3.Size = new Size(174, 23);
+            txt_productprice3.TabIndex = 26;
+            // 
+            // txt_productnanme3
+            // 
+            txt_productnanme3.Location = new Point(43, 167);
+            txt_productnanme3.Name = "txt_productnanme3";
+            txt_productnanme3.Size = new Size(174, 23);
+            txt_productnanme3.TabIndex = 25;
+            // 
             // panel8
             // 
+            panel8.Controls.Add(button1);
+            panel8.Controls.Add(pictureBox2);
+            panel8.Controls.Add(txt_productprice2);
+            panel8.Controls.Add(txt_productnanme2);
             panel8.Location = new Point(391, 82);
             panel8.Name = "panel8";
             panel8.Size = new Size(268, 288);
             panel8.TabIndex = 4;
             // 
+            // button1
+            // 
+            button1.Location = new Point(52, 247);
+            button1.Name = "button1";
+            button1.Size = new Size(174, 29);
+            button1.TabIndex = 23;
+            button1.Text = "Order";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(52, 33);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(174, 111);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 20;
+            pictureBox2.TabStop = false;
+            // 
+            // txt_productprice2
+            // 
+            txt_productprice2.Location = new Point(52, 216);
+            txt_productprice2.Name = "txt_productprice2";
+            txt_productprice2.Size = new Size(174, 23);
+            txt_productprice2.TabIndex = 22;
+            // 
+            // txt_productnanme2
+            // 
+            txt_productnanme2.Location = new Point(52, 172);
+            txt_productnanme2.Name = "txt_productnanme2";
+            txt_productnanme2.Size = new Size(174, 23);
+            txt_productnanme2.TabIndex = 21;
+            // 
             // panel10
             // 
+            panel10.Controls.Add(btn_order1);
+            panel10.Controls.Add(txt_productprice1);
+            panel10.Controls.Add(txt_productnanme1);
+            panel10.Controls.Add(pictureBox1);
             panel10.Location = new Point(65, 82);
             panel10.Name = "panel10";
             panel10.Size = new Size(268, 288);
             panel10.TabIndex = 3;
+            // 
+            // btn_order1
+            // 
+            btn_order1.Location = new Point(43, 247);
+            btn_order1.Name = "btn_order1";
+            btn_order1.Size = new Size(174, 29);
+            btn_order1.TabIndex = 19;
+            btn_order1.Text = "Order";
+            btn_order1.UseVisualStyleBackColor = true;
+            // 
+            // txt_productprice1
+            // 
+            txt_productprice1.Location = new Point(43, 216);
+            txt_productprice1.Name = "txt_productprice1";
+            txt_productprice1.Size = new Size(174, 23);
+            txt_productprice1.TabIndex = 18;
+            // 
+            // txt_productnanme1
+            // 
+            txt_productnanme1.Location = new Point(43, 172);
+            txt_productnanme1.Name = "txt_productnanme1";
+            txt_productnanme1.Size = new Size(174, 23);
+            txt_productnanme1.TabIndex = 17;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(43, 33);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(174, 111);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
             // 
             // panel4
             // 
@@ -254,10 +422,23 @@
             Name = "frm_cashierDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frm_cashierDashboard";
+            Load += frm_cashierDashboard_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).EndInit();
             panel2.ResumeLayout(false);
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel6.ResumeLayout(false);
@@ -288,5 +469,21 @@
         private Panel panel9;
         private Panel panel8;
         private Panel panel10;
+        private Button btn_order1;
+        private TextBox txt_productprice1;
+        private TextBox txt_productnanme1;
+        private PictureBox pictureBox1;
+        private Button button3;
+        private PictureBox pictureBox4;
+        private TextBox txt_productprice4;
+        private TextBox txt_productnanme4;
+        private Button button2;
+        private PictureBox pictureBox3;
+        private TextBox txt_productprice3;
+        private TextBox txt_productnanme3;
+        private Button button1;
+        private PictureBox pictureBox2;
+        private TextBox txt_productprice2;
+        private TextBox txt_productnanme2;
     }
 }

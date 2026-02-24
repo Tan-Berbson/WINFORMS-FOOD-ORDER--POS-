@@ -175,7 +175,35 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 }
                 
             }
+            public SqliteDataReader loadProductsByAdmin(string adminname)
+            {
+                SqliteConnection con = db.GetConnection();
+                con.Open();
 
+                SqliteCommand cmd = con.CreateCommand();
+                cmd.CommandText =
+                    "SELECT id, PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE " +
+                    "FROM PRODUCTS " +
+                    "WHERE ADMINNAME = @A " +
+                    "ORDER BY id";
+
+                cmd.Parameters.AddWithValue("@A", adminname);
+
+                return cmd.ExecuteReader();
+            }
+            public string loadmanagername(string username)
+            {
+                using (SqliteConnection conn = db.GetConnection())
+                {
+                    SqliteCommand cmd = new SqliteCommand(
+                        "SELECT ADMINUSERNAME FROM CASHIERACC WHERE USERNAME=@U", conn);
+
+                    cmd.Parameters.AddWithValue("@U", username);
+                    conn.Open();
+
+                    return cmd.ExecuteScalar()?.ToString();
+                }
+            }
 
         }
 
