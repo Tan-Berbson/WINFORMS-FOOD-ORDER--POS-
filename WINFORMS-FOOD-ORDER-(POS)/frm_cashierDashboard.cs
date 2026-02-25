@@ -14,6 +14,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
     public partial class frm_cashierDashboard : Form
     {
         string cashier { get; set; }
+        string manager { get; set; }
+        string productname { get; set; }
+        string productprice { get; set; }
         auth db = new auth();
         public frm_cashierDashboard(string cashiers)
         {
@@ -80,6 +83,27 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void frm_cashierDashboard_Load(object sender, EventArgs e)
         {
             LoadProductManually();
+            listView1.Columns.Add("Order Details", 120);
+            listView1.Columns.Add("Order Adds-On", 120);
+            listView1.Columns.Add("Total", 120);
+           
+        }
+
+        private void btn_order1_Click(object sender, EventArgs e)
+        {
+            frm_Addson f = new frm_Addson(txt_cashiername.Text, txt_managername.Text, txt_productnanme1.Text, txt_productprice1.Text);
+            f.Show();
+            
+           
+        }
+        // 🔹 TATAWAGIN NI FORM2
+        public void AddOrder(string orderName, string addons, string total)
+        {
+            ListViewItem item = new ListViewItem(orderName);
+            item.SubItems.Add(addons);
+            item.SubItems.Add(total);
+
+            listView1.Items.Add(item);
         }
     }
 }

@@ -308,6 +308,7 @@
             btn_order1.TabIndex = 19;
             btn_order1.Text = "Order";
             btn_order1.UseVisualStyleBackColor = true;
+            btn_order1.Click += btn_order1_Click;
             // 
             // txt_productprice1
             // 
@@ -369,11 +370,13 @@
             // 
             // listView1
             // 
+            listView1.GridLines = true;
             listView1.Location = new Point(3, 41);
             listView1.Name = "listView1";
             listView1.Size = new Size(330, 539);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
             // 
             // panel6
             // 
