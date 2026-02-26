@@ -16,7 +16,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
         string manager { get; set; }
         string productname { get; set; }
         string productprice { get; set; }
-        public frm_Addson(string cashiers, string managername, string productsname, string productporices)
+        Image productImage { get; set; }
+
+        public frm_Addson(string cashiers, string managername, string productsname, string productporices, Image productImage)
         {
             InitializeComponent();
             cashier = cashiers;
@@ -27,6 +29,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_managername.Text = managername;
             txt_ordername.Text = productsname;
             txt_price.Text = productporices;
+            pictureBox1.Image = productImage;      
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void btn_back_Click(object sender, EventArgs e)

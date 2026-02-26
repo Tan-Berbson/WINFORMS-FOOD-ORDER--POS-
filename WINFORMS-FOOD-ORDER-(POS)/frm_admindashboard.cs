@@ -51,27 +51,51 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_add_Click(object sender, EventArgs e)
         {
+            // Check if image is selected
             if (pictureBox1.Image == null)
             {
-                MessageBox.Show("Please select an image first.");
+                MessageBox.Show("Please select an image first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            auth a = new auth();
-            a.InsertProduct(
+            // Check if product name and price are entered
+            if (string.IsNullOrWhiteSpace(txt_productname.Text) || string.IsNullOrWhiteSpace(txt_productprice.Text))
+            {
+                MessageBox.Show("Please enter product name and price.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+          
+            // ✅ Check product limit first
+            if (admin.GetProductCountByAdmin(txt_username.Text) >= 10)
+            {
+                MessageBox.Show("You can only add up to 10 products.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop here
+            }
+
+            // Insert the product
+            bool success = admin.InsertProduct(
                 txt_username.Text,
-                pictureBox1.Tag.ToString(), // 👈 image path
+                pictureBox1.Tag.ToString(), // image path
                 txt_productname.Text,
                 txt_productprice.Text
             );
 
-            MessageBox.Show("Product saved!");
-            LoadProducts();
-            pictureBox1.Image = null;
-            pictureBox1.Tag = null;
+            if (success)
+            {
+                MessageBox.Show("Product saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadProducts();
 
-            txt_productname.Clear();
-            txt_productprice.Clear();
+                // Clear fields
+                pictureBox1.Image = null;
+                pictureBox1.Tag = null;
+                txt_productname.Clear();
+                txt_productprice.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Failed to save product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         void LoadProducts()
         {

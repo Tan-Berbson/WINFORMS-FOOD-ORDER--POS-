@@ -118,62 +118,96 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     }
                 }
             }
-
+            private int GetNextProductId(SqliteConnection con)
+            {
+                using (var cmd = new SqliteCommand(
+                    "SELECT IFNULL(MAX(id), 0) + 1 FROM PRODUCTS", con))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            public int GetProductCountByAdmin(string adminname)
+            {
+                using (var con = db.GetConnection())
+                {
+                    con.Open();
+                    using (var cmd = new SqliteCommand(
+                        "SELECT COUNT(*) FROM PRODUCTS WHERE ADMINNAME = @A", con))
+                    {
+                        cmd.Parameters.AddWithValue("@A", adminname);
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
             public bool InsertProduct(string adminname, string imagePath, string productname, string productprice)
             {
                 using (SqliteConnection connection = db.GetConnection())
                 {
-                    string query = "INSERT INTO PRODUCTS (ADMINNAME, PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE) " +
-"VALUES (@A, @IMG, @P, @PR)";
+                    connection.Open();
+
+                    
+
+                    int nextId = GetNextProductId(connection);
+
+                    string query =
+                        "INSERT INTO PRODUCTS (id, ADMINNAME, PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE) " +
+                        "VALUES (@ID, @A, @IMG, @P, @PR)";
+
                     using (SqliteCommand cmd = new SqliteCommand(query, connection))
                     {
+                        cmd.Parameters.AddWithValue("@ID", nextId);
                         cmd.Parameters.AddWithValue("@A", adminname);
-                        byte[] imageBytes = File.ReadAllBytes(imagePath);
-                        cmd.Parameters.AddWithValue("@IMG", imageBytes);
+                        cmd.Parameters.AddWithValue("@IMG", File.ReadAllBytes(imagePath));
                         cmd.Parameters.AddWithValue("@P", productname);
                         cmd.Parameters.AddWithValue("@PR", productprice);
 
-                       
-                        connection.Open();
                         return cmd.ExecuteNonQuery() > 0;
                     }
                 }
-
             }
             public class produtlist
             {
-                public int ProductID { get; set; }
+                public int ProductID { get; set; }   // DB id (internal)
+                public int DisplayNumber { get; set; } // UI number (1–10)
                 public byte[] ProductImage { get; set; }
                 public string ProductName { get; set; }
                 public string Productprice { get; set; }
-                public string ProductNumber => $"ProductNumber#{ProductID}";
+                public string ProductNumber => $"ProductNumber#{DisplayNumber}";
 
             }
             public List<produtlist> loadproducts(string manager)
             {
                 List<produtlist> products = new List<produtlist>();
+
                 using (SqliteConnection connection = db.GetConnection())
                 {
-                    string query = "SELECT id , PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE FROM PRODUCTS WHERE ADMINNAME = @A";
+                    string query =
+                        "SELECT id, PRODUCTIMAGE, PRODUCTNAME, PRODUCTPRICE " +
+                        "FROM PRODUCTS WHERE ADMINNAME = @A ORDER BY id";
+
                     SqliteCommand cmd = new SqliteCommand(query, connection);
                     cmd.Parameters.AddWithValue("@A", manager);
-                    connection.Open();
 
+                    connection.Open();
                     SqliteDataReader reader = cmd.ExecuteReader();
 
-                    while(reader.Read())
+                    int displayCounter = 1; // 🔥 START FROM 1
+
+                    while (reader.Read())
                     {
                         products.Add(new produtlist
                         {
-                            ProductID = Convert.ToInt32(reader["id"]),
+                            ProductID = Convert.ToInt32(reader["id"]), // DB id
+                            DisplayNumber = displayCounter++,          // UI number
                             ProductImage = (byte[])reader["PRODUCTIMAGE"],
                             ProductName = reader["PRODUCTNAME"].ToString(),
                             Productprice = reader["PRODUCTPRICE"].ToString()
                         });
                     }
-                    return products;
                 }
-                
+
+                return products;
+
             }
             public SqliteDataReader loadProductsByAdmin(string adminname)
             {

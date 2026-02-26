@@ -45,7 +45,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private static void PRODUCTS(SqliteConnection conn)
         {
             string query = @"CREATE TABLE IF NOT EXISTS PRODUCTS (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        id INTEGER ,
                        
                         ADMINNAME TEXT NOT NULL,
                         PRODUCTIMAGE BLOB,
