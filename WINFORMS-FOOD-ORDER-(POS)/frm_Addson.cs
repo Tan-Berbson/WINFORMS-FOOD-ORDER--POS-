@@ -35,9 +35,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            frm_cashierDashboard f = new frm_cashierDashboard(txt_cashiername.Text);
-            f.Show();
-            this.Close();
+            // 🔹 KUNIN ANG EXISTING FORM1
+            frm_cashierDashboard f =
+                (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
+
+            
+
+            // 🔹 BUMALIK SA FORM1
+            this.Close(); ;
         }
 
         private void btn_confirm_Click(object sender, EventArgs e)

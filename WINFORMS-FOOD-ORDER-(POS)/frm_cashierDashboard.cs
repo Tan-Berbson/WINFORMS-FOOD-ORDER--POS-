@@ -14,12 +14,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
     public partial class frm_cashierDashboard : Form
     {
         string cashier { get; set; }
-       
+
         auth db = new auth();
         public frm_cashierDashboard(string cashiers)
         {
             InitializeComponent();
-           
+
             cashier = cashiers;
             txt_cashiername.Text = cashiers;
             txt_managername.Text = db.loadmanagername(cashiers);
@@ -69,7 +69,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             listView1.Columns.Add("Order Details", 120);
             listView1.Columns.Add("Order Adds-On", 120);
             listView1.Columns.Add("Total", 120);
-           
+
         }
 
         private void btn_order1_Click(object sender, EventArgs e)
@@ -96,6 +96,45 @@ namespace WINFORMS_FOOD_ORDER__POS_
             item.SubItems.Add(total);
 
             listView1.Items.Add(item);
+            CalculateGrandTotal();
+        }
+        private void CalculateGrandTotal()
+        {
+            int grandTotal = 0;
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                grandTotal += int.Parse(item.SubItems[2].Text);
+            }
+
+            txt_total.Text = grandTotal.ToString();
+        }
+        public List<string[]> GetOrders()
+        {
+            List<string[]> orders = new List<string[]>();
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                string[] orderData = new string[3];
+                orderData[0] = item.SubItems[0].Text; // Order Name
+                orderData[1] = item.SubItems[1].Text; // Add-ons
+                orderData[2] = item.SubItems[2].Text; // Total
+                orders.Add(orderData);
+            }
+
+            return orders;
+        }
+        private void txt_total_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_checkout_Click(object sender, EventArgs e)
+        {
+            var orders = GetOrders(); // Kunin lahat ng orders mula sa cashierDashboard
+            frm_orderconfimation f = new frm_orderconfimation(orders);
+            f.Show();
+            this.Hide();
         }
     }
 }

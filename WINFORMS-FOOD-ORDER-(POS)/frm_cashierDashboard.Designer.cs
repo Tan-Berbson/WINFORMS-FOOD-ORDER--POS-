@@ -367,6 +367,7 @@
             btn_checkout.TabIndex = 15;
             btn_checkout.Text = "Check Out";
             btn_checkout.UseVisualStyleBackColor = true;
+            btn_checkout.Click += btn_checkout_Click;
             // 
             // listView1
             // 
@@ -404,6 +405,7 @@
             txt_total.Name = "txt_total";
             txt_total.Size = new Size(260, 31);
             txt_total.TabIndex = 1;
+            txt_total.TextChanged += txt_total_TextChanged;
             // 
             // panel5
             // 
