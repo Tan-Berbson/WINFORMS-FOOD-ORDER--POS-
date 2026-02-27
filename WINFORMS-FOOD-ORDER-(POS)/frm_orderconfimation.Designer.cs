@@ -42,9 +42,9 @@
             panel12 = new Panel();
             label11 = new Label();
             panel6 = new Panel();
-            radioButton5 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            rb_creditcard = new RadioButton();
+            rb_cash = new RadioButton();
+            rb_gcash = new RadioButton();
             panel11 = new Panel();
             label10 = new Label();
             panel10 = new Panel();
@@ -54,10 +54,10 @@
             label5 = new Label();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txt_customername = new TextBox();
             panel9 = new Panel();
-            radioButton4 = new RadioButton();
-            radioButton3 = new RadioButton();
+            rb_takeout = new RadioButton();
+            rb_dinein = new RadioButton();
             panel5 = new Panel();
             label4 = new Label();
             btn_back = new Button();
@@ -209,47 +209,47 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(radioButton5);
-            panel6.Controls.Add(radioButton2);
-            panel6.Controls.Add(radioButton1);
+            panel6.Controls.Add(rb_creditcard);
+            panel6.Controls.Add(rb_cash);
+            panel6.Controls.Add(rb_gcash);
             panel6.Controls.Add(panel11);
             panel6.Location = new Point(6, 324);
             panel6.Name = "panel6";
             panel6.Size = new Size(407, 88);
             panel6.TabIndex = 24;
             // 
-            // radioButton5
+            // rb_creditcard
             // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(283, 52);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(85, 19);
-            radioButton5.TabIndex = 4;
-            radioButton5.TabStop = true;
-            radioButton5.Text = "Credit Card";
-            radioButton5.UseVisualStyleBackColor = true;
+            rb_creditcard.AutoSize = true;
+            rb_creditcard.Location = new Point(283, 52);
+            rb_creditcard.Name = "rb_creditcard";
+            rb_creditcard.Size = new Size(85, 19);
+            rb_creditcard.TabIndex = 4;
+            rb_creditcard.TabStop = true;
+            rb_creditcard.Text = "Credit Card";
+            rb_creditcard.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rb_cash
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(44, 52);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(51, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Cash";
-            radioButton2.UseVisualStyleBackColor = true;
+            rb_cash.AutoSize = true;
+            rb_cash.Location = new Point(44, 52);
+            rb_cash.Name = "rb_cash";
+            rb_cash.Size = new Size(51, 19);
+            rb_cash.TabIndex = 1;
+            rb_cash.TabStop = true;
+            rb_cash.Text = "Cash";
+            rb_cash.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rb_gcash
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(168, 52);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(64, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "G-Cash";
-            radioButton1.UseVisualStyleBackColor = true;
+            rb_gcash.AutoSize = true;
+            rb_gcash.Location = new Point(168, 52);
+            rb_gcash.Name = "rb_gcash";
+            rb_gcash.Size = new Size(64, 19);
+            rb_gcash.TabIndex = 0;
+            rb_gcash.TabStop = true;
+            rb_gcash.Text = "G-Cash";
+            rb_gcash.UseVisualStyleBackColor = true;
             // 
             // panel11
             // 
@@ -277,7 +277,7 @@
             panel10.Controls.Add(label5);
             panel10.Controls.Add(textBox3);
             panel10.Controls.Add(textBox2);
-            panel10.Controls.Add(textBox1);
+            panel10.Controls.Add(txt_customername);
             panel10.Location = new Point(6, 41);
             panel10.Name = "panel10";
             panel10.Size = new Size(407, 276);
@@ -337,44 +337,44 @@
             textBox2.Size = new Size(210, 31);
             textBox2.TabIndex = 3;
             // 
-            // textBox1
+            // txt_customername
             // 
-            textBox1.Font = new Font("Segoe UI", 13F);
-            textBox1.Location = new Point(161, 142);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(217, 31);
-            textBox1.TabIndex = 2;
+            txt_customername.Font = new Font("Segoe UI", 13F);
+            txt_customername.Location = new Point(161, 142);
+            txt_customername.Name = "txt_customername";
+            txt_customername.Size = new Size(217, 31);
+            txt_customername.TabIndex = 2;
             // 
             // panel9
             // 
-            panel9.Controls.Add(radioButton4);
-            panel9.Controls.Add(radioButton3);
+            panel9.Controls.Add(rb_takeout);
+            panel9.Controls.Add(rb_dinein);
             panel9.Location = new Point(6, 418);
             panel9.Name = "panel9";
             panel9.Size = new Size(407, 88);
             panel9.TabIndex = 23;
             // 
-            // radioButton4
+            // rb_takeout
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(249, 51);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(73, 19);
-            radioButton4.TabIndex = 3;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "Take-Out";
-            radioButton4.UseVisualStyleBackColor = true;
+            rb_takeout.AutoSize = true;
+            rb_takeout.Location = new Point(249, 51);
+            rb_takeout.Name = "rb_takeout";
+            rb_takeout.Size = new Size(73, 19);
+            rb_takeout.TabIndex = 3;
+            rb_takeout.TabStop = true;
+            rb_takeout.Text = "Take-Out";
+            rb_takeout.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rb_dinein
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(91, 51);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(64, 19);
-            radioButton3.TabIndex = 2;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Dine-In";
-            radioButton3.UseVisualStyleBackColor = true;
+            rb_dinein.AutoSize = true;
+            rb_dinein.Location = new Point(91, 51);
+            rb_dinein.Name = "rb_dinein";
+            rb_dinein.Size = new Size(64, 19);
+            rb_dinein.TabIndex = 2;
+            rb_dinein.TabStop = true;
+            rb_dinein.Text = "Dine-In";
+            rb_dinein.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -449,6 +449,7 @@
             btn_confirm.TabIndex = 3;
             btn_confirm.Text = "Confirm";
             btn_confirm.UseVisualStyleBackColor = true;
+            btn_confirm.Click += btn_confirm_Click;
             // 
             // frm_orderconfimation
             // 
@@ -513,15 +514,15 @@
         private Label label4;
         private Panel panel12;
         private Panel panel6;
-        private RadioButton radioButton5;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton rb_creditcard;
+        private RadioButton rb_cash;
+        private RadioButton rb_gcash;
         private Panel panel11;
         private Panel panel10;
         private Panel panel9;
-        private RadioButton radioButton4;
-        private RadioButton radioButton3;
-        private TextBox textBox1;
+        private RadioButton rb_takeout;
+        private RadioButton rb_dinein;
+        private TextBox txt_customername;
         private Label label11;
         private Label label10;
         private PictureBox pictureBox1;

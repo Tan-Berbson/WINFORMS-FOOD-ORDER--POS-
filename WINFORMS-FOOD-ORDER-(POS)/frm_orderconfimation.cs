@@ -25,14 +25,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_cashiername.Text = cashiername;
             txt_managername.Text = managername;
             LoadOrdersToListView();
-           
+
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        
+
 
         private void LoadOrdersToListView()
         {
@@ -71,7 +71,41 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
             f.Show();
             this.Close();
-            
+
+
+        }
+        private string GetSelectedPaymentMethod()
+        {
+            if (rb_cash.Checked) return "Cash";
+            if (rb_gcash.Checked) return "GCash";
+            if (rb_creditcard.Checked) return "Credit Card";
+            return "N/A";
+        }
+
+        private string GetSelectedDineType()
+        {
+            if (rb_dinein.Checked) return "Dine-In";
+            if (rb_takeout.Checked) return "Take-Out";
+            return "N/A";
+        }
+
+        private void btn_confirm_Click(object sender, EventArgs e)
+        {
+            string customerName = txt_customername.Text;
+            string paymentMethod = GetSelectedPaymentMethod();
+            string dineType = GetSelectedDineType();
+            string total = txt_ordertotal.Text;
+
+            frm_reciept receiptForm = new frm_reciept(
+                orderList,
+                manager,
+                cashier,
+                customerName,
+                paymentMethod,
+                dineType,
+                total
+            );
+            receiptForm.ShowDialog();
 
         }
     }
