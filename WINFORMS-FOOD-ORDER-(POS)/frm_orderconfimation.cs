@@ -12,24 +12,27 @@ namespace WINFORMS_FOOD_ORDER__POS_
 {
     public partial class frm_orderconfimation : Form
     {
-        public frm_orderconfimation()
+        List<string[]> orderList = new List<string[]>();
+        string manager { get; set; }
+        string cashier { get; set; }
+        public frm_orderconfimation(List<string[]> orders, string managername, string cashiername)
         {
             InitializeComponent();
+
+            orderList = orders;
+            cashier = cashiername;
+            manager = managername;
+            txt_cashiername.Text = cashiername;
+            txt_managername.Text = managername;
+            LoadOrdersToListView();
+           
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        List<string[]> orderList = new List<string[]>();
-
-        public frm_orderconfimation(List<string[]> orders)
-        {
-            InitializeComponent();
-
-            orderList = orders;
-            LoadOrdersToListView();
-        }
+        
 
         private void LoadOrdersToListView()
         {
@@ -60,6 +63,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
 
             txt_ordertotal.Text = grandTotal.ToString();
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            frm_cashierDashboard f =
+                (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
+            f.Show();
+            this.Close();
+            
+
         }
     }
 }

@@ -359,7 +359,7 @@
             radioButton4.AutoSize = true;
             radioButton4.Location = new Point(249, 51);
             radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(74, 19);
+            radioButton4.Size = new Size(73, 19);
             radioButton4.TabIndex = 3;
             radioButton4.TabStop = true;
             radioButton4.Text = "Take-Out";
@@ -402,6 +402,7 @@
             btn_back.TabIndex = 2;
             btn_back.Text = "Back";
             btn_back.UseVisualStyleBackColor = true;
+            btn_back.Click += btn_back_Click;
             // 
             // panel8
             // 
@@ -427,6 +428,7 @@
             txt_ordertotal.Font = new Font("Segoe UI", 13F);
             txt_ordertotal.Location = new Point(122, 9);
             txt_ordertotal.Name = "txt_ordertotal";
+            txt_ordertotal.ReadOnly = true;
             txt_ordertotal.Size = new Size(725, 31);
             txt_ordertotal.TabIndex = 11;
             // 

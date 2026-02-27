@@ -194,6 +194,7 @@
             txt_quantity.Font = new Font("Segoe UI", 13F);
             txt_quantity.Location = new Point(143, 463);
             txt_quantity.Name = "txt_quantity";
+            txt_quantity.ReadOnly = true;
             txt_quantity.Size = new Size(78, 31);
             txt_quantity.TabIndex = 7;
             txt_quantity.Text = "1";
@@ -223,6 +224,7 @@
             txt_price.Font = new Font("Segoe UI", 13F);
             txt_price.Location = new Point(141, 414);
             txt_price.Name = "txt_price";
+            txt_price.ReadOnly = true;
             txt_price.Size = new Size(250, 31);
             txt_price.TabIndex = 5;
             // 
@@ -231,6 +233,7 @@
             txt_ordername.Font = new Font("Segoe UI", 13F);
             txt_ordername.Location = new Point(141, 362);
             txt_ordername.Name = "txt_ordername";
+            txt_ordername.ReadOnly = true;
             txt_ordername.Size = new Size(250, 31);
             txt_ordername.TabIndex = 4;
             // 

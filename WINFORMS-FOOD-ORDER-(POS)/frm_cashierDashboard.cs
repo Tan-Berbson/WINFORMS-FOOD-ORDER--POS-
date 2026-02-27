@@ -132,7 +132,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void btn_checkout_Click(object sender, EventArgs e)
         {
             var orders = GetOrders(); // Kunin lahat ng orders mula sa cashierDashboard
-            frm_orderconfimation f = new frm_orderconfimation(orders);
+            frm_orderconfimation f = new(orders,txt_managername.Text,txt_cashiername.Text);
             f.Show();
             this.Hide();
         }

@@ -193,6 +193,7 @@
             // 
             txt_productprice4.Location = new Point(52, 211);
             txt_productprice4.Name = "txt_productprice4";
+            txt_productprice4.ReadOnly = true;
             txt_productprice4.Size = new Size(174, 23);
             txt_productprice4.TabIndex = 30;
             // 
@@ -200,6 +201,7 @@
             // 
             txt_productnanme4.Location = new Point(52, 167);
             txt_productnanme4.Name = "txt_productnanme4";
+            txt_productnanme4.ReadOnly = true;
             txt_productnanme4.Size = new Size(174, 23);
             txt_productnanme4.TabIndex = 29;
             // 
@@ -236,6 +238,7 @@
             // 
             txt_productprice3.Location = new Point(43, 211);
             txt_productprice3.Name = "txt_productprice3";
+            txt_productprice3.ReadOnly = true;
             txt_productprice3.Size = new Size(174, 23);
             txt_productprice3.TabIndex = 26;
             // 
@@ -243,6 +246,7 @@
             // 
             txt_productnanme3.Location = new Point(43, 167);
             txt_productnanme3.Name = "txt_productnanme3";
+            txt_productnanme3.ReadOnly = true;
             txt_productnanme3.Size = new Size(174, 23);
             txt_productnanme3.TabIndex = 25;
             // 
@@ -279,6 +283,7 @@
             // 
             txt_productprice2.Location = new Point(52, 216);
             txt_productprice2.Name = "txt_productprice2";
+            txt_productprice2.ReadOnly = true;
             txt_productprice2.Size = new Size(174, 23);
             txt_productprice2.TabIndex = 22;
             // 
@@ -286,6 +291,7 @@
             // 
             txt_productnanme2.Location = new Point(52, 172);
             txt_productnanme2.Name = "txt_productnanme2";
+            txt_productnanme2.ReadOnly = true;
             txt_productnanme2.Size = new Size(174, 23);
             txt_productnanme2.TabIndex = 21;
             // 
@@ -314,6 +320,7 @@
             // 
             txt_productprice1.Location = new Point(43, 216);
             txt_productprice1.Name = "txt_productprice1";
+            txt_productprice1.ReadOnly = true;
             txt_productprice1.Size = new Size(174, 23);
             txt_productprice1.TabIndex = 18;
             // 
@@ -321,6 +328,7 @@
             // 
             txt_productnanme1.Location = new Point(43, 172);
             txt_productnanme1.Name = "txt_productnanme1";
+            txt_productnanme1.ReadOnly = true;
             txt_productnanme1.Size = new Size(174, 23);
             txt_productnanme1.TabIndex = 17;
             // 
@@ -403,6 +411,7 @@
             txt_total.Font = new Font("Segoe UI", 13F);
             txt_total.Location = new Point(68, 11);
             txt_total.Name = "txt_total";
+            txt_total.ReadOnly = true;
             txt_total.Size = new Size(260, 31);
             txt_total.TabIndex = 1;
             txt_total.TextChanged += txt_total_TextChanged;
