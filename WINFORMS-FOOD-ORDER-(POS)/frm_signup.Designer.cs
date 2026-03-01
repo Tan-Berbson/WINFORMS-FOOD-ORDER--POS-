@@ -28,70 +28,172 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_signup));
             btn_back = new Button();
             txt_password = new TextBox();
-            label1 = new Label();
             btn_create = new Button();
             txt_username = new TextBox();
+            panel1 = new Panel();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            pictureBox1 = new PictureBox();
+            label2 = new Label();
+            label1 = new Label();
+            label3 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btn_back
             // 
-            btn_back.Location = new Point(89, 282);
+            btn_back.BackColor = Color.FromArgb(200, 205, 210);
+            btn_back.FlatStyle = FlatStyle.Popup;
+            btn_back.ForeColor = Color.FromArgb(45, 60, 70);
+            btn_back.Location = new Point(104, 429);
             btn_back.Name = "btn_back";
-            btn_back.Size = new Size(147, 23);
+            btn_back.Size = new Size(266, 34);
             btn_back.TabIndex = 9;
             btn_back.Text = "Back";
-            btn_back.UseVisualStyleBackColor = true;
+            btn_back.UseVisualStyleBackColor = false;
             btn_back.Click += btn_back_Click;
             // 
             // txt_password
             // 
-            txt_password.Location = new Point(89, 176);
+            txt_password.Font = new Font("Segoe UI", 13F);
+            txt_password.Location = new Point(104, 300);
             txt_password.Name = "txt_password";
-            txt_password.Size = new Size(147, 23);
+            txt_password.Size = new Size(266, 31);
             txt_password.TabIndex = 8;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(143, 67);
-            label1.Name = "label1";
-            label1.Size = new Size(48, 15);
-            label1.TabIndex = 7;
-            label1.Text = "Sign Up";
             // 
             // btn_create
             // 
-            btn_create.Location = new Point(89, 239);
+            btn_create.BackColor = Color.FromArgb(52, 94, 104);
+            btn_create.FlatStyle = FlatStyle.Popup;
+            btn_create.Location = new Point(104, 363);
             btn_create.Name = "btn_create";
-            btn_create.Size = new Size(147, 23);
+            btn_create.Size = new Size(266, 34);
             btn_create.TabIndex = 6;
             btn_create.Text = "Create";
-            btn_create.UseVisualStyleBackColor = true;
+            btn_create.UseVisualStyleBackColor = false;
             btn_create.Click += btn_create_Click;
             // 
             // txt_username
             // 
-            txt_username.Location = new Point(89, 131);
+            txt_username.Font = new Font("Segoe UI", 13F);
+            txt_username.Location = new Point(104, 226);
             txt_username.Name = "txt_username";
-            txt_username.Size = new Size(147, 23);
+            txt_username.Size = new Size(266, 31);
             txt_username.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(52, 94, 104);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(484, 1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(483, 614);
+            panel1.TabIndex = 10;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
+            label6.ForeColor = Color.FromArgb(129, 198, 200);
+            label6.Location = new Point(178, 378);
+            label6.Name = "label6";
+            label6.Size = new Size(153, 31);
+            label6.TabIndex = 11;
+            label6.Text = "System (POS)";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 25F, FontStyle.Bold);
+            label5.ForeColor = Color.WhiteSmoke;
+            label5.Location = new Point(131, 332);
+            label5.Name = "label5";
+            label5.Size = new Size(245, 46);
+            label5.TabIndex = 10;
+            label5.Text = "Food Ordering";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 11F);
+            label4.ForeColor = SystemColors.Control;
+            label4.Location = new Point(20, 584);
+            label4.Name = "label4";
+            label4.Size = new Size(451, 20);
+            label4.TabIndex = 10;
+            label4.Text = "© 2025 Food Ordering System(POS) Since 2025. All rights reserved.";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(87, 132);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(318, 197);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(45, 60, 70);
+            label2.Location = new Point(165, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(150, 47);
+            label2.TabIndex = 11;
+            label2.Text = "Sign Up";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F);
+            label1.ForeColor = Color.FromArgb(45, 60, 70);
+            label1.Location = new Point(104, 202);
+            label1.Name = "label1";
+            label1.Size = new Size(88, 21);
+            label1.TabIndex = 12;
+            label1.Text = "User Name";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.ForeColor = Color.FromArgb(45, 60, 70);
+            label3.Location = new Point(104, 276);
+            label3.Name = "label3";
+            label3.Size = new Size(76, 21);
+            label3.TabIndex = 13;
+            label3.Text = "Password";
             // 
             // frm_signup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(312, 450);
+            BackColor = Color.FromArgb(242, 242, 242);
+            ClientSize = new Size(967, 614);
+            Controls.Add(label3);
+            Controls.Add(label1);
+            Controls.Add(label2);
+            Controls.Add(panel1);
             Controls.Add(btn_back);
             Controls.Add(txt_password);
-            Controls.Add(label1);
             Controls.Add(btn_create);
             Controls.Add(txt_username);
             Name = "frm_signup";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frm_signup";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -100,8 +202,15 @@
 
         private Button btn_back;
         private TextBox txt_password;
-        private Label label1;
         private Button btn_create;
         private TextBox txt_username;
+        private Panel panel1;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private PictureBox pictureBox1;
+        private Label label2;
+        private Label label1;
+        private Label label3;
     }
 }
