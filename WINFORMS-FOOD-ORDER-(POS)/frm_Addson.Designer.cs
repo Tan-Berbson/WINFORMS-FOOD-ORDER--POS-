@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Addson));
             panel1 = new Panel();
             label1 = new Label();
             txt_managername = new TextBox();
@@ -88,6 +89,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(52, 94, 104);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(txt_managername);
             panel1.Controls.Add(txt_cashiername);
@@ -101,6 +103,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = SystemColors.Control;
             label1.Location = new Point(403, 20);
             label1.Name = "label1";
             label1.Size = new Size(84, 15);
@@ -127,15 +130,18 @@
             // 
             // pictureboxlogo
             // 
+            pictureboxlogo.Image = (Image)resources.GetObject("pictureboxlogo.Image");
             pictureboxlogo.Location = new Point(3, 4);
             pictureboxlogo.Name = "pictureboxlogo";
-            pictureboxlogo.Size = new Size(100, 50);
+            pictureboxlogo.Size = new Size(88, 50);
+            pictureboxlogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureboxlogo.TabIndex = 14;
             pictureboxlogo.TabStop = false;
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = SystemColors.Control;
             label3.Location = new Point(109, 20);
             label3.Name = "label3";
             label3.Size = new Size(92, 15);
@@ -144,6 +150,7 @@
             // 
             // panel3
             // 
+            panel3.BackColor = Color.FromArgb(200, 205, 210);
             panel3.Controls.Add(label7);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(label5);
@@ -247,6 +254,7 @@
             // 
             // panel4
             // 
+            panel4.BackColor = Color.FromArgb(52, 94, 104);
             panel4.Controls.Add(label2);
             panel4.Location = new Point(0, 0);
             panel4.Name = "panel4";
@@ -257,6 +265,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F);
+            label2.ForeColor = SystemColors.Control;
             label2.Location = new Point(6, 5);
             label2.Name = "label2";
             label2.Size = new Size(138, 25);
@@ -265,6 +274,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.White;
             panel2.Controls.Add(panel8);
             panel2.Controls.Add(panel7);
             panel2.Controls.Add(panel5);
@@ -276,6 +286,7 @@
             // 
             // panel8
             // 
+            panel8.BackColor = Color.FromArgb(52, 94, 104);
             panel8.Controls.Add(label8);
             panel8.Controls.Add(txt_ordertotal);
             panel8.Location = new Point(9, 516);
@@ -287,6 +298,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 13F);
+            label8.ForeColor = SystemColors.Control;
             label8.Location = new Point(12, 9);
             label8.Name = "label8";
             label8.Size = new Size(104, 25);
@@ -313,26 +325,31 @@
             // 
             // btn_confirm
             // 
+            btn_confirm.BackColor = Color.FromArgb(52, 94, 104);
+            btn_confirm.FlatStyle = FlatStyle.Popup;
             btn_confirm.Location = new Point(428, 1);
             btn_confirm.Name = "btn_confirm";
             btn_confirm.Size = new Size(419, 38);
             btn_confirm.TabIndex = 3;
             btn_confirm.Text = "Confirm";
-            btn_confirm.UseVisualStyleBackColor = true;
+            btn_confirm.UseVisualStyleBackColor = false;
             btn_confirm.Click += btn_confirm_Click;
             // 
             // btn_back
             // 
+            btn_back.BackColor = Color.FromArgb(200, 205, 210);
+            btn_back.FlatStyle = FlatStyle.Popup;
             btn_back.Location = new Point(3, 3);
             btn_back.Name = "btn_back";
             btn_back.Size = new Size(419, 38);
             btn_back.TabIndex = 2;
             btn_back.Text = "Back";
-            btn_back.UseVisualStyleBackColor = true;
+            btn_back.UseVisualStyleBackColor = false;
             btn_back.Click += btn_back_Click;
             // 
             // panel5
             // 
+            panel5.BackColor = Color.FromArgb(200, 205, 210);
             panel5.Controls.Add(checkBox6);
             panel5.Controls.Add(checkBox5);
             panel5.Controls.Add(checkBox4);
@@ -473,6 +490,7 @@
             // 
             // panel6
             // 
+            panel6.BackColor = Color.FromArgb(52, 94, 104);
             panel6.Controls.Add(label4);
             panel6.Location = new Point(0, 0);
             panel6.Name = "panel6";
@@ -483,6 +501,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F);
+            label4.ForeColor = SystemColors.Control;
             label4.Location = new Point(3, 4);
             label4.Name = "label4";
             label4.Size = new Size(138, 25);

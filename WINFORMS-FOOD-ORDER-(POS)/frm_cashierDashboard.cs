@@ -85,6 +85,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             );
 
             f.Show();
+            this.Hide();
 
 
         }

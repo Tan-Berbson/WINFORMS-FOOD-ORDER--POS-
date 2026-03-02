@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_cashierDashboard));
             panel1 = new Panel();
             btn_logout = new Button();
             label1 = new Label();
@@ -57,6 +58,7 @@
             txt_productnanme1 = new TextBox();
             pictureBox1 = new PictureBox();
             panel4 = new Panel();
+            label4 = new Label();
             panel3 = new Panel();
             panel7 = new Panel();
             btn_checkout = new Button();
@@ -65,6 +67,7 @@
             label2 = new Label();
             txt_total = new TextBox();
             panel5 = new Panel();
+            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
@@ -76,13 +79,16 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel4.SuspendLayout();
             panel3.SuspendLayout();
             panel7.SuspendLayout();
             panel6.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(52, 94, 104);
             panel1.Controls.Add(btn_logout);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(txt_cashiername);
@@ -96,17 +102,19 @@
             // 
             // btn_logout
             // 
+            btn_logout.BackColor = Color.FromArgb(200, 205, 210);
             btn_logout.Location = new Point(965, 8);
             btn_logout.Name = "btn_logout";
             btn_logout.Size = new Size(122, 38);
             btn_logout.TabIndex = 14;
             btn_logout.Text = "Log Out";
-            btn_logout.UseVisualStyleBackColor = true;
+            btn_logout.UseVisualStyleBackColor = false;
             btn_logout.Click += btn_logout_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = SystemColors.Control;
             label1.Location = new Point(412, 20);
             label1.Name = "label1";
             label1.Size = new Size(84, 15);
@@ -125,6 +133,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = SystemColors.Control;
             label3.Location = new Point(118, 20);
             label3.Name = "label3";
             label3.Size = new Size(92, 15);
@@ -142,14 +151,17 @@
             // 
             // pictureboxlogo
             // 
+            pictureboxlogo.Image = (Image)resources.GetObject("pictureboxlogo.Image");
             pictureboxlogo.Location = new Point(12, 4);
             pictureboxlogo.Name = "pictureboxlogo";
-            pictureboxlogo.Size = new Size(100, 50);
+            pictureboxlogo.Size = new Size(82, 50);
+            pictureboxlogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureboxlogo.TabIndex = 1;
             pictureboxlogo.TabStop = false;
             // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(200, 205, 210);
             panel2.Controls.Add(panel11);
             panel2.Controls.Add(panel9);
             panel2.Controls.Add(panel8);
@@ -162,6 +174,7 @@
             // 
             // panel11
             // 
+            panel11.BackColor = Color.White;
             panel11.Controls.Add(button3);
             panel11.Controls.Add(pictureBox4);
             panel11.Controls.Add(txt_productprice4);
@@ -207,6 +220,7 @@
             // 
             // panel9
             // 
+            panel9.BackColor = Color.White;
             panel9.Controls.Add(button2);
             panel9.Controls.Add(pictureBox3);
             panel9.Controls.Add(txt_productprice3);
@@ -252,6 +266,7 @@
             // 
             // panel8
             // 
+            panel8.BackColor = Color.White;
             panel8.Controls.Add(button1);
             panel8.Controls.Add(pictureBox2);
             panel8.Controls.Add(txt_productprice2);
@@ -297,6 +312,7 @@
             // 
             // panel10
             // 
+            panel10.BackColor = Color.White;
             panel10.Controls.Add(btn_order1);
             panel10.Controls.Add(txt_productprice1);
             panel10.Controls.Add(txt_productnanme1);
@@ -343,14 +359,28 @@
             // 
             // panel4
             // 
+            panel4.BackColor = Color.FromArgb(52, 94, 104);
+            panel4.Controls.Add(label4);
             panel4.Location = new Point(3, 2);
             panel4.Name = "panel4";
             panel4.RightToLeft = RightToLeft.No;
             panel4.Size = new Size(732, 35);
             panel4.TabIndex = 1;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = SystemColors.Control;
+            label4.Location = new Point(288, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(149, 32);
+            label4.TabIndex = 18;
+            label4.Text = "Select Order";
+            // 
             // panel3
             // 
+            panel3.BackColor = Color.FromArgb(200, 205, 210);
             panel3.Controls.Add(panel7);
             panel3.Controls.Add(listView1);
             panel3.Controls.Add(panel6);
@@ -361,6 +391,7 @@
             // 
             // panel7
             // 
+            panel7.BackColor = Color.White;
             panel7.Controls.Add(btn_checkout);
             panel7.Location = new Point(6, 649);
             panel7.Name = "panel7";
@@ -369,12 +400,13 @@
             // 
             // btn_checkout
             // 
+            btn_checkout.BackColor = Color.FromArgb(200, 205, 210);
             btn_checkout.Location = new Point(6, 9);
             btn_checkout.Name = "btn_checkout";
             btn_checkout.Size = new Size(321, 38);
             btn_checkout.TabIndex = 15;
             btn_checkout.Text = "Check Out";
-            btn_checkout.UseVisualStyleBackColor = true;
+            btn_checkout.UseVisualStyleBackColor = false;
             btn_checkout.Click += btn_checkout_Click;
             // 
             // listView1
@@ -389,6 +421,7 @@
             // 
             // panel6
             // 
+            panel6.BackColor = Color.FromArgb(52, 94, 104);
             panel6.Controls.Add(label2);
             panel6.Controls.Add(txt_total);
             panel6.Location = new Point(3, 588);
@@ -418,11 +451,24 @@
             // 
             // panel5
             // 
+            panel5.BackColor = Color.FromArgb(52, 94, 104);
+            panel5.Controls.Add(label5);
             panel5.Location = new Point(751, 86);
             panel5.Name = "panel5";
             panel5.RightToLeft = RightToLeft.No;
             panel5.Size = new Size(336, 35);
             panel5.TabIndex = 2;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = SystemColors.Control;
+            label5.Location = new Point(6, 1);
+            label5.Name = "label5";
+            label5.Size = new Size(213, 32);
+            label5.TabIndex = 19;
+            label5.Text = "Order Information";
             // 
             // frm_cashierDashboard
             // 
@@ -453,10 +499,14 @@
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             panel3.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -499,5 +549,7 @@
         private PictureBox pictureBox2;
         private TextBox txt_productprice2;
         private TextBox txt_productnanme2;
+        private Label label4;
+        private Label label5;
     }
 }

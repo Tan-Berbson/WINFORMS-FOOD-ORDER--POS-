@@ -71,6 +71,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             // 🔹 ADD SA LISTVIEW
             f.AddOrder(orderName, addons, total.ToString());
+            f.Show();
 
             // 🔹 BUMALIK SA FORM1
             this.Close();

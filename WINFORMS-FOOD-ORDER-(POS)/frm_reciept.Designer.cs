@@ -73,6 +73,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(52, 94, 104);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(txt_managername);
             panel1.Controls.Add(txt_cashiername);
@@ -129,6 +130,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(52, 94, 104);
             panel2.Controls.Add(panel6);
             panel2.Controls.Add(textBox1);
             panel2.Location = new Point(10, 245);
@@ -280,6 +282,7 @@
             // 
             // panel9
             // 
+            panel9.BackColor = Color.FromArgb(52, 94, 104);
             panel9.Location = new Point(0, 0);
             panel9.Name = "panel9";
             panel9.Size = new Size(425, 29);
@@ -304,6 +307,7 @@
             // 
             // panel4
             // 
+            panel4.BackColor = Color.FromArgb(200, 205, 210);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label4);
