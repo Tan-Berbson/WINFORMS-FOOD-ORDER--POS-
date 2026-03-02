@@ -105,7 +105,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 dineType,
                 total
             );
-            receiptForm.ShowDialog();
+            receiptForm.Show();
+            this.Hide();
 
         }
     }
