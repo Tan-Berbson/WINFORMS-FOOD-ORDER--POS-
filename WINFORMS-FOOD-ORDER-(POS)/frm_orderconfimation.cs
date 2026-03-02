@@ -52,6 +52,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             listView1.Columns.Add("Order Adds-On", 120);
             listView1.Columns.Add("Total", 120);
             CalculateGrandTotal();
+
         }
         private void CalculateGrandTotal()
         {
@@ -91,23 +92,46 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
-            string customerName = txt_customername.Text;
-            string paymentMethod = GetSelectedPaymentMethod();
-            string dineType = GetSelectedDineType();
-            string total = txt_ordertotal.Text;
+            if (string.IsNullOrEmpty(txt_customername.Text) && string.IsNullOrEmpty(txt_ordernumber.Text))
+            {
+                MessageBox.Show("Plss Enter CustomerName and OrderNumber ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                string customerName = txt_customername.Text;
+                string paymentMethod = GetSelectedPaymentMethod();
+                string dineType = GetSelectedDineType();
+                string total = txt_ordertotal.Text;
 
-            frm_reciept receiptForm = new frm_reciept(
-                orderList,
-                manager,
-                cashier,
-                customerName,
-                paymentMethod,
-                dineType,
-                total
-            );
-            receiptForm.Show();
-            this.Hide();
+                frm_reciept receiptForm = new frm_reciept(
+                    orderList,
+                    manager,
+                    cashier,
+                    customerName,
+                    paymentMethod,
+                    dineType,
+                    total
+                );
+                receiptForm.Show();
+                this.Hide();
+            }
+        
+        }
 
+        private void rb_dinein_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_dinein.Checked)
+            {
+                txt_dinetype.Text = "Dine in";
+            }
+        }
+
+        private void rb_takeout_CheckedChanged(object sender, EventArgs e)
+        {
+           if(rb_takeout.Checked)
+            {
+                txt_dinetype.Text = "Take Out";
+            }
         }
     }
 }

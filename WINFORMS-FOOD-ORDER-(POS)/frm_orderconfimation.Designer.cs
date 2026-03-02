@@ -53,8 +53,8 @@
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txt_dinetype = new TextBox();
+            txt_ordernumber = new TextBox();
             txt_customername = new TextBox();
             panel9 = new Panel();
             rb_takeout = new RadioButton();
@@ -288,8 +288,8 @@
             panel10.Controls.Add(label7);
             panel10.Controls.Add(label6);
             panel10.Controls.Add(label5);
-            panel10.Controls.Add(textBox3);
-            panel10.Controls.Add(textBox2);
+            panel10.Controls.Add(txt_dinetype);
+            panel10.Controls.Add(txt_ordernumber);
             panel10.Controls.Add(txt_customername);
             panel10.Location = new Point(6, 41);
             panel10.Name = "panel10";
@@ -298,9 +298,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(161, 22);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 84);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 24;
             pictureBox1.TabStop = false;
             // 
@@ -334,21 +336,22 @@
             label5.TabIndex = 21;
             label5.Text = "Customer Name:";
             // 
-            // textBox3
+            // txt_dinetype
             // 
-            textBox3.Font = new Font("Segoe UI", 13F);
-            textBox3.Location = new Point(161, 232);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(217, 31);
-            textBox3.TabIndex = 4;
+            txt_dinetype.Font = new Font("Segoe UI", 13F);
+            txt_dinetype.Location = new Point(161, 232);
+            txt_dinetype.Name = "txt_dinetype";
+            txt_dinetype.ReadOnly = true;
+            txt_dinetype.Size = new Size(217, 31);
+            txt_dinetype.TabIndex = 4;
             // 
-            // textBox2
+            // txt_ordernumber
             // 
-            textBox2.Font = new Font("Segoe UI", 13F);
-            textBox2.Location = new Point(161, 186);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(210, 31);
-            textBox2.TabIndex = 3;
+            txt_ordernumber.Font = new Font("Segoe UI", 13F);
+            txt_ordernumber.Location = new Point(161, 186);
+            txt_ordernumber.Name = "txt_ordernumber";
+            txt_ordernumber.Size = new Size(210, 31);
+            txt_ordernumber.TabIndex = 3;
             // 
             // txt_customername
             // 
@@ -377,6 +380,7 @@
             rb_takeout.TabStop = true;
             rb_takeout.Text = "Take-Out";
             rb_takeout.UseVisualStyleBackColor = true;
+            rb_takeout.CheckedChanged += rb_takeout_CheckedChanged;
             // 
             // rb_dinein
             // 
@@ -388,6 +392,7 @@
             rb_dinein.TabStop = true;
             rb_dinein.Text = "Dine-In";
             rb_dinein.UseVisualStyleBackColor = true;
+            rb_dinein.CheckedChanged += rb_dinein_CheckedChanged;
             // 
             // panel5
             // 
@@ -550,7 +555,7 @@
         private Label label7;
         private Label label6;
         private Label label5;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox txt_dinetype;
+        private TextBox txt_ordernumber;
     }
 }

@@ -185,6 +185,7 @@
             checkBox1.Size = new Size(15, 14);
             checkBox1.TabIndex = 8;
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // linkLabel1
             // 
