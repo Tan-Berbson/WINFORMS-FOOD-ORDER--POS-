@@ -41,6 +41,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_total.Text = total;
             txt_managername.Text = manager;
             txt_cashiername.Text = cashier;
+            _ordernumber = ordernumber;
 
 
             txt_payment.Text = paymentMethod;
@@ -57,12 +58,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
             receipt.AppendLine("           Tan_food restaurant          ");
             receipt.AppendLine("              FOOD  POS                 ");
             receipt.AppendLine("========================================");
-            receipt.AppendLine($"Date : {DateTime.Now:MM/dd/yyyy hh:mm tt}");
+            receipt.AppendLine($"Date       : {DateTime.Now:MM/dd/yyyy hh:mm tt}");
+            receipt.AppendLine($"Order No.  : {_ordernumber}");  // <-- Add this line
             receipt.AppendLine("-----------------------------------------");
-            receipt.AppendLine($"Manager  : {_manager}");
-            receipt.AppendLine($"Cashier  : {_cashier}");
-            receipt.AppendLine($"Customer : {_customer}");
-            receipt.AppendLine($"Dine Type: {_dineType}");
+            receipt.AppendLine($"Manager    : {_manager}");
+            receipt.AppendLine($"Cashier    : {_cashier}");
+            receipt.AppendLine($"Customer   : {_customer}");
+            receipt.AppendLine($"Dine Type  : {_dineType}");
             receipt.AppendLine("----------------------------------------");
             receipt.AppendLine("ITEMS");
             receipt.AppendLine("----------------------------------------");
@@ -97,6 +99,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             DisplayReceipt(receipt.ToString());
         }
+
+            
         private void DisplayReceipt(string receiptText)
         {
             string[] lines = receiptText.Split(
