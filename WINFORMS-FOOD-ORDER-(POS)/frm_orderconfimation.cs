@@ -12,6 +12,26 @@ namespace WINFORMS_FOOD_ORDER__POS_
 {
     public partial class frm_orderconfimation : Form
     {
+        public static class SessionManager
+        {
+            // Key = cashier + date
+            private static Dictionary<string, int> cashierDailyCounters
+                = new Dictionary<string, int>();
+
+            public static int GetNextOrderNumber(string cashierUsername)
+            {
+                string today = DateTime.Now.ToString("yyyyMMdd");
+
+                string key = cashierUsername + "_" + today;
+
+                if (!cashierDailyCounters.ContainsKey(key))
+                    cashierDailyCounters[key] = 1;
+                else
+                    cashierDailyCounters[key]++;
+
+                return cashierDailyCounters[key];
+            }
+        }
         List<string[]> orderList = new List<string[]>();
         string manager { get; set; }
         string cashier { get; set; }
@@ -51,6 +71,15 @@ namespace WINFORMS_FOOD_ORDER__POS_
             listView1.Columns.Add("Order Details", 120);
             listView1.Columns.Add("Order Adds-On", 120);
             listView1.Columns.Add("Total", 120);
+            int nextNumber = SessionManager.GetNextOrderNumber(cashier);
+
+            string datePart = DateTime.Now.ToString("yyyyMMdd");
+            string cashierPart = cashier.ToUpper();
+
+            txt_ordernumber.Text =
+                cashierPart + "-" +
+                datePart + "-" +
+                nextNumber.ToString("D4");
             CalculateGrandTotal();
 
         }
@@ -102,6 +131,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 string paymentMethod = GetSelectedPaymentMethod();
                 string dineType = GetSelectedDineType();
                 string total = txt_ordertotal.Text;
+                string ordernumber = txt_ordernumber.Text;
 
                 frm_reciept receiptForm = new frm_reciept(
                     orderList,
@@ -110,12 +140,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     customerName,
                     paymentMethod,
                     dineType,
-                    total
+                    total,
+                    ordernumber
                 );
                 receiptForm.Show();
                 this.Hide();
             }
-        
+
         }
 
         private void rb_dinein_CheckedChanged(object sender, EventArgs e)
@@ -128,10 +159,15 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void rb_takeout_CheckedChanged(object sender, EventArgs e)
         {
-           if(rb_takeout.Checked)
+            if (rb_takeout.Checked)
             {
                 txt_dinetype.Text = "Take Out";
             }
+        }
+
+        private void txt_ordernumber_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

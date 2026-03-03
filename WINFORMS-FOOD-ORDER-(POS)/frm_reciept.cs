@@ -18,6 +18,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private readonly string _customer;
         private readonly string _paymentMethod;
         private readonly string _dineType;
+        private readonly string _ordernumber;
 
         public frm_reciept(List<string[]> orders,
             string manager,
@@ -25,7 +26,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             string customer,
             string paymentMethod,
             string dineType,
-            string total)
+            string total, string ordernumber)
         {
             InitializeComponent();
             _orders = orders;
@@ -34,6 +35,15 @@ namespace WINFORMS_FOOD_ORDER__POS_
             _customer = customer;
             _paymentMethod = paymentMethod;
             _dineType = dineType;
+            txt_customername.Text = customer;
+            txt_ordernumber.Text = ordernumber;
+            txt_payment.Text = paymentMethod;
+            txt_total.Text = total;
+            txt_managername.Text = manager;
+            txt_cashiername.Text = cashier;
+
+
+            txt_payment.Text = paymentMethod;
 
             GenerateReceipt();
         }
@@ -99,5 +109,25 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
         }
 
+        private void frm_reciept_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_neworder_Click(object sender, EventArgs e)
+        {
+            frm_cashierDashboard f = (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
+            if (f != null)
+            {
+                f.ClearOrders();  // clear previous data
+                f.Show();
+            }
+            else
+            {
+                f = new frm_cashierDashboard(txt_cashiername.Text);
+                f.Show();
+            }
+            this.Close();
+        }
     }
 }

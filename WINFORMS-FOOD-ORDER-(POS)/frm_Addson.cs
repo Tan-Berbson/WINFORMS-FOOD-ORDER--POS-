@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WINFORMS_FOOD_ORDER__POS_
 {
@@ -44,6 +45,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             // 🔹 BUMALIK SA FORM1
             this.Close(); ;
         }
+        
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
@@ -69,13 +71,26 @@ namespace WINFORMS_FOOD_ORDER__POS_
             frm_cashierDashboard f =
                 (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
 
+            // 🔹 CHECK DUPLICATE ORDER
+            if (f.OrderExists(orderName))
+            {
+                MessageBox.Show(
+                    "Order already in the list.\nIf you want to proceed, delete it first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop execution, cashier cannot confirm
+            }
+
             // 🔹 ADD SA LISTVIEW
-            f.AddOrder(orderName, addons, total.ToString());
-            f.Show();
+            bool added = f.AddOrderWithCheck(orderName, addons, total.ToString());
 
-            // 🔹 BUMALIK SA FORM1
-            this.Close();
-
+            if (added)
+            {
+                f.Show();
+                this.Close(); // Only close if order was added
+            }
 
         }
         private void CalculateTotal()

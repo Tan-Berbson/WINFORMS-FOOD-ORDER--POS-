@@ -20,9 +20,17 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             InitializeComponent();
 
+
             cashier = cashiers;
             txt_cashiername.Text = cashiers;
             txt_managername.Text = db.loadmanagername(cashiers);
+            listView1.Items.Clear();
+
+        }
+        public void ClearOrders()
+        {
+            listView1.Items.Clear();   // Clear all existing orders
+            txt_total.Text = "0";      // Reset total
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
@@ -71,9 +79,36 @@ namespace WINFORMS_FOOD_ORDER__POS_
             listView1.Columns.Add("Total", 120);
 
         }
-
+        public bool OrderExists(string productName)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                // Check if the item text starts with the product name
+                if (item.SubItems[0].Text.StartsWith(productName))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         private void btn_order1_Click(object sender, EventArgs e)
         {
+            string productName = txt_productnanme1.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
             Image productImage = pictureBox1.Image;
 
             frm_Addson f = new frm_Addson(
@@ -81,23 +116,42 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme1.Text,
                 txt_productprice1.Text,
-                productImage   // 👈 PASS IMAGE
+                productImage
             );
 
-            f.Show();
-            this.Hide();
+            f.ShowDialog();
+
 
 
         }
         // 🔹 TATAWAGIN NI FORM2
-        public void AddOrder(string orderName, string addons, string total)
-        {
-            ListViewItem item = new ListViewItem(orderName);
-            item.SubItems.Add(addons);
-            item.SubItems.Add(total);
 
-            listView1.Items.Add(item);
+        // 🔹 Put AddOrderWithCheck right here
+        public bool AddOrderWithCheck(string orderName, string addons, string total)
+        {
+            // 🔹 Check if order already exists
+            if (OrderExists(orderName))
+            {
+                MessageBox.Show(
+                    "Order already exists in the list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return false; // Do not add the order
+            }
+
+            // 🔹 Add the order
+            ListViewItem newItem = new ListViewItem(orderName);
+            newItem.SubItems.Add(addons);
+            newItem.SubItems.Add(total);
+            listView1.Items.Add(newItem);
+
+            // 🔹 Update grand total
             CalculateGrandTotal();
+
+            return true; // Added successfully
         }
         private void CalculateGrandTotal()
         {

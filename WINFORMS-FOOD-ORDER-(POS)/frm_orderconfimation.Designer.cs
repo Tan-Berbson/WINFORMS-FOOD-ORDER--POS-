@@ -350,8 +350,9 @@
             txt_ordernumber.Font = new Font("Segoe UI", 13F);
             txt_ordernumber.Location = new Point(161, 186);
             txt_ordernumber.Name = "txt_ordernumber";
-            txt_ordernumber.Size = new Size(210, 31);
+            txt_ordernumber.Size = new Size(217, 31);
             txt_ordernumber.TabIndex = 3;
+            txt_ordernumber.TextChanged += txt_ordernumber_TextChanged;
             // 
             // txt_customername
             // 

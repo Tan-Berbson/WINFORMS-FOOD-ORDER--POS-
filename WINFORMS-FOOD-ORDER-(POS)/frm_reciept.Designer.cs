@@ -29,44 +29,41 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btn_print = new Button();
             label1 = new Label();
             txt_managername = new TextBox();
             txt_cashiername = new TextBox();
             pictureboxlogo = new PictureBox();
             label3 = new Label();
             panel2 = new Panel();
+            panel7 = new Panel();
+            label7 = new Label();
+            textBox6 = new TextBox();
             panel6 = new Panel();
-            button11 = new Button();
-            button10 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            label8 = new Label();
             textBox1 = new TextBox();
             panel3 = new Panel();
             listBox1 = new ListBox();
             panel9 = new Panel();
+            label9 = new Label();
             panel5 = new Panel();
-            button12 = new Button();
+            btn_neworder = new Button();
             panel4 = new Panel();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label2 = new Label();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txt_payment = new TextBox();
+            txt_total = new TextBox();
+            txt_ordernumber = new TextBox();
+            txt_customername = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
+            panel7.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
+            panel9.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             SuspendLayout();
@@ -74,6 +71,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(52, 94, 104);
+            panel1.Controls.Add(btn_print);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(txt_managername);
             panel1.Controls.Add(txt_cashiername);
@@ -83,6 +81,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(770, 57);
             panel1.TabIndex = 2;
+            // 
+            // btn_print
+            // 
+            btn_print.BackColor = Color.FromArgb(200, 205, 210);
+            btn_print.FlatStyle = FlatStyle.Popup;
+            btn_print.Location = new Point(651, 10);
+            btn_print.Name = "btn_print";
+            btn_print.Size = new Size(102, 39);
+            btn_print.TabIndex = 12;
+            btn_print.Text = "Print";
+            btn_print.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -116,6 +125,7 @@
             pictureboxlogo.Location = new Point(3, 4);
             pictureboxlogo.Name = "pictureboxlogo";
             pictureboxlogo.Size = new Size(100, 50);
+            pictureboxlogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureboxlogo.TabIndex = 14;
             pictureboxlogo.TabStop = false;
             // 
@@ -131,136 +141,67 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(52, 94, 104);
+            panel2.Controls.Add(panel7);
             panel2.Controls.Add(panel6);
-            panel2.Controls.Add(textBox1);
-            panel2.Location = new Point(10, 245);
+            panel2.Location = new Point(10, 333);
             panel2.Name = "panel2";
-            panel2.Size = new Size(335, 415);
+            panel2.Size = new Size(335, 327);
             panel2.TabIndex = 3;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(200, 205, 210);
+            panel7.Controls.Add(label7);
+            panel7.Controls.Add(textBox6);
+            panel7.Location = new Point(5, 162);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(323, 143);
+            panel7.TabIndex = 28;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F);
+            label7.Location = new Point(13, 29);
+            label7.Name = "label7";
+            label7.Size = new Size(135, 21);
+            label7.TabIndex = 27;
+            label7.Text = "Customer Change";
+            // 
+            // textBox6
+            // 
+            textBox6.Font = new Font("Segoe UI", 24F);
+            textBox6.Location = new Point(13, 67);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(295, 50);
+            textBox6.TabIndex = 2;
             // 
             // panel6
             // 
-            panel6.Controls.Add(button11);
-            panel6.Controls.Add(button10);
-            panel6.Controls.Add(button7);
-            panel6.Controls.Add(button8);
-            panel6.Controls.Add(button9);
-            panel6.Controls.Add(button4);
-            panel6.Controls.Add(button5);
-            panel6.Controls.Add(button6);
-            panel6.Controls.Add(button3);
-            panel6.Controls.Add(button2);
-            panel6.Controls.Add(button1);
-            panel6.Location = new Point(3, 67);
+            panel6.BackColor = Color.FromArgb(200, 205, 210);
+            panel6.Controls.Add(label8);
+            panel6.Controls.Add(textBox1);
+            panel6.Location = new Point(5, 19);
             panel6.Name = "panel6";
-            panel6.Size = new Size(321, 348);
+            panel6.Size = new Size(321, 118);
             panel6.TabIndex = 0;
             // 
-            // button11
+            // label8
             // 
-            button11.Location = new Point(14, 12);
-            button11.Name = "button11";
-            button11.Size = new Size(288, 60);
-            button11.TabIndex = 11;
-            button11.Text = "button11";
-            button11.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            button10.Location = new Point(112, 276);
-            button10.Name = "button10";
-            button10.Size = new Size(92, 60);
-            button10.TabIndex = 10;
-            button10.Text = "button10";
-            button10.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Location = new Point(210, 210);
-            button7.Name = "button7";
-            button7.Size = new Size(92, 60);
-            button7.TabIndex = 9;
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Location = new Point(112, 210);
-            button8.Name = "button8";
-            button8.Size = new Size(92, 60);
-            button8.TabIndex = 8;
-            button8.Text = "button8";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            button9.Location = new Point(14, 210);
-            button9.Name = "button9";
-            button9.Size = new Size(92, 60);
-            button9.TabIndex = 7;
-            button9.Text = "button9";
-            button9.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(210, 144);
-            button4.Name = "button4";
-            button4.Size = new Size(92, 60);
-            button4.TabIndex = 6;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(112, 144);
-            button5.Name = "button5";
-            button5.Size = new Size(92, 60);
-            button5.TabIndex = 5;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(14, 144);
-            button6.Name = "button6";
-            button6.Size = new Size(92, 60);
-            button6.TabIndex = 4;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(210, 78);
-            button3.Name = "button3";
-            button3.Size = new Size(92, 60);
-            button3.TabIndex = 3;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(112, 78);
-            button2.Name = "button2";
-            button2.Size = new Size(92, 60);
-            button2.TabIndex = 2;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(14, 78);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 60);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F);
+            label8.Location = new Point(13, 13);
+            label8.Name = "label8";
+            label8.Size = new Size(130, 21);
+            label8.TabIndex = 28;
+            label8.Text = "Customer Money";
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 24F);
-            textBox1.Location = new Point(4, 11);
+            textBox1.Location = new Point(13, 49);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(324, 50);
+            textBox1.Size = new Size(295, 50);
             textBox1.TabIndex = 1;
             // 
             // panel3
@@ -275,7 +216,7 @@
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(3, 39);
+            listBox1.Location = new Point(5, 34);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(417, 604);
             listBox1.TabIndex = 0;
@@ -283,27 +224,42 @@
             // panel9
             // 
             panel9.BackColor = Color.FromArgb(52, 94, 104);
+            panel9.Controls.Add(label9);
             panel9.Location = new Point(0, 0);
             panel9.Name = "panel9";
             panel9.Size = new Size(425, 29);
             panel9.TabIndex = 2;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F);
+            label9.ForeColor = SystemColors.Control;
+            label9.Location = new Point(3, 3);
+            label9.Name = "label9";
+            label9.Size = new Size(61, 21);
+            label9.TabIndex = 27;
+            label9.Text = "Reciept";
+            // 
             // panel5
             // 
-            panel5.Controls.Add(button12);
+            panel5.Controls.Add(btn_neworder);
             panel5.Location = new Point(5, 663);
             panel5.Name = "panel5";
             panel5.Size = new Size(340, 45);
             panel5.TabIndex = 1;
             // 
-            // button12
+            // btn_neworder
             // 
-            button12.Location = new Point(0, 3);
-            button12.Name = "button12";
-            button12.Size = new Size(329, 39);
-            button12.TabIndex = 11;
-            button12.Text = "button12";
-            button12.UseVisualStyleBackColor = true;
+            btn_neworder.BackColor = Color.FromArgb(52, 94, 104);
+            btn_neworder.FlatStyle = FlatStyle.Popup;
+            btn_neworder.Location = new Point(11, 3);
+            btn_neworder.Name = "btn_neworder";
+            btn_neworder.Size = new Size(320, 39);
+            btn_neworder.TabIndex = 11;
+            btn_neworder.Text = "New Order";
+            btn_neworder.UseVisualStyleBackColor = false;
+            btn_neworder.Click += btn_neworder_Click;
             // 
             // panel4
             // 
@@ -312,20 +268,20 @@
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label4);
             panel4.Controls.Add(label2);
-            panel4.Controls.Add(textBox5);
-            panel4.Controls.Add(textBox4);
-            panel4.Controls.Add(textBox3);
-            panel4.Controls.Add(textBox2);
+            panel4.Controls.Add(txt_payment);
+            panel4.Controls.Add(txt_total);
+            panel4.Controls.Add(txt_ordernumber);
+            panel4.Controls.Add(txt_customername);
             panel4.Location = new Point(5, 65);
             panel4.Name = "panel4";
-            panel4.Size = new Size(333, 174);
+            panel4.Size = new Size(333, 262);
             panel4.TabIndex = 0;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(5, 85);
+            label6.Location = new Point(7, 140);
             label6.Name = "label6";
             label6.Size = new Size(128, 21);
             label6.TabIndex = 26;
@@ -335,7 +291,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(43, 128);
+            label5.Location = new Point(48, 200);
             label5.Name = "label5";
             label5.Size = new Size(90, 21);
             label5.TabIndex = 25;
@@ -345,7 +301,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F);
-            label4.Location = new Point(53, 50);
+            label4.Location = new Point(51, 86);
             label4.Name = "label4";
             label4.Size = new Size(80, 21);
             label4.TabIndex = 24;
@@ -355,47 +311,47 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(7, 16);
+            label2.Location = new Point(11, 26);
             label2.Name = "label2";
             label2.Size = new Size(127, 21);
             label2.TabIndex = 23;
             label2.Text = "Customer Name:";
             // 
-            // textBox5
+            // txt_payment
             // 
-            textBox5.Font = new Font("Segoe UI", 12F);
-            textBox5.Location = new Point(137, 85);
-            textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
-            textBox5.Size = new Size(158, 29);
-            textBox5.TabIndex = 22;
+            txt_payment.Font = new Font("Segoe UI", 12F);
+            txt_payment.Location = new Point(137, 136);
+            txt_payment.Name = "txt_payment";
+            txt_payment.ReadOnly = true;
+            txt_payment.Size = new Size(158, 29);
+            txt_payment.TabIndex = 22;
             // 
-            // textBox4
+            // txt_total
             // 
-            textBox4.Font = new Font("Segoe UI", 12F);
-            textBox4.Location = new Point(137, 128);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(158, 29);
-            textBox4.TabIndex = 21;
+            txt_total.Font = new Font("Segoe UI", 12F);
+            txt_total.Location = new Point(137, 197);
+            txt_total.Name = "txt_total";
+            txt_total.ReadOnly = true;
+            txt_total.Size = new Size(158, 29);
+            txt_total.TabIndex = 21;
             // 
-            // textBox3
+            // txt_ordernumber
             // 
-            textBox3.Font = new Font("Segoe UI", 12F);
-            textBox3.Location = new Point(137, 50);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(158, 29);
-            textBox3.TabIndex = 20;
+            txt_ordernumber.Font = new Font("Segoe UI", 12F);
+            txt_ordernumber.Location = new Point(137, 81);
+            txt_ordernumber.Name = "txt_ordernumber";
+            txt_ordernumber.ReadOnly = true;
+            txt_ordernumber.Size = new Size(158, 29);
+            txt_ordernumber.TabIndex = 20;
             // 
-            // textBox2
+            // txt_customername
             // 
-            textBox2.Font = new Font("Segoe UI", 12F);
-            textBox2.Location = new Point(137, 13);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(158, 29);
-            textBox2.TabIndex = 19;
+            txt_customername.Font = new Font("Segoe UI", 12F);
+            txt_customername.Location = new Point(137, 22);
+            txt_customername.Name = "txt_customername";
+            txt_customername.ReadOnly = true;
+            txt_customername.Size = new Size(158, 29);
+            txt_customername.TabIndex = 19;
             // 
             // frm_reciept
             // 
@@ -410,13 +366,18 @@
             Name = "frm_reciept";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frm_reciept";
+            Load += frm_reciept_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).EndInit();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             panel3.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
             panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
@@ -436,28 +397,24 @@
         private Panel panel5;
         private TextBox textBox1;
         private Panel panel6;
-        private Button button1;
         private ListBox listBox1;
         private Panel panel4;
         private Panel panel9;
         private Button button11;
-        private Button button10;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button3;
-        private Button button2;
         private Label label2;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox txt_payment;
+        private TextBox txt_total;
+        private TextBox txt_ordernumber;
+        private TextBox txt_customername;
         private Label label6;
         private Label label5;
         private Label label4;
-        private Button button12;
+        private Button btn_neworder;
+        private Label label7;
+        private TextBox textBox6;
+        private Panel panel7;
+        private Label label8;
+        private Label label9;
+        private Button btn_print;
     }
 }
