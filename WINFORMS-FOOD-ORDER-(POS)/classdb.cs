@@ -19,6 +19,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 ADMINACC(conn);
                 PRODUCTS(conn);
                 CASHIERACC(conn);
+                CASHIERSELLS(conn);
             }
         }
          private static void ADMINACC(SqliteConnection conn)
@@ -51,6 +52,25 @@ namespace WINFORMS_FOOD_ORDER__POS_
                         PRODUCTIMAGE BLOB,
                         PRODUCTNAME TEXT NOT NULL,
                         PRODUCTPRICE TEXT NOT NULL
+                       
+                    );";
+            Execute(conn, query);
+        }
+        private static void CASHIERSELLS(SqliteConnection conn)
+        {
+            string query = @"CREATE TABLE IF NOT EXISTS CASHIERSELLS (
+                        id INTEGER ,
+                       
+                        MANAGERNAME TEXT NOT NULL,
+                        CASHIERNAME TEXT NOT NULL,
+                        CUSTOMERNAME TEXT NOT NULL,
+                        ORDERID TEXT NOT NULL,
+                        PAYMENTMETHOD TEXT NOT NULL,
+                        ORDERTOTAL TEXT NOT NULL,
+                        CUSTOMERMONEY TEXT NOT NULL,
+                        CUSTOMERCHANGE TEXT NOT NULL
+
+                        
                        
                     );";
             Execute(conn, query);

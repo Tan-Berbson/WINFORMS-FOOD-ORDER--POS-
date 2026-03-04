@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static WINFORMS_FOOD_ORDER__POS_.Class1;
 
 namespace WINFORMS_FOOD_ORDER__POS_
 {
@@ -19,6 +20,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private readonly string _paymentMethod;
         private readonly string _dineType;
         private readonly string _ordernumber;
+        auth sells = new auth();
 
         public frm_reciept(List<string[]> orders,
             string manager,
@@ -120,18 +122,35 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_neworder_Click(object sender, EventArgs e)
         {
-            frm_cashierDashboard f = (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
-            if (f != null)
+            if (sells.cashiertotalsell(
+                txt_managername.Text,
+                txt_cashiername.Text,
+                txt_customername.Text,
+                txt_ordernumber.Text,
+                txt_payment.Text,
+                txt_total.Text,
+                txt_customermoney.Text,
+                txt_customerchange.Text))
             {
-                f.ClearOrders();  // clear previous data
-                f.Show();
+                MessageBox.Show("Order Completed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+             
+                // Optionally refresh dashboard
+                frm_cashierDashboard f = (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
+                if (f != null)
+                {
+                    f.ClearOrders();
+                    f.Show();
+                }
+                else
+                {
+                    f = new frm_cashierDashboard(txt_cashiername.Text);
+                    f.Show();
+                }
             }
-            else
-            {
-                f = new frm_cashierDashboard(txt_cashiername.Text);
-                f.Show();
-            }
+
             this.Close();
         }
+
     }
 }

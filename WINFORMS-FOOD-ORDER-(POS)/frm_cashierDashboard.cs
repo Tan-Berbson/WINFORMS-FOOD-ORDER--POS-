@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static WINFORMS_FOOD_ORDER__POS_.Class1;
 
 namespace WINFORMS_FOOD_ORDER__POS_
@@ -35,9 +36,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            frm_login f = new frm_login();
+            frm_cashierlogoutauth f = new frm_cashierlogoutauth(txt_cashiername.Text,txt_managername.Text);
             f.Show();
-            this.Close();
+            this.Hide();
         }
         private void ShowProduct(
     Class1.auth.produtlist p,

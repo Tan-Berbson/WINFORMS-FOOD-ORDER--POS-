@@ -38,10 +38,10 @@
             panel2 = new Panel();
             panel7 = new Panel();
             label7 = new Label();
-            textBox6 = new TextBox();
+            txt_customerchange = new TextBox();
             panel6 = new Panel();
             label8 = new Label();
-            textBox1 = new TextBox();
+            txt_customermoney = new TextBox();
             panel3 = new Panel();
             listBox1 = new ListBox();
             panel9 = new Panel();
@@ -152,7 +152,7 @@
             // 
             panel7.BackColor = Color.FromArgb(200, 205, 210);
             panel7.Controls.Add(label7);
-            panel7.Controls.Add(textBox6);
+            panel7.Controls.Add(txt_customerchange);
             panel7.Location = new Point(5, 162);
             panel7.Name = "panel7";
             panel7.Size = new Size(323, 143);
@@ -168,19 +168,19 @@
             label7.TabIndex = 27;
             label7.Text = "Customer Change";
             // 
-            // textBox6
+            // txt_customerchange
             // 
-            textBox6.Font = new Font("Segoe UI", 24F);
-            textBox6.Location = new Point(13, 67);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(295, 50);
-            textBox6.TabIndex = 2;
+            txt_customerchange.Font = new Font("Segoe UI", 24F);
+            txt_customerchange.Location = new Point(13, 67);
+            txt_customerchange.Name = "txt_customerchange";
+            txt_customerchange.Size = new Size(295, 50);
+            txt_customerchange.TabIndex = 2;
             // 
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(200, 205, 210);
             panel6.Controls.Add(label8);
-            panel6.Controls.Add(textBox1);
+            panel6.Controls.Add(txt_customermoney);
             panel6.Location = new Point(5, 19);
             panel6.Name = "panel6";
             panel6.Size = new Size(321, 118);
@@ -196,13 +196,13 @@
             label8.TabIndex = 28;
             label8.Text = "Customer Money";
             // 
-            // textBox1
+            // txt_customermoney
             // 
-            textBox1.Font = new Font("Segoe UI", 24F);
-            textBox1.Location = new Point(13, 49);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(295, 50);
-            textBox1.TabIndex = 1;
+            txt_customermoney.Font = new Font("Segoe UI", 24F);
+            txt_customermoney.Location = new Point(13, 49);
+            txt_customermoney.Name = "txt_customermoney";
+            txt_customermoney.Size = new Size(295, 50);
+            txt_customermoney.TabIndex = 1;
             // 
             // panel3
             // 
@@ -395,7 +395,7 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel5;
-        private TextBox textBox1;
+        private TextBox txt_customermoney;
         private Panel panel6;
         private ListBox listBox1;
         private Panel panel4;
@@ -411,7 +411,7 @@
         private Label label4;
         private Button btn_neworder;
         private Label label7;
-        private TextBox textBox6;
+        private TextBox txt_customerchange;
         private Panel panel7;
         private Label label8;
         private Label label9;
