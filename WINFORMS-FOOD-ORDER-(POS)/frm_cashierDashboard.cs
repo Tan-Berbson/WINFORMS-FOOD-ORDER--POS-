@@ -36,7 +36,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            frm_cashierlogoutauth f = new frm_cashierlogoutauth(txt_cashiername.Text,txt_managername.Text);
+            frm_cashierlogoutauth f = new frm_cashierlogoutauth(txt_cashiername.Text, txt_managername.Text);
             f.Show();
             this.Hide();
         }
@@ -70,6 +70,24 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             if (products.Count > 3)
                 ShowProduct(products[3], pictureBox4, txt_productnanme4, txt_productprice4);
+
+            if (products.Count > 4)
+                ShowProduct(products[4], pictureBox_5, txt_productnanme5, txt_productprice5);
+
+            if (products.Count > 5)
+                ShowProduct(products[5], pictureBox__6, txt_productnanme6, txt_productprice6);
+
+            if (products.Count > 6)
+                ShowProduct(products[6], pictureBox_7, txt_productnanme7, txt_productprice7);
+
+            if (products.Count > 7)
+                ShowProduct(products[7], pictureBox_8, txt_productnanme8, txt_productprice8);
+
+            if (products.Count > 8)
+                ShowProduct(products[8], pictureBox_9, txt_productnanme9, txt_productprice9);
+
+            if (products.Count > 9)
+                ShowProduct(products[9], pictureBox_10, txt_productnanme10, txt_productprice10);
         }
 
         private void frm_cashierDashboard_Load(object sender, EventArgs e)
@@ -82,13 +100,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
         }
         public bool OrderExists(string productName)
         {
+            if (string.IsNullOrWhiteSpace(productName))
+                return false;
+
             foreach (ListViewItem item in listView1.Items)
             {
-                // Check if the item text starts with the product name
-                if (item.SubItems[0].Text.StartsWith(productName))
-                {
+                if (item.SubItems[0].Text == productName)
                     return true;
-                }
             }
             return false;
         }
@@ -188,9 +206,289 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void btn_checkout_Click(object sender, EventArgs e)
         {
             var orders = GetOrders(); // Kunin lahat ng orders mula sa cashierDashboard
-            frm_orderconfimation f = new(orders,txt_managername.Text,txt_cashiername.Text);
+            frm_orderconfimation f = new(orders, txt_managername.Text, txt_cashiername.Text);
             f.Show();
             this.Hide();
+        }
+
+        private void btn_order2_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme2.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox2.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme2.Text,
+                txt_productprice2.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order3_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme3.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox3.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme3.Text,
+                txt_productprice3.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order4_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme4.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox4.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme4.Text,
+                txt_productprice4.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order5_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme5.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox_5.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme5.Text,
+                txt_productprice5.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order6_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme6.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox__6.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme6.Text,
+                txt_productprice6.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order7_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme7.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox_7.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme7.Text,
+                txt_productprice7.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order8_Click(object sender, EventArgs e)
+        {
+
+            string productName = txt_productnanme8.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox_8.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme8.Text,
+                txt_productprice8.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order9_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme9.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox_9.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme9.Text,
+                txt_productprice9.Text,
+                productImage
+            );
+
+            f.ShowDialog();
+        }
+
+        private void btn_order10_Click(object sender, EventArgs e)
+        {
+            string productName = txt_productnanme10.Text;
+
+            // Check if product already exists
+            if (OrderExists(productName))
+            {
+                MessageBox.Show(
+                    "This product is already in the order list.\n" +
+                    "If you want to add it again, delete the existing order first.",
+                    "Duplicate Order",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return; // Stop here
+            }
+
+            // Open add-ons form
+            Image productImage = pictureBox_10.Image;
+
+            frm_Addson f = new frm_Addson(
+                txt_cashiername.Text,
+                txt_managername.Text,
+                txt_productnanme10.Text,
+                txt_productprice10.Text,
+                productImage
+            );
+
+            f.ShowDialog();
         }
     }
 }

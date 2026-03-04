@@ -37,18 +37,48 @@
             txt_managername = new TextBox();
             pictureboxlogo = new PictureBox();
             panel2 = new Panel();
+            panel16 = new Panel();
+            btn_order8 = new Button();
+            pictureBox_8 = new PictureBox();
+            txt_productprice8 = new TextBox();
+            txt_productnanme8 = new TextBox();
+            panel17 = new Panel();
+            btn_order7 = new Button();
+            pictureBox_7 = new PictureBox();
+            txt_productprice7 = new TextBox();
+            txt_productnanme7 = new TextBox();
+            panel14 = new Panel();
+            btn_order6 = new Button();
+            pictureBox__6 = new PictureBox();
+            txt_productprice6 = new TextBox();
+            txt_productnanme6 = new TextBox();
+            panel15 = new Panel();
+            btn_order5 = new Button();
+            pictureBox_5 = new PictureBox();
+            txt_productprice5 = new TextBox();
+            txt_productnanme5 = new TextBox();
+            panel12 = new Panel();
+            btn_order10 = new Button();
+            pictureBox_10 = new PictureBox();
+            txt_productprice10 = new TextBox();
+            txt_productnanme10 = new TextBox();
+            panel13 = new Panel();
+            btn_order9 = new Button();
+            pictureBox_9 = new PictureBox();
+            txt_productprice9 = new TextBox();
+            txt_productnanme9 = new TextBox();
             panel11 = new Panel();
-            button3 = new Button();
+            btn_order4 = new Button();
             pictureBox4 = new PictureBox();
             txt_productprice4 = new TextBox();
             txt_productnanme4 = new TextBox();
             panel9 = new Panel();
-            button2 = new Button();
+            btn_order3 = new Button();
             pictureBox3 = new PictureBox();
             txt_productprice3 = new TextBox();
             txt_productnanme3 = new TextBox();
             panel8 = new Panel();
-            button1 = new Button();
+            btn_order2 = new Button();
             pictureBox2 = new PictureBox();
             txt_productprice2 = new TextBox();
             txt_productnanme2 = new TextBox();
@@ -71,6 +101,18 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
+            panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_8).BeginInit();
+            panel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_7).BeginInit();
+            panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox__6).BeginInit();
+            panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_5).BeginInit();
+            panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_10).BeginInit();
+            panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_9).BeginInit();
             panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             panel9.SuspendLayout();
@@ -161,7 +203,14 @@
             // 
             // panel2
             // 
+            panel2.AutoScroll = true;
             panel2.BackColor = Color.FromArgb(200, 205, 210);
+            panel2.Controls.Add(panel16);
+            panel2.Controls.Add(panel17);
+            panel2.Controls.Add(panel14);
+            panel2.Controls.Add(panel15);
+            panel2.Controls.Add(panel12);
+            panel2.Controls.Add(panel13);
             panel2.Controls.Add(panel11);
             panel2.Controls.Add(panel9);
             panel2.Controls.Add(panel8);
@@ -172,10 +221,292 @@
             panel2.Size = new Size(735, 708);
             panel2.TabIndex = 15;
             // 
+            // panel16
+            // 
+            panel16.BackColor = Color.White;
+            panel16.Controls.Add(btn_order8);
+            panel16.Controls.Add(pictureBox_8);
+            panel16.Controls.Add(txt_productprice8);
+            panel16.Controls.Add(txt_productnanme8);
+            panel16.Location = new Point(391, 1074);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(268, 288);
+            panel16.TabIndex = 34;
+            // 
+            // btn_order8
+            // 
+            btn_order8.Location = new Point(52, 242);
+            btn_order8.Name = "btn_order8";
+            btn_order8.Size = new Size(174, 29);
+            btn_order8.TabIndex = 31;
+            btn_order8.Text = "Order";
+            btn_order8.UseVisualStyleBackColor = true;
+            btn_order8.Click += btn_order8_Click;
+            // 
+            // pictureBox_8
+            // 
+            pictureBox_8.Location = new Point(52, 28);
+            pictureBox_8.Name = "pictureBox_8";
+            pictureBox_8.Size = new Size(174, 111);
+            pictureBox_8.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_8.TabIndex = 28;
+            pictureBox_8.TabStop = false;
+            // 
+            // txt_productprice8
+            // 
+            txt_productprice8.Location = new Point(52, 211);
+            txt_productprice8.Name = "txt_productprice8";
+            txt_productprice8.ReadOnly = true;
+            txt_productprice8.Size = new Size(174, 23);
+            txt_productprice8.TabIndex = 30;
+            // 
+            // txt_productnanme8
+            // 
+            txt_productnanme8.Location = new Point(52, 167);
+            txt_productnanme8.Name = "txt_productnanme8";
+            txt_productnanme8.ReadOnly = true;
+            txt_productnanme8.Size = new Size(174, 23);
+            txt_productnanme8.TabIndex = 29;
+            // 
+            // panel17
+            // 
+            panel17.BackColor = Color.White;
+            panel17.Controls.Add(btn_order7);
+            panel17.Controls.Add(pictureBox_7);
+            panel17.Controls.Add(txt_productprice7);
+            panel17.Controls.Add(txt_productnanme7);
+            panel17.Location = new Point(65, 1074);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(268, 288);
+            panel17.TabIndex = 35;
+            // 
+            // btn_order7
+            // 
+            btn_order7.Location = new Point(43, 242);
+            btn_order7.Name = "btn_order7";
+            btn_order7.Size = new Size(174, 29);
+            btn_order7.TabIndex = 27;
+            btn_order7.Text = "Order";
+            btn_order7.UseVisualStyleBackColor = true;
+            btn_order7.Click += btn_order7_Click;
+            // 
+            // pictureBox_7
+            // 
+            pictureBox_7.Location = new Point(43, 28);
+            pictureBox_7.Name = "pictureBox_7";
+            pictureBox_7.Size = new Size(174, 111);
+            pictureBox_7.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_7.TabIndex = 24;
+            pictureBox_7.TabStop = false;
+            // 
+            // txt_productprice7
+            // 
+            txt_productprice7.Location = new Point(43, 211);
+            txt_productprice7.Name = "txt_productprice7";
+            txt_productprice7.ReadOnly = true;
+            txt_productprice7.Size = new Size(174, 23);
+            txt_productprice7.TabIndex = 26;
+            // 
+            // txt_productnanme7
+            // 
+            txt_productnanme7.Location = new Point(43, 167);
+            txt_productnanme7.Name = "txt_productnanme7";
+            txt_productnanme7.ReadOnly = true;
+            txt_productnanme7.Size = new Size(174, 23);
+            txt_productnanme7.TabIndex = 25;
+            // 
+            // panel14
+            // 
+            panel14.BackColor = Color.White;
+            panel14.Controls.Add(btn_order6);
+            panel14.Controls.Add(pictureBox__6);
+            panel14.Controls.Add(txt_productprice6);
+            panel14.Controls.Add(txt_productnanme6);
+            panel14.Location = new Point(391, 738);
+            panel14.Name = "panel14";
+            panel14.Size = new Size(268, 288);
+            panel14.TabIndex = 32;
+            // 
+            // btn_order6
+            // 
+            btn_order6.Location = new Point(52, 242);
+            btn_order6.Name = "btn_order6";
+            btn_order6.Size = new Size(174, 29);
+            btn_order6.TabIndex = 31;
+            btn_order6.Text = "Order";
+            btn_order6.UseVisualStyleBackColor = true;
+            btn_order6.Click += btn_order6_Click;
+            // 
+            // pictureBox__6
+            // 
+            pictureBox__6.Location = new Point(52, 28);
+            pictureBox__6.Name = "pictureBox__6";
+            pictureBox__6.Size = new Size(174, 111);
+            pictureBox__6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox__6.TabIndex = 28;
+            pictureBox__6.TabStop = false;
+            // 
+            // txt_productprice6
+            // 
+            txt_productprice6.Location = new Point(52, 211);
+            txt_productprice6.Name = "txt_productprice6";
+            txt_productprice6.ReadOnly = true;
+            txt_productprice6.Size = new Size(174, 23);
+            txt_productprice6.TabIndex = 30;
+            // 
+            // txt_productnanme6
+            // 
+            txt_productnanme6.Location = new Point(52, 167);
+            txt_productnanme6.Name = "txt_productnanme6";
+            txt_productnanme6.ReadOnly = true;
+            txt_productnanme6.Size = new Size(174, 23);
+            txt_productnanme6.TabIndex = 29;
+            // 
+            // panel15
+            // 
+            panel15.BackColor = Color.White;
+            panel15.Controls.Add(btn_order5);
+            panel15.Controls.Add(pictureBox_5);
+            panel15.Controls.Add(txt_productprice5);
+            panel15.Controls.Add(txt_productnanme5);
+            panel15.Location = new Point(65, 738);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(268, 288);
+            panel15.TabIndex = 33;
+            // 
+            // btn_order5
+            // 
+            btn_order5.Location = new Point(43, 242);
+            btn_order5.Name = "btn_order5";
+            btn_order5.Size = new Size(174, 29);
+            btn_order5.TabIndex = 27;
+            btn_order5.Text = "Order";
+            btn_order5.UseVisualStyleBackColor = true;
+            btn_order5.Click += btn_order5_Click;
+            // 
+            // pictureBox_5
+            // 
+            pictureBox_5.Location = new Point(43, 28);
+            pictureBox_5.Name = "pictureBox_5";
+            pictureBox_5.Size = new Size(174, 111);
+            pictureBox_5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_5.TabIndex = 24;
+            pictureBox_5.TabStop = false;
+            // 
+            // txt_productprice5
+            // 
+            txt_productprice5.Location = new Point(43, 211);
+            txt_productprice5.Name = "txt_productprice5";
+            txt_productprice5.ReadOnly = true;
+            txt_productprice5.Size = new Size(174, 23);
+            txt_productprice5.TabIndex = 26;
+            // 
+            // txt_productnanme5
+            // 
+            txt_productnanme5.Location = new Point(43, 167);
+            txt_productnanme5.Name = "txt_productnanme5";
+            txt_productnanme5.ReadOnly = true;
+            txt_productnanme5.Size = new Size(174, 23);
+            txt_productnanme5.TabIndex = 25;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.White;
+            panel12.Controls.Add(btn_order10);
+            panel12.Controls.Add(pictureBox_10);
+            panel12.Controls.Add(txt_productprice10);
+            panel12.Controls.Add(txt_productnanme10);
+            panel12.Location = new Point(391, 1417);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(268, 288);
+            panel12.TabIndex = 28;
+            // 
+            // btn_order10
+            // 
+            btn_order10.Location = new Point(52, 242);
+            btn_order10.Name = "btn_order10";
+            btn_order10.Size = new Size(174, 29);
+            btn_order10.TabIndex = 31;
+            btn_order10.Text = "Order";
+            btn_order10.UseVisualStyleBackColor = true;
+            btn_order10.Click += btn_order10_Click;
+            // 
+            // pictureBox_10
+            // 
+            pictureBox_10.Location = new Point(52, 28);
+            pictureBox_10.Name = "pictureBox_10";
+            pictureBox_10.Size = new Size(174, 111);
+            pictureBox_10.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_10.TabIndex = 28;
+            pictureBox_10.TabStop = false;
+            // 
+            // txt_productprice10
+            // 
+            txt_productprice10.Location = new Point(52, 211);
+            txt_productprice10.Name = "txt_productprice10";
+            txt_productprice10.ReadOnly = true;
+            txt_productprice10.Size = new Size(174, 23);
+            txt_productprice10.TabIndex = 30;
+            // 
+            // txt_productnanme10
+            // 
+            txt_productnanme10.Location = new Point(52, 167);
+            txt_productnanme10.Name = "txt_productnanme10";
+            txt_productnanme10.ReadOnly = true;
+            txt_productnanme10.Size = new Size(174, 23);
+            txt_productnanme10.TabIndex = 29;
+            // 
+            // panel13
+            // 
+            panel13.BackColor = Color.White;
+            panel13.Controls.Add(btn_order9);
+            panel13.Controls.Add(pictureBox_9);
+            panel13.Controls.Add(txt_productprice9);
+            panel13.Controls.Add(txt_productnanme9);
+            panel13.Location = new Point(65, 1417);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(268, 288);
+            panel13.TabIndex = 29;
+            // 
+            // btn_order9
+            // 
+            btn_order9.Location = new Point(43, 242);
+            btn_order9.Name = "btn_order9";
+            btn_order9.Size = new Size(174, 29);
+            btn_order9.TabIndex = 27;
+            btn_order9.Text = "Order";
+            btn_order9.UseVisualStyleBackColor = true;
+            btn_order9.Click += btn_order9_Click;
+            // 
+            // pictureBox_9
+            // 
+            pictureBox_9.Location = new Point(43, 28);
+            pictureBox_9.Name = "pictureBox_9";
+            pictureBox_9.Size = new Size(174, 111);
+            pictureBox_9.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_9.TabIndex = 24;
+            pictureBox_9.TabStop = false;
+            // 
+            // txt_productprice9
+            // 
+            txt_productprice9.Location = new Point(43, 211);
+            txt_productprice9.Name = "txt_productprice9";
+            txt_productprice9.ReadOnly = true;
+            txt_productprice9.Size = new Size(174, 23);
+            txt_productprice9.TabIndex = 26;
+            // 
+            // txt_productnanme9
+            // 
+            txt_productnanme9.Location = new Point(43, 167);
+            txt_productnanme9.Name = "txt_productnanme9";
+            txt_productnanme9.ReadOnly = true;
+            txt_productnanme9.Size = new Size(174, 23);
+            txt_productnanme9.TabIndex = 25;
+            // 
             // panel11
             // 
             panel11.BackColor = Color.White;
-            panel11.Controls.Add(button3);
+            panel11.Controls.Add(btn_order4);
             panel11.Controls.Add(pictureBox4);
             panel11.Controls.Add(txt_productprice4);
             panel11.Controls.Add(txt_productnanme4);
@@ -184,14 +515,15 @@
             panel11.Size = new Size(268, 288);
             panel11.TabIndex = 4;
             // 
-            // button3
+            // btn_order4
             // 
-            button3.Location = new Point(52, 242);
-            button3.Name = "button3";
-            button3.Size = new Size(174, 29);
-            button3.TabIndex = 31;
-            button3.Text = "Order";
-            button3.UseVisualStyleBackColor = true;
+            btn_order4.Location = new Point(52, 242);
+            btn_order4.Name = "btn_order4";
+            btn_order4.Size = new Size(174, 29);
+            btn_order4.TabIndex = 31;
+            btn_order4.Text = "Order";
+            btn_order4.UseVisualStyleBackColor = true;
+            btn_order4.Click += btn_order4_Click;
             // 
             // pictureBox4
             // 
@@ -221,7 +553,7 @@
             // panel9
             // 
             panel9.BackColor = Color.White;
-            panel9.Controls.Add(button2);
+            panel9.Controls.Add(btn_order3);
             panel9.Controls.Add(pictureBox3);
             panel9.Controls.Add(txt_productprice3);
             panel9.Controls.Add(txt_productnanme3);
@@ -230,14 +562,15 @@
             panel9.Size = new Size(268, 288);
             panel9.TabIndex = 4;
             // 
-            // button2
+            // btn_order3
             // 
-            button2.Location = new Point(43, 242);
-            button2.Name = "button2";
-            button2.Size = new Size(174, 29);
-            button2.TabIndex = 27;
-            button2.Text = "Order";
-            button2.UseVisualStyleBackColor = true;
+            btn_order3.Location = new Point(43, 242);
+            btn_order3.Name = "btn_order3";
+            btn_order3.Size = new Size(174, 29);
+            btn_order3.TabIndex = 27;
+            btn_order3.Text = "Order";
+            btn_order3.UseVisualStyleBackColor = true;
+            btn_order3.Click += btn_order3_Click;
             // 
             // pictureBox3
             // 
@@ -267,7 +600,7 @@
             // panel8
             // 
             panel8.BackColor = Color.White;
-            panel8.Controls.Add(button1);
+            panel8.Controls.Add(btn_order2);
             panel8.Controls.Add(pictureBox2);
             panel8.Controls.Add(txt_productprice2);
             panel8.Controls.Add(txt_productnanme2);
@@ -276,14 +609,15 @@
             panel8.Size = new Size(268, 288);
             panel8.TabIndex = 4;
             // 
-            // button1
+            // btn_order2
             // 
-            button1.Location = new Point(52, 247);
-            button1.Name = "button1";
-            button1.Size = new Size(174, 29);
-            button1.TabIndex = 23;
-            button1.Text = "Order";
-            button1.UseVisualStyleBackColor = true;
+            btn_order2.Location = new Point(52, 247);
+            btn_order2.Name = "btn_order2";
+            btn_order2.Size = new Size(174, 29);
+            btn_order2.TabIndex = 23;
+            btn_order2.Text = "Order";
+            btn_order2.UseVisualStyleBackColor = true;
+            btn_order2.Click += btn_order2_Click;
             // 
             // pictureBox2
             // 
@@ -474,11 +808,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1099, 806);
+            ClientSize = new Size(1099, 803);
             Controls.Add(panel5);
             Controls.Add(panel3);
-            Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(panel2);
             Name = "frm_cashierDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frm_cashierDashboard";
@@ -487,6 +821,24 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).EndInit();
             panel2.ResumeLayout(false);
+            panel16.ResumeLayout(false);
+            panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_8).EndInit();
+            panel17.ResumeLayout(false);
+            panel17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_7).EndInit();
+            panel14.ResumeLayout(false);
+            panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox__6).EndInit();
+            panel15.ResumeLayout(false);
+            panel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_5).EndInit();
+            panel12.ResumeLayout(false);
+            panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_10).EndInit();
+            panel13.ResumeLayout(false);
+            panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_9).EndInit();
             panel11.ResumeLayout(false);
             panel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -537,19 +889,49 @@
         private TextBox txt_productprice1;
         private TextBox txt_productnanme1;
         private PictureBox pictureBox1;
-        private Button button3;
+        private Button btn_order4;
         private PictureBox pictureBox4;
         private TextBox txt_productprice4;
         private TextBox txt_productnanme4;
-        private Button button2;
+        private Button btn_order3;
         private PictureBox pictureBox3;
         private TextBox txt_productprice3;
         private TextBox txt_productnanme3;
-        private Button button1;
+        private Button btn_order2;
         private PictureBox pictureBox2;
         private TextBox txt_productprice2;
         private TextBox txt_productnanme2;
         private Label label4;
         private Label label5;
+        private Panel panel12;
+        private Button btn_order10;
+        private PictureBox pictureBox_10;
+        private TextBox txt_productprice10;
+        private TextBox txt_productnanme10;
+        private Panel panel13;
+        private Button btn_order9;
+        private PictureBox pictureBox_9;
+        private TextBox txt_productprice9;
+        private TextBox txt_productnanme9;
+        private Panel panel16;
+        private Button btn_order8;
+        private PictureBox pictureBox_8;
+        private TextBox txt_productprice8;
+        private TextBox txt_productnanme8;
+        private Panel panel17;
+        private Button btn_order7;
+        private PictureBox pictureBox_7;
+        private TextBox txt_productprice7;
+        private TextBox txt_productnanme7;
+        private Panel panel14;
+        private Button btn_order6;
+        private PictureBox pictureBox__6;
+        private TextBox txt_productprice6;
+        private TextBox txt_productnanme6;
+        private Panel panel15;
+        private Button btn_order5;
+        private PictureBox pictureBox_5;
+        private TextBox txt_productprice5;
+        private TextBox txt_productnanme5;
     }
 }

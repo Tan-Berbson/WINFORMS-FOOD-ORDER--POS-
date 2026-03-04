@@ -118,7 +118,7 @@
             btn_logout.Name = "btn_logout";
             btn_logout.Size = new Size(480, 44);
             btn_logout.TabIndex = 6;
-            btn_logout.Text = "Log Out";
+            btn_logout.Text = "Log Out / Save Data";
             btn_logout.UseVisualStyleBackColor = false;
             // 
             // panel6
