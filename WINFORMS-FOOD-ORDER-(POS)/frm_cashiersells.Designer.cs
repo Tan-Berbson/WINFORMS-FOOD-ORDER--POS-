@@ -120,6 +120,7 @@
             btn_logout.TabIndex = 6;
             btn_logout.Text = "Log Out / Save Data";
             btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
             // 
             // panel6
             // 

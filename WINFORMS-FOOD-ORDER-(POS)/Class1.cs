@@ -302,41 +302,33 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 }
                 
             }
-
-            public List<salesreport> loadSalesReportByManager(string managername)
+            public void DeleteSales()
             {
-                List<salesreport> salesReports = new List<salesreport>();
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "SELECT MANAGERNAME, CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE FROM CASHIERSELLS WHERE MANAGERNAME = @MN";
+                    con.Open();
 
-                    using (SqliteCommand cmd = new SqliteCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@MN", managername);
-                        con.Open();
+                    string query = "DELETE FROM CASHIERSELLS";
 
-                        SqliteDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            salesReports.Add(new salesreport
-                            {
-                                ManagerName = reader["MANAGERNAME"].ToString(),
-                                CashierName = reader["CASHIERNAME"].ToString(),
-                                CustomerName = reader["CUSTOMERNAME"].ToString(),
-                                OrderID = reader["ORDERID"].ToString(),
-                                PaymentMethod = reader["PAYMENTMETHOD"].ToString(),
-                                OrderTotal = reader["ORDERTOTAL"].ToString(),
-                                CustomerMoney = reader["CUSTOMERMONEY"].ToString(),
-                                CustomerChange = reader["CUSTOMERCHANGE"].ToString()
-                            });
-
-                        }
-                        return salesReports;
-                    }
-
-
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.ExecuteNonQuery();
                 }
             }
+            public bool insertcashierreport(string cashiername, string totalsells, string evaluation)
+            {
+                using(SqliteConnection con = db.GetConnection())
+                {
+                    string query = "INSERT INTO CASHIEREPORT (CASHIERNAME , TOTALSELLS, EVALUATION) VALUES (@CN, @TS, @E)";
+                    SqliteCommand cmd = new SqliteCommand(query,con);
+                    cmd.Parameters.AddWithValue("@CN", cashiername);
+                    cmd.Parameters.AddWithValue("@TS", totalsells);
+                    cmd.Parameters.AddWithValue("@E", evaluation);
+                    con.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            
         }
 
 

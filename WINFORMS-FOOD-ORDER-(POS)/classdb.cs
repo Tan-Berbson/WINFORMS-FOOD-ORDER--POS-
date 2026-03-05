@@ -20,6 +20,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 PRODUCTS(conn);
                 CASHIERACC(conn);
                 CASHIERSELLS(conn);
+                CASHIEREPORT(conn);
             }
         }
          private static void ADMINACC(SqliteConnection conn)
@@ -73,6 +74,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
                         
                        
                     );";
+            Execute(conn, query);
+        }
+        private static void CASHIEREPORT(SqliteConnection conn)
+        {
+            string query = @"CREATE TABLE IF NOT EXISTS CASHIEREPORT (
+                             CASHIERNAME TEXT NOT NULL,
+                             TOTALSELLS TEXT NOT NULL,
+                              EVALUATION TEXT NOT NULL
+                            
+                         );";
             Execute(conn, query);
         }
 
