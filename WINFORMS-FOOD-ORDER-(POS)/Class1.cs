@@ -314,15 +314,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     cmd.ExecuteNonQuery();
                 }
             }
-            public bool insertcashierreport(string cashiername, string totalsells, string evaluation)
+            public bool insertcashierreport(string cashiername, string totalsells, string evaluation, string createdat)
             {
                 using(SqliteConnection con = db.GetConnection())
                 {
-                    string query = "INSERT INTO CASHIEREPORT (CASHIERNAME , TOTALSELLS, EVALUATION) VALUES (@CN, @TS, @E)";
+                    string query = "INSERT INTO CASHIEREPORT (CASHIERNAME , TOTALSELLS, EVALUATION, CREATEDAT) VALUES (@CN, @TS, @E,@CA)";
                     SqliteCommand cmd = new SqliteCommand(query,con);
                     cmd.Parameters.AddWithValue("@CN", cashiername);
                     cmd.Parameters.AddWithValue("@TS", totalsells);
                     cmd.Parameters.AddWithValue("@E", evaluation);
+                    cmd.Parameters.AddWithValue("@CA", createdat);
                     con.Open();
                     return cmd.ExecuteNonQuery() > 0;
                 }

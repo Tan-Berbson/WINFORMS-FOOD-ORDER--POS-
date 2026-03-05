@@ -60,9 +60,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 return;
             }
-
+            string createdTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // IF OK → CONTINUE PROCESS
-            if (sells.insertcashierreport(txt_cashier.Text, txt_totalsells.Text, cmb_evaluate.Text))
+            if (sells.insertcashierreport(txt_cashier.Text, txt_totalsells.Text, cmb_evaluate.Text, createdTime))
             {
                 sells.DeleteSales(); // delete data from database
 

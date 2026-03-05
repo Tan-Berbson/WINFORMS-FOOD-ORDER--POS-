@@ -81,7 +81,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
             string query = @"CREATE TABLE IF NOT EXISTS CASHIEREPORT (
                              CASHIERNAME TEXT NOT NULL,
                              TOTALSELLS TEXT NOT NULL,
-                              EVALUATION TEXT NOT NULL
+                              EVALUATION TEXT NOT NULL,
+                               CREATEDATE TEXT NOT NULL
                             
                          );";
             Execute(conn, query);
