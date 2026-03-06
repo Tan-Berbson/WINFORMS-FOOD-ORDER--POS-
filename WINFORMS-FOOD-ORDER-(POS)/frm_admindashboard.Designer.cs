@@ -118,6 +118,7 @@
             btn_sales.TabIndex = 12;
             btn_sales.Text = "Sales";
             btn_sales.UseVisualStyleBackColor = false;
+            btn_sales.Click += btn_sales_Click;
             // 
             // btn_cashier
             // 

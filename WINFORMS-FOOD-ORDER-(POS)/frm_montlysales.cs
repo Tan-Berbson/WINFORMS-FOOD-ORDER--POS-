@@ -12,9 +12,23 @@ namespace WINFORMS_FOOD_ORDER__POS_
 {
     public partial class frm_montlysales : Form
     {
-        public frm_montlysales()
+        string manager { get; set; }
+        public frm_montlysales(string managername)
         {
             InitializeComponent();
+            txt_username.Text = manager;
+        }
+
+        private void frm_montlysales_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_dashboard_Click(object sender, EventArgs e)
+        {
+            frm_admindashboard f = new frm_admindashboard(txt_username.Text);
+            f.Show();
+            this.Close();
         }
     }
 }

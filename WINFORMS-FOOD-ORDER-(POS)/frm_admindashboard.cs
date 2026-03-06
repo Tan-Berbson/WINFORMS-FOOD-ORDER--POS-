@@ -65,7 +65,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 return;
             }
 
-          
+
             // ✅ Check product limit first
             if (admin.GetProductCountByAdmin(txt_username.Text) >= 10)
             {
@@ -155,6 +155,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void btn_cashier_Click(object sender, EventArgs e)
         {
             frm_createacccashier f = new frm_createacccashier(txt_username.Text);
+            f.Show();
+            this.Hide();
+        }
+
+        private void btn_sales_Click(object sender, EventArgs e)
+        {
+            frm_montlysales f = new frm_montlysales(txt_username.Text);
             f.Show();
             this.Hide();
         }
