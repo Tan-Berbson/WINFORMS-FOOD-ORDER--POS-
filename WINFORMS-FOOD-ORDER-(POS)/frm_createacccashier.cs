@@ -23,12 +23,17 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_create_Click(object sender, EventArgs e)
         {
-            if (cashier.signupcashier(txt_managername.Text, txt_username.Text, txt_password.Text))
+            if (txt_username.Text == "" || txt_password.Text == "")
+            {
+                MessageBox.Show("PLSS ENTER YOUR NAME AND PASSWORD DONT LEAVE BLANK SPACES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cashier.signupcashier(txt_managername.Text, txt_username.Text, txt_password.Text))
             {
                 MessageBox.Show("Cashier Account Create Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             }
+
             else
             {
                 MessageBox.Show("Username already exists. Please choose another username.", "Create Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);

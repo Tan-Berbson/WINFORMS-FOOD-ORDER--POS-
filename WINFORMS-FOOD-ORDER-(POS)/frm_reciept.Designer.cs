@@ -57,6 +57,7 @@
             txt_total = new TextBox();
             txt_ordernumber = new TextBox();
             txt_customername = new TextBox();
+            label10 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
@@ -145,35 +146,37 @@
             panel2.Controls.Add(panel6);
             panel2.Location = new Point(10, 333);
             panel2.Name = "panel2";
-            panel2.Size = new Size(335, 327);
+            panel2.Size = new Size(353, 327);
             panel2.TabIndex = 3;
             // 
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(200, 205, 210);
+            panel7.Controls.Add(label10);
             panel7.Controls.Add(label7);
             panel7.Controls.Add(txt_customerchange);
             panel7.Location = new Point(5, 162);
             panel7.Name = "panel7";
-            panel7.Size = new Size(323, 143);
+            panel7.Size = new Size(345, 153);
             panel7.TabIndex = 28;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F);
-            label7.Location = new Point(13, 29);
+            label7.Font = new Font("Segoe UI", 14F);
+            label7.Location = new Point(13, 41);
             label7.Name = "label7";
-            label7.Size = new Size(135, 21);
+            label7.Size = new Size(163, 25);
             label7.TabIndex = 27;
             label7.Text = "Customer Change";
             // 
             // txt_customerchange
             // 
-            txt_customerchange.Font = new Font("Segoe UI", 24F);
-            txt_customerchange.Location = new Point(13, 67);
+            txt_customerchange.Font = new Font("Segoe UI", 30F);
+            txt_customerchange.Location = new Point(11, 69);
             txt_customerchange.Name = "txt_customerchange";
-            txt_customerchange.Size = new Size(295, 50);
+            txt_customerchange.ReadOnly = true;
+            txt_customerchange.Size = new Size(319, 61);
             txt_customerchange.TabIndex = 2;
             // 
             // panel6
@@ -181,44 +184,45 @@
             panel6.BackColor = Color.FromArgb(200, 205, 210);
             panel6.Controls.Add(label8);
             panel6.Controls.Add(txt_customermoney);
-            panel6.Location = new Point(5, 19);
+            panel6.Location = new Point(5, 13);
             panel6.Name = "panel6";
-            panel6.Size = new Size(321, 118);
+            panel6.Size = new Size(345, 143);
             panel6.TabIndex = 0;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F);
-            label8.Location = new Point(13, 13);
+            label8.Font = new Font("Segoe UI", 14F);
+            label8.Location = new Point(13, 15);
             label8.Name = "label8";
-            label8.Size = new Size(130, 21);
+            label8.Size = new Size(156, 25);
             label8.TabIndex = 28;
             label8.Text = "Customer Money";
             // 
             // txt_customermoney
             // 
-            txt_customermoney.Font = new Font("Segoe UI", 24F);
-            txt_customermoney.Location = new Point(13, 49);
+            txt_customermoney.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_customermoney.Location = new Point(11, 43);
             txt_customermoney.Name = "txt_customermoney";
-            txt_customermoney.Size = new Size(295, 50);
+            txt_customermoney.Size = new Size(319, 61);
             txt_customermoney.TabIndex = 1;
+            txt_customermoney.TextChanged += txt_customermoney_TextChanged;
             // 
             // panel3
             // 
             panel3.Controls.Add(listBox1);
             panel3.Controls.Add(panel9);
-            panel3.Location = new Point(344, 62);
+            panel3.Location = new Point(369, 62);
             panel3.Name = "panel3";
-            panel3.Size = new Size(428, 643);
+            panel3.Size = new Size(403, 643);
             panel3.TabIndex = 4;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(5, 34);
+            listBox1.Location = new Point(4, 29);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(417, 604);
+            listBox1.Size = new Size(396, 604);
             listBox1.TabIndex = 0;
             // 
             // panel9
@@ -246,7 +250,7 @@
             panel5.Controls.Add(btn_neworder);
             panel5.Location = new Point(5, 663);
             panel5.Name = "panel5";
-            panel5.Size = new Size(340, 45);
+            panel5.Size = new Size(358, 45);
             panel5.TabIndex = 1;
             // 
             // btn_neworder
@@ -255,7 +259,7 @@
             btn_neworder.FlatStyle = FlatStyle.Popup;
             btn_neworder.Location = new Point(11, 3);
             btn_neworder.Name = "btn_neworder";
-            btn_neworder.Size = new Size(320, 39);
+            btn_neworder.Size = new Size(347, 39);
             btn_neworder.TabIndex = 11;
             btn_neworder.Text = "New Order";
             btn_neworder.UseVisualStyleBackColor = false;
@@ -274,7 +278,7 @@
             panel4.Controls.Add(txt_customername);
             panel4.Location = new Point(5, 65);
             panel4.Name = "panel4";
-            panel4.Size = new Size(333, 262);
+            panel4.Size = new Size(358, 262);
             panel4.TabIndex = 0;
             // 
             // label6
@@ -323,7 +327,7 @@
             txt_payment.Location = new Point(137, 136);
             txt_payment.Name = "txt_payment";
             txt_payment.ReadOnly = true;
-            txt_payment.Size = new Size(158, 29);
+            txt_payment.Size = new Size(203, 29);
             txt_payment.TabIndex = 22;
             // 
             // txt_total
@@ -332,7 +336,7 @@
             txt_total.Location = new Point(137, 197);
             txt_total.Name = "txt_total";
             txt_total.ReadOnly = true;
-            txt_total.Size = new Size(158, 29);
+            txt_total.Size = new Size(203, 29);
             txt_total.TabIndex = 21;
             // 
             // txt_ordernumber
@@ -341,7 +345,7 @@
             txt_ordernumber.Location = new Point(137, 81);
             txt_ordernumber.Name = "txt_ordernumber";
             txt_ordernumber.ReadOnly = true;
-            txt_ordernumber.Size = new Size(158, 29);
+            txt_ordernumber.Size = new Size(203, 29);
             txt_ordernumber.TabIndex = 20;
             // 
             // txt_customername
@@ -350,8 +354,19 @@
             txt_customername.Location = new Point(137, 22);
             txt_customername.Name = "txt_customername";
             txt_customername.ReadOnly = true;
-            txt_customername.Size = new Size(158, 29);
+            txt_customername.Size = new Size(203, 29);
             txt_customername.TabIndex = 19;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            label10.ForeColor = Color.Red;
+            label10.Location = new Point(6, 13);
+            label10.Name = "label10";
+            label10.Size = new Size(339, 19);
+            label10.TabIndex = 28;
+            label10.Text = "Note: Negative Change Means money is not enough.";
             // 
             // frm_reciept
             // 
@@ -416,5 +431,6 @@
         private Label label8;
         private Label label9;
         private Button btn_print;
+        private Label label10;
     }
 }

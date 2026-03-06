@@ -121,10 +121,19 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txt_customername.Text) && string.IsNullOrEmpty(txt_ordernumber.Text))
+            if (string.IsNullOrWhiteSpace(txt_customername.Text) || string.IsNullOrWhiteSpace(txt_ordernumber.Text))
             {
-                MessageBox.Show("Plss Enter CustomerName and OrderNumber ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Plss Enter CustomerName Both OrderNumber ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (!rb_dinein.Checked && !rb_takeout.Checked)
+            {
+                MessageBox.Show("Plss Select Dine Options", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if(!rb_cash.Checked && !rb_gcash.Checked && !rb_creditcard.Checked)
+            {
+                MessageBox.Show("Plss Select Payment Options",  "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             else
             {
                 string customerName = txt_customername.Text;

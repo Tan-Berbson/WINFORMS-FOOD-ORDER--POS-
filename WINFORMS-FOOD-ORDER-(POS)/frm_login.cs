@@ -31,20 +31,27 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            // Check if the user is locked out
-            if (lockoutTimer.Enabled)
+            if (string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrWhiteSpace(txt_password.Text))
+            {
+                MessageBox.Show("Please enter username and password.",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+            }
+            else if (lockoutTimer.Enabled)
             {
                 TimeSpan remainingTime = lockoutEndTime - DateTime.Now;
                 MessageBox.Show($"Account is locked. Please try again in {remainingTime.Seconds} seconds.", "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (login.loginadmin(txt_username.Text, txt_password.Text))
+            else if (login.loginadmin(txt_username.Text, txt_password.Text))
             {
                 MessageBox.Show("Log In Successfully Admin", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frm_admindashboard f = new frm_admindashboard(txt_username.Text);
                 f.Show();
                 this.Hide();
-                loginAttempts = 0; 
+                loginAttempts = 0;
             }
             else if (login.logincashier(txt_username.Text, txt_password.Text))
             {
@@ -52,17 +59,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 frm_cashierDashboard f = new frm_cashierDashboard(txt_username.Text);
                 f.Show();
                 this.Hide();
-                loginAttempts = 0; 
+                loginAttempts = 0;
 
             }
-            else if (string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrWhiteSpace(txt_password.Text))
-            {
-                MessageBox.Show("Please enter username and password.",
-                                "Warning",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
+
             else
             {
 

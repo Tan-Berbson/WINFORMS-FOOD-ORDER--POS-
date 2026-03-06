@@ -102,7 +102,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             DisplayReceipt(receipt.ToString());
         }
 
-            
+
         private void DisplayReceipt(string receiptText)
         {
             string[] lines = receiptText.Split(
@@ -117,24 +117,36 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void frm_reciept_Load(object sender, EventArgs e)
         {
-
+           
+        }
+        private void calculatecustomerchange()
+        {
+            double total;
+            double customermoney;
+            double.TryParse(txt_total.Text, out total);
+            double.TryParse(txt_customermoney.Text, out customermoney);
+            double change = customermoney - total;
+           
+            
+               txt_customerchange.Text = change.ToString();
+            
         }
 
         private void btn_neworder_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txt_customermoney.Text) || string.IsNullOrWhiteSpace(txt_customerchange.Text))
+            if (string.IsNullOrWhiteSpace(txt_customermoney.Text) || string.IsNullOrWhiteSpace(txt_customerchange.Text))
             {
                 MessageBox.Show("Please enter customer money and change.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-          else if (sells.cashiertotalsell(
-                  txt_cashiername.Text,
-                  txt_customername.Text,
-                  txt_ordernumber.Text,
-                  txt_payment.Text,
-                  txt_total.Text,
-                  txt_customermoney.Text,
-                  txt_customerchange.Text))
+            else if (sells.cashiertotalsell(
+                    txt_cashiername.Text,
+                    txt_customername.Text,
+                    txt_ordernumber.Text,
+                    txt_payment.Text,
+                    txt_total.Text,
+                    txt_customermoney.Text,
+                    txt_customerchange.Text))
             {
                 MessageBox.Show("Order Completed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -152,10 +164,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     f.Show();
                 }
             }
-            
 
-                this.Close();
+
+            this.Close();
         }
 
+        private void txt_customermoney_TextChanged(object sender, EventArgs e)
+        {
+            calculatecustomerchange();
+        }
     }
 }

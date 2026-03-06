@@ -28,7 +28,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_create_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt_username.Text) && string.IsNullOrWhiteSpace(txt_password.Text))
+            if (string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrWhiteSpace(txt_password.Text))
             {
                 MessageBox.Show("PLSS ENTER YOUR NAME AND PASSWORD DONT LEAVE BLANK SPACES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
