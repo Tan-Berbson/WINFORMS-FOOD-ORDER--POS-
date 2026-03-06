@@ -22,6 +22,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_username.Text = manager;
             dgv_allcashieracc.DataSource = cashieraccount.loadcashieraccount(manager);
             dgv_allcashieracc.CellFormatting += DataGridView1_CellFormatting;
+            dgv_cashierreport.DataSource = cashieraccount.loadcashierreport(manager);
+          
         }
         bool isPasswordHidden = true;
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

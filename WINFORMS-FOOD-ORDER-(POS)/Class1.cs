@@ -165,7 +165,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     }
                 }
             }
-            
+
             public class produtlist
             {
                 public int ProductID { get; set; }   // DB id (internal)
@@ -239,10 +239,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     return cmd.ExecuteScalar()?.ToString();
                 }
             }
-           
+
             public class salesreport
             {
-              
+
                 public string CashierName { get; set; }
                 public string CustomerName { get; set; }
 
@@ -252,29 +252,29 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 public string CustomerMoney { get; set; }
                 public string CustomerChange { get; set; }
             }
-            public bool cashiertotalsell(string cashiername,string customername, string orderid, string paymentmethod, string ordertotal, string customermoney, string customerchange)
+            public bool cashiertotalsell(string cashiername, string customername, string orderid, string paymentmethod, string ordertotal, string customermoney, string customerchange)
             {
                 using (SqliteConnection con = db.GetConnection())
                 {
                     string query = "INSERT INTO CASHIERSELLS ( CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE) VALUES (@CN,@CUN, @OID, @PM, @OT, @CM, @CC)";
-                     SqliteCommand cmd = new SqliteCommand(query, con);
-                    
-                      
-                        cmd.Parameters.AddWithValue("@CN", cashiername.Trim());
-                        cmd.Parameters.AddWithValue("@CUN", customername.Trim());
-                    cmd.Parameters.AddWithValue("@OID", orderid.Trim());
-                        cmd.Parameters.AddWithValue("@PM", paymentmethod.Trim());
-                        cmd.Parameters.AddWithValue("@OT", ordertotal.Trim());
-                        cmd.Parameters.AddWithValue("@CM", customermoney.Trim());
-                        cmd.Parameters.AddWithValue("@CC", customerchange.Trim());
+                    SqliteCommand cmd = new SqliteCommand(query, con);
 
-                        con.Open();
-                        return cmd.ExecuteNonQuery() > 0;
-                    
+
+                    cmd.Parameters.AddWithValue("@CN", cashiername.Trim());
+                    cmd.Parameters.AddWithValue("@CUN", customername.Trim());
+                    cmd.Parameters.AddWithValue("@OID", orderid.Trim());
+                    cmd.Parameters.AddWithValue("@PM", paymentmethod.Trim());
+                    cmd.Parameters.AddWithValue("@OT", ordertotal.Trim());
+                    cmd.Parameters.AddWithValue("@CM", customermoney.Trim());
+                    cmd.Parameters.AddWithValue("@CC", customerchange.Trim());
+
+                    con.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+
                 }
             }
 
-            public List<salesreport> loadSalesReportBycashier( string cashiername)
+            public List<salesreport> loadSalesReportBycashier(string cashiername)
             {
                 List<salesreport> salesReports = new List<salesreport>();
                 using (SqliteConnection con = db.GetConnection())
@@ -283,25 +283,25 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     SqliteCommand cmd = new SqliteCommand(query, con);
                     cmd.Parameters.AddWithValue("@CN", cashiername);
 
-                        con.Open();
-                        SqliteDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
+                    con.Open();
+                    SqliteDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        salesReports.Add(new salesreport
                         {
-                            salesReports.Add(new salesreport
-                            {
-                                CashierName = reader["CASHIERNAME"].ToString(),
-                                CustomerName = reader["CUSTOMERNAME"].ToString(),
-                                OrderID = reader["ORDERID"].ToString(),
-                                PaymentMethod = reader["PAYMENTMETHOD"].ToString(),
-                                OrderTotal = reader["ORDERTOTAL"].ToString(),
-                                CustomerMoney = reader["CUSTOMERMONEY"].ToString(),
-                                CustomerChange = reader["CUSTOMERCHANGE"].ToString()
-                            });
-                        }
+                            CashierName = reader["CASHIERNAME"].ToString(),
+                            CustomerName = reader["CUSTOMERNAME"].ToString(),
+                            OrderID = reader["ORDERID"].ToString(),
+                            PaymentMethod = reader["PAYMENTMETHOD"].ToString(),
+                            OrderTotal = reader["ORDERTOTAL"].ToString(),
+                            CustomerMoney = reader["CUSTOMERMONEY"].ToString(),
+                            CustomerChange = reader["CUSTOMERCHANGE"].ToString()
+                        });
+                    }
                     return salesReports;
 
                 }
-                
+
             }
             public void DeleteSales()
             {
@@ -325,10 +325,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
             public bool insertcashierreport(string cashiername, string totalsells, string evaluation, string createdat)
             {
-                using(SqliteConnection con = db.GetConnection())
+                using (SqliteConnection con = db.GetConnection())
                 {
                     string query = "INSERT INTO CASHIEREPORT (CASHIERNAME , TOTALSELLS, EVALUATION, CREATEDAT) VALUES (@CN, @TS, @E,@CA)";
-                    SqliteCommand cmd = new SqliteCommand(query,con);
+                    SqliteCommand cmd = new SqliteCommand(query, con);
                     cmd.Parameters.AddWithValue("@CN", cashiername);
                     cmd.Parameters.AddWithValue("@TS", totalsells);
                     cmd.Parameters.AddWithValue("@E", evaluation);
@@ -340,7 +340,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             public List<cashieraccount> loadcashieraccount(string adminname)
             {
                 List<cashieraccount> account = new List<cashieraccount>();
-                using (SqliteConnection con = db.GetConnection()) 
+                using (SqliteConnection con = db.GetConnection())
                 {
                     string query = "SELECT USERNAME, PASSWORD FROM CASHIERACC WHERE ADMINUSERNAME = @AD";
                     SqliteCommand cmd = new SqliteCommand(query, con);
@@ -356,14 +356,37 @@ namespace WINFORMS_FOOD_ORDER__POS_
                             password = reader["PASSWORD"].ToString()
 
                         });
-                        
+
                     }
                     return account;
 
                 }
             }
+            public List<cashieraccount> loadcashierreport(string cashiername)
+            {
+                List<cashieraccount> account = new List<cashieraccount>();
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT CASHIERNAME, TOTALSELLS, EVALUATION, CREATEDAT FROM CASHIEREPORT WHERE CASHIERNAME = @CN";
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@CN", cashiername);
+                    con.Open();
+                    SqliteDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        account.Add(new cashieraccount
+                        {
+                            cashiername = reader["CASHIERNAME"].ToString(),
+                            totalsells = reader["TOTALSELLS"].ToString(),
+                            evaluation = reader["EVALUATION"].ToString(),
+                            reportdate = reader["CREATEDAT"].ToString()
+                        });
+                    }
+                    return account;
+                }
 
-            
+
+            }
         }
 
 

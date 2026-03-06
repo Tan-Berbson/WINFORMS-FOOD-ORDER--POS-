@@ -230,7 +230,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             chart2.Series.Add(series2);
-            chart2.Size = new Size(339, 475);
+            chart2.Size = new Size(339, 521);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
             // 
