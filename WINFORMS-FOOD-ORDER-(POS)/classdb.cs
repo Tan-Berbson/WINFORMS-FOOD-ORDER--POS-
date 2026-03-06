@@ -60,9 +60,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private static void CASHIERSELLS(SqliteConnection conn)
         {
             string query = @"CREATE TABLE IF NOT EXISTS CASHIERSELLS (
-                        id INTEGER ,
                        
-                        MANAGERNAME TEXT NOT NULL,
+                       
                         CASHIERNAME TEXT NOT NULL,
                         CUSTOMERNAME TEXT NOT NULL,
                         ORDERID TEXT NOT NULL,

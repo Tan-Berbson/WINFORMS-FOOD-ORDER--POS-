@@ -33,7 +33,6 @@
             dgv_totalsells = new DataGridView();
             panel5 = new Panel();
             label2 = new Label();
-            panel4 = new Panel();
             btn_logout = new Button();
             panel6 = new Panel();
             label7 = new Label();
@@ -56,7 +55,6 @@
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_totalsells).BeginInit();
             panel5.SuspendLayout();
-            panel4.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel7.SuspendLayout();
@@ -71,15 +69,16 @@
             panel2.Controls.Add(panel5);
             panel2.Location = new Point(12, 80);
             panel2.Name = "panel2";
-            panel2.Size = new Size(628, 466);
+            panel2.Size = new Size(748, 655);
             panel2.TabIndex = 0;
             // 
             // dgv_totalsells
             // 
+            dgv_totalsells.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_totalsells.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_totalsells.Location = new Point(3, 36);
             dgv_totalsells.Name = "dgv_totalsells";
-            dgv_totalsells.Size = new Size(617, 427);
+            dgv_totalsells.Size = new Size(742, 616);
             dgv_totalsells.TabIndex = 1;
             // 
             // panel5
@@ -88,7 +87,7 @@
             panel5.Controls.Add(label2);
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(628, 30);
+            panel5.Size = new Size(745, 30);
             panel5.TabIndex = 0;
             // 
             // label2
@@ -102,21 +101,13 @@
             label2.TabIndex = 0;
             label2.Text = "Total Sells";
             // 
-            // panel4
-            // 
-            panel4.Controls.Add(btn_logout);
-            panel4.Location = new Point(484, 552);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(483, 50);
-            panel4.TabIndex = 1;
-            // 
             // btn_logout
             // 
             btn_logout.BackColor = Color.FromArgb(52, 94, 104);
             btn_logout.FlatStyle = FlatStyle.Popup;
-            btn_logout.Location = new Point(3, 3);
+            btn_logout.Location = new Point(749, 4);
             btn_logout.Name = "btn_logout";
-            btn_logout.Size = new Size(480, 44);
+            btn_logout.Size = new Size(321, 44);
             btn_logout.TabIndex = 6;
             btn_logout.Text = "Log Out / Save Data";
             btn_logout.UseVisualStyleBackColor = false;
@@ -133,16 +124,16 @@
             panel6.Controls.Add(txt_totalsells);
             panel6.Controls.Add(txt_cashier);
             panel6.Controls.Add(panel7);
-            panel6.Location = new Point(646, 80);
+            panel6.Location = new Point(766, 80);
             panel6.Name = "panel6";
-            panel6.Size = new Size(321, 466);
+            panel6.Size = new Size(321, 659);
             panel6.TabIndex = 2;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F);
-            label7.Location = new Point(18, 348);
+            label7.Location = new Point(19, 504);
             label7.Name = "label7";
             label7.Size = new Size(138, 21);
             label7.TabIndex = 5;
@@ -152,7 +143,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(19, 290);
+            label6.Location = new Point(19, 431);
             label6.Name = "label6";
             label6.Size = new Size(81, 21);
             label6.TabIndex = 4;
@@ -162,7 +153,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(19, 232);
+            label5.Location = new Point(19, 363);
             label5.Name = "label5";
             label5.Size = new Size(65, 21);
             label5.TabIndex = 2;
@@ -170,9 +161,9 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(82, 54);
+            pictureBox1.Location = new Point(63, 124);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(164, 112);
+            pictureBox1.Size = new Size(198, 181);
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
@@ -181,7 +172,7 @@
             cmb_evaluate.Font = new Font("Segoe UI", 13F);
             cmb_evaluate.FormattingEnabled = true;
             cmb_evaluate.Items.AddRange(new object[] { "Exellent", "Very Good", "Good", "Fair", "Bad" });
-            cmb_evaluate.Location = new Point(19, 372);
+            cmb_evaluate.Location = new Point(17, 528);
             cmb_evaluate.Name = "cmb_evaluate";
             cmb_evaluate.Size = new Size(285, 31);
             cmb_evaluate.TabIndex = 2;
@@ -189,7 +180,7 @@
             // txt_totalsells
             // 
             txt_totalsells.Font = new Font("Segoe UI", 13F);
-            txt_totalsells.Location = new Point(19, 314);
+            txt_totalsells.Location = new Point(18, 455);
             txt_totalsells.Name = "txt_totalsells";
             txt_totalsells.Size = new Size(285, 31);
             txt_totalsells.TabIndex = 1;
@@ -197,7 +188,7 @@
             // txt_cashier
             // 
             txt_cashier.Font = new Font("Segoe UI", 13F);
-            txt_cashier.Location = new Point(18, 256);
+            txt_cashier.Location = new Point(19, 387);
             txt_cashier.Name = "txt_cashier";
             txt_cashier.Size = new Size(286, 31);
             txt_cashier.TabIndex = 0;
@@ -232,7 +223,7 @@
             panel1.Controls.Add(pictureboxlogo);
             panel1.Location = new Point(0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(967, 57);
+            panel1.Size = new Size(1087, 57);
             panel1.TabIndex = 4;
             // 
             // label1
@@ -285,31 +276,32 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(btn_logout);
             panel3.Controls.Add(btn_back);
-            panel3.Location = new Point(12, 552);
+            panel3.Location = new Point(17, 741);
             panel3.Name = "panel3";
-            panel3.Size = new Size(466, 50);
+            panel3.Size = new Size(1070, 50);
             panel3.TabIndex = 0;
             // 
             // btn_back
             // 
             btn_back.BackColor = Color.FromArgb(242, 242, 242);
             btn_back.FlatStyle = FlatStyle.Popup;
-            btn_back.Location = new Point(3, 3);
+            btn_back.Location = new Point(2, 4);
             btn_back.Name = "btn_back";
-            btn_back.Size = new Size(460, 44);
+            btn_back.Size = new Size(738, 44);
             btn_back.TabIndex = 7;
             btn_back.Text = "Back";
             btn_back.UseVisualStyleBackColor = false;
+            btn_back.Click += btn_back_Click;
             // 
             // frm_cashiersells
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(969, 614);
+            ClientSize = new Size(1099, 803);
             Controls.Add(panel1);
             Controls.Add(panel6);
-            Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Name = "frm_cashiersells";
@@ -319,7 +311,6 @@
             ((System.ComponentModel.ISupportInitialize)dgv_totalsells).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            panel4.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -336,7 +327,6 @@
         private Panel panel2;
         private DataGridView dgv_totalsells;
         private Panel panel5;
-        private Panel panel4;
         private Panel panel6;
         private Panel panel7;
         private PictureBox pictureBox1;

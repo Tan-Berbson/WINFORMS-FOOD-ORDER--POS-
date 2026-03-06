@@ -122,19 +122,23 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_neworder_Click(object sender, EventArgs e)
         {
-            if (sells.cashiertotalsell(
-                txt_managername.Text,
-                txt_cashiername.Text,
-                txt_customername.Text,
-                txt_ordernumber.Text,
-                txt_payment.Text,
-                txt_total.Text,
-                txt_customermoney.Text,
-                txt_customerchange.Text))
+            if(string.IsNullOrWhiteSpace(txt_customermoney.Text) || string.IsNullOrWhiteSpace(txt_customerchange.Text))
+            {
+                MessageBox.Show("Please enter customer money and change.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+          else if (sells.cashiertotalsell(
+                  txt_cashiername.Text,
+                  txt_customername.Text,
+                  txt_ordernumber.Text,
+                  txt_payment.Text,
+                  txt_total.Text,
+                  txt_customermoney.Text,
+                  txt_customerchange.Text))
             {
                 MessageBox.Show("Order Completed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-             
+
                 // Optionally refresh dashboard
                 frm_cashierDashboard f = (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
                 if (f != null)
@@ -148,8 +152,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     f.Show();
                 }
             }
+            
 
-            this.Close();
+                this.Close();
         }
 
     }

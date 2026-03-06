@@ -241,26 +241,27 @@ namespace WINFORMS_FOOD_ORDER__POS_
            
             public class salesreport
             {
-                public string ManagerName { get; set; }
+              
                 public string CashierName { get; set; }
                 public string CustomerName { get; set; }
+
                 public string OrderID { get; set; }
                 public string PaymentMethod { get; set; }
                 public string OrderTotal { get; set; }
                 public string CustomerMoney { get; set; }
                 public string CustomerChange { get; set; }
             }
-            public bool cashiertotalsell(string managername, string cashiername, string customername, string orderid, string paymentmethod, string ordertotal, string customermoney, string customerchange)
+            public bool cashiertotalsell(string cashiername,string customername, string orderid, string paymentmethod, string ordertotal, string customermoney, string customerchange)
             {
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "INSERT INTO CASHIERSELLS (MANAGERNAME, CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE) VALUES (@MN, @CN, @CUN, @OID, @PM, @OT, @CM, @CC)";
+                    string query = "INSERT INTO CASHIERSELLS ( CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE) VALUES (@CN,@CUN, @OID, @PM, @OT, @CM, @CC)";
                      SqliteCommand cmd = new SqliteCommand(query, con);
                     
-                        cmd.Parameters.AddWithValue("@MN", managername.Trim());
+                      
                         cmd.Parameters.AddWithValue("@CN", cashiername.Trim());
                         cmd.Parameters.AddWithValue("@CUN", customername.Trim());
-                        cmd.Parameters.AddWithValue("@OID", orderid.Trim());
+                    cmd.Parameters.AddWithValue("@OID", orderid.Trim());
                         cmd.Parameters.AddWithValue("@PM", paymentmethod.Trim());
                         cmd.Parameters.AddWithValue("@OT", ordertotal.Trim());
                         cmd.Parameters.AddWithValue("@CM", customermoney.Trim());
@@ -277,7 +278,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 List<salesreport> salesReports = new List<salesreport>();
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "SELECT MANAGERNAME, CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE FROM CASHIERSELLS WHERE  CASHIERNAME = @CN";
+                    string query = "SELECT CASHIERNAME,CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE FROM CASHIERSELLS WHERE CASHIERNAME = @CN";
                     SqliteCommand cmd = new SqliteCommand(query, con);
                     cmd.Parameters.AddWithValue("@CN", cashiername);
 
@@ -287,7 +288,6 @@ namespace WINFORMS_FOOD_ORDER__POS_
                         {
                             salesReports.Add(new salesreport
                             {
-                                ManagerName = reader["MANAGERNAME"].ToString(),
                                 CashierName = reader["CASHIERNAME"].ToString(),
                                 CustomerName = reader["CUSTOMERNAME"].ToString(),
                                 OrderID = reader["ORDERID"].ToString(),

@@ -14,14 +14,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
     public partial class frm_cashierlogoutauth : Form
     {
         auth logout = new auth();
-        
+
         string cashier { get; set; }
         string manager { get; set; }
 
         public frm_cashierlogoutauth(string cashiername, string managername)
         {
             InitializeComponent();
-           cashier = cashiername;
+            cashier = cashiername;
             manager = managername;
             txt_cashiername.Text = cashiername;
             txt_managername.Text = managername;
@@ -46,10 +46,21 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
             else
             {
-               MessageBox.Show("Invalid Credentials!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Credentials!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
-               
+
+
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            frm_cashierDashboard f =
+                 (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
+
+
+            f.Show();
+            // 🔹 BUMALIK SA FORM1
+            this.Close(); ;
         }
     }
 }

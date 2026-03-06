@@ -24,7 +24,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
             manager = managername;
             txt_managername.Text = managername;
             txt_cashiername.Text = cashiername;
+            dgv_totalsells.DataSource = null;
+            dgv_totalsells.Columns.Clear();
+
             dgv_totalsells.DataSource = sells.loadSalesReportBycashier(cashier);
+            dgv_totalsells.AutoGenerateColumns = false;
+
 
         }
 
@@ -33,7 +38,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             dgv_totalsells.DataSource = sells.loadSalesReportBycashier(cashier);
         }
 
-        
+
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -84,6 +89,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            frm_cashierlogoutauth f = new frm_cashierlogoutauth(cashier, manager);
+            f.Show();
+            this.Close();
         }
     }
 }

@@ -196,6 +196,7 @@
             btn_back.TabIndex = 20;
             btn_back.Text = "Back";
             btn_back.UseVisualStyleBackColor = false;
+            btn_back.Click += btn_back_Click;
             // 
             // frm_cashierlogoutauth
             // 
