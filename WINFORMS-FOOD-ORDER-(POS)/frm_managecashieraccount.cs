@@ -22,8 +22,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_username.Text = manager;
             dgv_allcashieracc.DataSource = cashieraccount.loadcashieraccount(manager);
             dgv_allcashieracc.CellFormatting += DataGridView1_CellFormatting;
-            dgv_cashierreport.DataSource = cashieraccount.loadcashierreport(manager);
-          
+
         }
         bool isPasswordHidden = true;
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -58,6 +57,30 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             // Refresh the grid to trigger CellFormatting again
             dgv_allcashieracc.Invalidate();
+        }
+
+        private void dgv_allcashieracc_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgv_allcashieracc_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgv_allcashieracc.SelectedRows.Count > 0)
+            {
+                var cellValue = dgv_allcashieracc.SelectedRows[0].Cells["cashiername"].Value;
+                if (cellValue != null)
+                {
+                    var cashiername = cellValue.ToString();
+                    dgv_cashierreport.DataSource = cashieraccount.loadcashierreport(cashiername);
+
+                    // Hide the password column if it exists
+                    if (dgv_cashierreport.Columns.Contains("password"))
+                    {
+                        dgv_cashierreport.Columns["password"].Visible = false;
+                    }
+                }
+            }
         }
     }
 }

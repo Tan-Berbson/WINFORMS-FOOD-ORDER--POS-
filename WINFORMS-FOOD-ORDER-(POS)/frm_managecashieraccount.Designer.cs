@@ -39,12 +39,12 @@
             panel2 = new Panel();
             dgv_allcashieracc = new DataGridView();
             panel5 = new Panel();
+            btn_showpassword = new Button();
             label1 = new Label();
             panel3 = new Panel();
             dgv_cashierreport = new DataGridView();
             panel4 = new Panel();
             label2 = new Label();
-            btn_showpassword = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
@@ -143,6 +143,8 @@
             dgv_allcashieracc.Name = "dgv_allcashieracc";
             dgv_allcashieracc.Size = new Size(523, 667);
             dgv_allcashieracc.TabIndex = 1;
+            dgv_allcashieracc.CellContentClick += dgv_allcashieracc_CellContentClick;
+            dgv_allcashieracc.SelectionChanged += dgv_allcashieracc_SelectionChanged;
             // 
             // panel5
             // 
@@ -153,6 +155,16 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(523, 41);
             panel5.TabIndex = 1;
+            // 
+            // btn_showpassword
+            // 
+            btn_showpassword.Location = new Point(419, 7);
+            btn_showpassword.Name = "btn_showpassword";
+            btn_showpassword.Size = new Size(101, 27);
+            btn_showpassword.TabIndex = 16;
+            btn_showpassword.Text = "Show Password";
+            btn_showpassword.UseVisualStyleBackColor = true;
+            btn_showpassword.Click += btn_showpassword_Click;
             // 
             // label1
             // 
@@ -202,16 +214,6 @@
             label2.Size = new Size(186, 25);
             label2.TabIndex = 4;
             label2.Text = "Cashier Sales Report";
-            // 
-            // btn_showpassword
-            // 
-            btn_showpassword.Location = new Point(419, 7);
-            btn_showpassword.Name = "btn_showpassword";
-            btn_showpassword.Size = new Size(101, 27);
-            btn_showpassword.TabIndex = 16;
-            btn_showpassword.Text = "Show Password";
-            btn_showpassword.UseVisualStyleBackColor = true;
-            btn_showpassword.Click += btn_showpassword_Click;
             // 
             // frm_managecashieraccount
             // 

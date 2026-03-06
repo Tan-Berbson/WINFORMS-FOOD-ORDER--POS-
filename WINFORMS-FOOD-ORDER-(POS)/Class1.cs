@@ -327,7 +327,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "INSERT INTO CASHIEREPORT (CASHIERNAME , TOTALSELLS, EVALUATION, CREATEDAT) VALUES (@CN, @TS, @E,@CA)";
+                    string query = "INSERT INTO CASHIEREPORT (CASHIERNAME , TOTALSELLS, EVALUATION, CREATEDATE) VALUES (@CN, @TS, @E,@CA)";
                     SqliteCommand cmd = new SqliteCommand(query, con);
                     cmd.Parameters.AddWithValue("@CN", cashiername);
                     cmd.Parameters.AddWithValue("@TS", totalsells);
@@ -367,7 +367,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 List<cashieraccount> account = new List<cashieraccount>();
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "SELECT CASHIERNAME, TOTALSELLS, EVALUATION, CREATEDAT FROM CASHIEREPORT WHERE CASHIERNAME = @CN";
+                    string query = "SELECT CASHIERNAME, TOTALSELLS, EVALUATION, CREATEDATE FROM CASHIEREPORT WHERE CASHIERNAME = @CN";
                     SqliteCommand cmd = new SqliteCommand(query, con);
                     cmd.Parameters.AddWithValue("@CN", cashiername);
                     con.Open();
@@ -379,7 +379,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                             cashiername = reader["CASHIERNAME"].ToString(),
                             totalsells = reader["TOTALSELLS"].ToString(),
                             evaluation = reader["EVALUATION"].ToString(),
-                            reportdate = reader["CREATEDAT"].ToString()
+                            reportdate = reader["CREATEDATE"].ToString()
                         });
                     }
                     return account;
