@@ -128,7 +128,7 @@
             btn_cashier.Name = "btn_cashier";
             btn_cashier.Size = new Size(122, 38);
             btn_cashier.TabIndex = 11;
-            btn_cashier.Text = "Cashier account";
+            btn_cashier.Text = "Manage Cashier";
             btn_cashier.UseVisualStyleBackColor = false;
             btn_cashier.Click += btn_cashier_Click;
             // 

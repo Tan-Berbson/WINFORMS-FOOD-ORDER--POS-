@@ -165,6 +165,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     }
                 }
             }
+            
             public class produtlist
             {
                 public int ProductID { get; set; }   // DB id (internal)
@@ -314,6 +315,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     cmd.ExecuteNonQuery();
                 }
             }
+            public class cashieraccount
+            {
+                public string cashiername { get; set; }
+                public string password { get; set; }
+                public string totalsells { get; set; }
+                public string evaluation { get; set; }
+                public string reportdate { get; set; }
+            }
             public bool insertcashierreport(string cashiername, string totalsells, string evaluation, string createdat)
             {
                 using(SqliteConnection con = db.GetConnection())
@@ -326,6 +335,31 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     cmd.Parameters.AddWithValue("@CA", createdat);
                     con.Open();
                     return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            public List<cashieraccount> loadcashieraccount(string adminname)
+            {
+                List<cashieraccount> account = new List<cashieraccount>();
+                using (SqliteConnection con = db.GetConnection()) 
+                {
+                    string query = "SELECT USERNAME, PASSWORD FROM CASHIERACC WHERE ADMINUSERNAME = @AD";
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@AD", adminname);
+
+                    con.Open();
+                    SqliteDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        account.Add(new cashieraccount
+                        {
+                            cashiername = reader["USERNAME"].ToString(),
+                            password = reader["PASSWORD"].ToString()
+
+                        });
+                        
+                    }
+                    return account;
+
                 }
             }
 
