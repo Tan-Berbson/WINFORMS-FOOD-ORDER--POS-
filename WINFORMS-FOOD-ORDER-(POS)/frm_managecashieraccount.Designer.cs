@@ -77,6 +77,7 @@
             btn_dashboard.TabIndex = 15;
             btn_dashboard.Text = "Dash Board";
             btn_dashboard.UseVisualStyleBackColor = true;
+            btn_dashboard.Click += btn_dashboard_Click;
             // 
             // btn_createcashieracc
             // 
@@ -125,6 +126,7 @@
             btn_logout.TabIndex = 9;
             btn_logout.Text = "Log Out";
             btn_logout.UseVisualStyleBackColor = true;
+            btn_logout.Click += btn_logout_Click;
             // 
             // panel2
             // 

@@ -23,6 +23,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         public frm_login()
         {
             InitializeComponent();
+            this.ControlBox = false;
             txt_password.UseSystemPasswordChar = true;
             lockoutTimer = new System.Windows.Forms.Timer();
             lockoutTimer.Interval = 1000; 
@@ -101,6 +102,20 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             txt_password.UseSystemPasswordChar = !checkBox1.Checked;
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // This checks if the user is trying to close the app (like Alt+F4)
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // This command CANCELS the closing process
+                e.Cancel = true;
+
+                MessageBox.Show("Access Denied: Please use the Logout button to exit.",
+                                "Security Lock",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Stop);
+            }
         }
     }
 }

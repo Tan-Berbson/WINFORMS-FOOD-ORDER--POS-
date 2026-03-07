@@ -13,14 +13,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
 {
     public partial class frm_managecashieraccount : Form
     {
-        string manager { get; set; }
+        string adminuser { get; set; }
         auth cashieraccount = new auth();
         public frm_managecashieraccount(string managername)
         {
             InitializeComponent();
-            manager = managername;
-            txt_username.Text = manager;
-            dgv_allcashieracc.DataSource = cashieraccount.loadcashieraccount(manager);
+            adminuser = managername;
+            txt_username.Text = adminuser;
+            dgv_allcashieracc.DataSource = cashieraccount.loadcashieraccount(adminuser);
             dgv_allcashieracc.CellFormatting += DataGridView1_CellFormatting;
 
         }
@@ -61,7 +61,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void dgv_allcashieracc_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void dgv_allcashieracc_SelectionChanged(object sender, EventArgs e)
@@ -81,6 +81,21 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     }
                 }
             }
+        }
+
+        private void btn_dashboard_Click(object sender, EventArgs e)
+        {
+            frm_admindashboard f = new frm_admindashboard(txt_username.Text);
+            f.Show();
+            this.Hide();
+        }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            frm_login f = new frm_login();
+            f.Show();
+            this.Hide();
+
         }
     }
 }

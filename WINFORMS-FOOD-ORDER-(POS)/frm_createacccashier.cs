@@ -42,8 +42,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            frm_admindashboard f = new frm_admindashboard(txt_managername.Text);
-            f.Show();   
+            frm_managecashieraccount f = new frm_managecashieraccount(txt_managername.Text);
+            f.Show();
             this.Close();
         }
     }

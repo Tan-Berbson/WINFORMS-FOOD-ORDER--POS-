@@ -22,6 +22,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         public frm_Addson(string cashiers, string managername, string productsname, string productporices, Image productImage)
         {
             InitializeComponent();
+            this.ControlBox = false;
             cashier = cashiers;
             manager = managername;
             productname = productsname;

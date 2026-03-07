@@ -22,6 +22,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             InitializeComponent();
             cashier = cashiername;
             manager = managername;
+            txt_cashier.Text = cashiername;
             txt_managername.Text = managername;
             txt_cashiername.Text = cashiername;
             dgv_totalsells.DataSource = null;
@@ -36,6 +37,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void frm_cashiersells_Load(object sender, EventArgs e)
         {
             dgv_totalsells.DataSource = sells.loadSalesReportBycashier(cashier);
+            CalculateTotalSales();
         }
 
 
@@ -89,6 +91,25 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
+        }
+        private void CalculateTotalSales()
+        {
+            decimal total = 0;
+
+            foreach (DataGridViewRow row in dgv_totalsells.Rows)
+            {
+                // Replace "OrderTotal" with the actual Index or Name of your column
+                if (row.Cells["OrderTotal"].Value != null)
+                {
+                    if (decimal.TryParse(row.Cells["OrderTotal"].Value.ToString(), out decimal cellValue))
+                    {
+                        total += cellValue;
+                    }
+                }
+            }
+
+            // Display the result in the textbox formatted as a number
+            txt_totalsells.Text = total.ToString();
         }
 
         private void btn_back_Click(object sender, EventArgs e)

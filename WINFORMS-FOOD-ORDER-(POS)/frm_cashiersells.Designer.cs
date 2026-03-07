@@ -35,10 +35,10 @@
             label2 = new Label();
             btn_logout = new Button();
             panel6 = new Panel();
+            pictureBox2 = new PictureBox();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
-            pictureBox1 = new PictureBox();
             cmb_evaluate = new ComboBox();
             txt_totalsells = new TextBox();
             txt_cashier = new TextBox();
@@ -56,7 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)dgv_totalsells).BeginInit();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel7.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
@@ -116,10 +116,10 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(242, 242, 242);
+            panel6.Controls.Add(pictureBox2);
             panel6.Controls.Add(label7);
             panel6.Controls.Add(label6);
             panel6.Controls.Add(label5);
-            panel6.Controls.Add(pictureBox1);
             panel6.Controls.Add(cmb_evaluate);
             panel6.Controls.Add(txt_totalsells);
             panel6.Controls.Add(txt_cashier);
@@ -129,11 +129,21 @@
             panel6.Size = new Size(321, 659);
             panel6.TabIndex = 2;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(56, 82);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(224, 226);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 25;
+            pictureBox2.TabStop = false;
+            // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F);
-            label7.Location = new Point(19, 504);
+            label7.Location = new Point(20, 531);
             label7.Name = "label7";
             label7.Size = new Size(138, 21);
             label7.TabIndex = 5;
@@ -143,7 +153,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(19, 431);
+            label6.Location = new Point(20, 450);
             label6.Name = "label6";
             label6.Size = new Size(81, 21);
             label6.TabIndex = 4;
@@ -153,26 +163,18 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(19, 363);
+            label5.Location = new Point(20, 364);
             label5.Name = "label5";
             label5.Size = new Size(65, 21);
             label5.TabIndex = 2;
             label5.Text = "Cashier:";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(63, 124);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(198, 181);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
             // 
             // cmb_evaluate
             // 
             cmb_evaluate.Font = new Font("Segoe UI", 13F);
             cmb_evaluate.FormattingEnabled = true;
             cmb_evaluate.Items.AddRange(new object[] { "Exellent", "Very Good", "Good", "Fair", "Bad" });
-            cmb_evaluate.Location = new Point(17, 528);
+            cmb_evaluate.Location = new Point(20, 555);
             cmb_evaluate.Name = "cmb_evaluate";
             cmb_evaluate.Size = new Size(285, 31);
             cmb_evaluate.TabIndex = 2;
@@ -180,7 +182,7 @@
             // txt_totalsells
             // 
             txt_totalsells.Font = new Font("Segoe UI", 13F);
-            txt_totalsells.Location = new Point(18, 455);
+            txt_totalsells.Location = new Point(21, 474);
             txt_totalsells.Name = "txt_totalsells";
             txt_totalsells.Size = new Size(285, 31);
             txt_totalsells.TabIndex = 1;
@@ -188,7 +190,7 @@
             // txt_cashier
             // 
             txt_cashier.Font = new Font("Segoe UI", 13F);
-            txt_cashier.Location = new Point(19, 387);
+            txt_cashier.Location = new Point(20, 388);
             txt_cashier.Name = "txt_cashier";
             txt_cashier.Size = new Size(286, 31);
             txt_cashier.TabIndex = 0;
@@ -313,7 +315,7 @@
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel1.ResumeLayout(false);
@@ -329,7 +331,6 @@
         private Panel panel5;
         private Panel panel6;
         private Panel panel7;
-        private PictureBox pictureBox1;
         private ComboBox cmb_evaluate;
         private TextBox txt_totalsells;
         private TextBox txt_cashier;
@@ -347,5 +348,6 @@
         private Panel panel3;
         private Button btn_logout;
         private Button btn_back;
+        private PictureBox pictureBox2;
     }
 }

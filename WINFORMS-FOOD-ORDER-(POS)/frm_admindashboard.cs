@@ -162,8 +162,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void btn_sales_Click(object sender, EventArgs e)
         {
             frm_montlysales f = new frm_montlysales(txt_username.Text);
-            f.Show();
-            this.Hide();
+
+            this.Hide();      // Hide the dashboard (data stays safe)
+            f.ShowDialog();   // Open Sales and wait here
+            this.Show();      // When Sales is closed, Dashboard reappears with all data intact
         }
     }
+    
 }

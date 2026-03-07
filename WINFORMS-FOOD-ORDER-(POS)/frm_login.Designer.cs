@@ -215,6 +215,9 @@
             Controls.Add(txt_password);
             Controls.Add(panel1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frm_login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
