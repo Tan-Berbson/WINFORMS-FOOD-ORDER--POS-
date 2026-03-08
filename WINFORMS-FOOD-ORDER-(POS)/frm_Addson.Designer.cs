@@ -55,6 +55,12 @@
             btn_confirm = new Button();
             btn_back = new Button();
             panel5 = new Panel();
+            textBox6 = new TextBox();
+            textBox5 = new TextBox();
+            textBox4 = new TextBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             checkBox6 = new CheckBox();
             checkBox5 = new CheckBox();
             checkBox4 = new CheckBox();
@@ -163,14 +169,14 @@
             panel3.Controls.Add(panel4);
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(431, 510);
+            panel3.Size = new Size(431, 601);
             panel3.TabIndex = 0;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 13F);
-            label7.Location = new Point(6, 463);
+            label7.Location = new Point(3, 520);
             label7.Name = "label7";
             label7.Size = new Size(135, 25);
             label7.TabIndex = 10;
@@ -180,7 +186,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13F);
-            label6.Location = new Point(31, 420);
+            label6.Location = new Point(27, 459);
             label6.Name = "label6";
             label6.Size = new Size(104, 25);
             label6.TabIndex = 9;
@@ -190,7 +196,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 13F);
-            label5.Location = new Point(21, 365);
+            label5.Location = new Point(18, 392);
             label5.Name = "label5";
             label5.Size = new Size(114, 25);
             label5.TabIndex = 8;
@@ -199,7 +205,7 @@
             // txt_quantity
             // 
             txt_quantity.Font = new Font("Segoe UI", 13F);
-            txt_quantity.Location = new Point(143, 463);
+            txt_quantity.Location = new Point(141, 520);
             txt_quantity.Name = "txt_quantity";
             txt_quantity.ReadOnly = true;
             txt_quantity.Size = new Size(78, 31);
@@ -208,7 +214,7 @@
             // 
             // btn_minus
             // 
-            btn_minus.Location = new Point(227, 460);
+            btn_minus.Location = new Point(225, 517);
             btn_minus.Name = "btn_minus";
             btn_minus.Size = new Size(79, 38);
             btn_minus.TabIndex = 6;
@@ -218,7 +224,7 @@
             // 
             // btn_add
             // 
-            btn_add.Location = new Point(312, 460);
+            btn_add.Location = new Point(310, 517);
             btn_add.Name = "btn_add";
             btn_add.Size = new Size(79, 38);
             btn_add.TabIndex = 3;
@@ -229,7 +235,7 @@
             // txt_price
             // 
             txt_price.Font = new Font("Segoe UI", 13F);
-            txt_price.Location = new Point(141, 414);
+            txt_price.Location = new Point(137, 453);
             txt_price.Name = "txt_price";
             txt_price.ReadOnly = true;
             txt_price.Size = new Size(250, 31);
@@ -238,7 +244,7 @@
             // txt_ordername
             // 
             txt_ordername.Font = new Font("Segoe UI", 13F);
-            txt_ordername.Location = new Point(141, 362);
+            txt_ordername.Location = new Point(137, 392);
             txt_ordername.Name = "txt_ordername";
             txt_ordername.ReadOnly = true;
             txt_ordername.Size = new Size(250, 31);
@@ -246,9 +252,10 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.FromArgb(52, 94, 104);
             pictureBox1.Location = new Point(36, 71);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(355, 256);
+            pictureBox1.Size = new Size(355, 284);
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
@@ -281,7 +288,7 @@
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(3, 75);
             panel2.Name = "panel2";
-            panel2.Size = new Size(871, 624);
+            panel2.Size = new Size(871, 717);
             panel2.TabIndex = 1;
             // 
             // panel8
@@ -289,7 +296,7 @@
             panel8.BackColor = Color.FromArgb(52, 94, 104);
             panel8.Controls.Add(label8);
             panel8.Controls.Add(txt_ordertotal);
-            panel8.Location = new Point(9, 516);
+            panel8.Location = new Point(15, 607);
             panel8.Name = "panel8";
             panel8.Size = new Size(852, 47);
             panel8.TabIndex = 12;
@@ -318,7 +325,7 @@
             // 
             panel7.Controls.Add(btn_confirm);
             panel7.Controls.Add(btn_back);
-            panel7.Location = new Point(9, 569);
+            panel7.Location = new Point(15, 660);
             panel7.Name = "panel7";
             panel7.Size = new Size(852, 44);
             panel7.TabIndex = 2;
@@ -350,6 +357,12 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(200, 205, 210);
+            panel5.Controls.Add(textBox6);
+            panel5.Controls.Add(textBox5);
+            panel5.Controls.Add(textBox4);
+            panel5.Controls.Add(textBox3);
+            panel5.Controls.Add(textBox2);
+            panel5.Controls.Add(textBox1);
             panel5.Controls.Add(checkBox6);
             panel5.Controls.Add(checkBox5);
             panel5.Controls.Add(checkBox4);
@@ -365,14 +378,56 @@
             panel5.Controls.Add(panel6);
             panel5.Location = new Point(436, 1);
             panel5.Name = "panel5";
-            panel5.Size = new Size(431, 509);
+            panel5.Size = new Size(431, 600);
             panel5.TabIndex = 1;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(244, 525);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(145, 23);
+            textBox6.TabIndex = 25;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(35, 527);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(145, 23);
+            textBox5.TabIndex = 24;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(244, 346);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(145, 23);
+            textBox4.TabIndex = 23;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(35, 346);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(145, 23);
+            textBox3.TabIndex = 22;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(244, 159);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(145, 23);
+            textBox2.TabIndex = 21;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(41, 159);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(139, 23);
+            textBox1.TabIndex = 20;
             // 
             // checkBox6
             // 
             checkBox6.AutoSize = true;
             checkBox6.Font = new Font("Segoe UI", 12F);
-            checkBox6.Location = new Point(269, 457);
+            checkBox6.Location = new Point(269, 556);
             checkBox6.Name = "checkBox6";
             checkBox6.Size = new Size(102, 25);
             checkBox6.TabIndex = 19;
@@ -384,7 +439,7 @@
             // 
             checkBox5.AutoSize = true;
             checkBox5.Font = new Font("Segoe UI", 12F);
-            checkBox5.Location = new Point(59, 459);
+            checkBox5.Location = new Point(59, 556);
             checkBox5.Name = "checkBox5";
             checkBox5.Size = new Size(102, 25);
             checkBox5.TabIndex = 18;
@@ -396,7 +451,7 @@
             // 
             checkBox4.AutoSize = true;
             checkBox4.Font = new Font("Segoe UI", 12F);
-            checkBox4.Location = new Point(269, 308);
+            checkBox4.Location = new Point(269, 375);
             checkBox4.Name = "checkBox4";
             checkBox4.Size = new Size(102, 25);
             checkBox4.TabIndex = 17;
@@ -408,7 +463,7 @@
             // 
             checkBox3.AutoSize = true;
             checkBox3.Font = new Font("Segoe UI", 12F);
-            checkBox3.Location = new Point(59, 308);
+            checkBox3.Location = new Point(59, 375);
             checkBox3.Name = "checkBox3";
             checkBox3.Size = new Size(102, 25);
             checkBox3.TabIndex = 16;
@@ -420,7 +475,7 @@
             // 
             checkBox2.AutoSize = true;
             checkBox2.Font = new Font("Segoe UI", 12F);
-            checkBox2.Location = new Point(269, 159);
+            checkBox2.Location = new Point(269, 188);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(102, 25);
             checkBox2.TabIndex = 15;
@@ -432,7 +487,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Segoe UI", 12F);
-            checkBox1.Location = new Point(59, 159);
+            checkBox1.Location = new Point(59, 188);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(102, 25);
             checkBox1.TabIndex = 14;
@@ -442,7 +497,8 @@
             // 
             // pictureBox7
             // 
-            pictureBox7.Location = new Point(244, 339);
+            pictureBox7.BackColor = Color.FromArgb(52, 94, 104);
+            pictureBox7.Location = new Point(244, 411);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(145, 112);
             pictureBox7.TabIndex = 13;
@@ -450,7 +506,8 @@
             // 
             // pictureBox6
             // 
-            pictureBox6.Location = new Point(35, 339);
+            pictureBox6.BackColor = Color.FromArgb(52, 94, 104);
+            pictureBox6.Location = new Point(35, 411);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(145, 112);
             pictureBox6.TabIndex = 12;
@@ -458,7 +515,8 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Location = new Point(244, 190);
+            pictureBox5.BackColor = Color.FromArgb(52, 94, 104);
+            pictureBox5.Location = new Point(244, 228);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(145, 112);
             pictureBox5.TabIndex = 11;
@@ -466,7 +524,8 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.Location = new Point(35, 190);
+            pictureBox4.BackColor = Color.FromArgb(52, 94, 104);
+            pictureBox4.Location = new Point(35, 228);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(145, 112);
             pictureBox4.TabIndex = 10;
@@ -474,6 +533,7 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.BackColor = Color.FromArgb(52, 94, 104);
             pictureBox3.Location = new Point(244, 41);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(145, 112);
@@ -482,6 +542,7 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = Color.FromArgb(52, 94, 104);
             pictureBox2.Location = new Point(35, 41);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(145, 112);
@@ -512,7 +573,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(876, 710);
+            ClientSize = new Size(876, 791);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frm_Addson";
@@ -586,5 +647,11 @@
         private CheckBox checkBox5;
         private PictureBox pictureBox7;
         private PictureBox pictureBox6;
+        private TextBox textBox6;
+        private TextBox textBox5;
+        private TextBox textBox4;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private TextBox textBox1;
     }
 }

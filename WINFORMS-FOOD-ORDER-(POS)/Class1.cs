@@ -436,6 +436,115 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 }
                 return dt;
             }
+          
+            private int GetNextaddsonId(SqliteConnection con)
+            {
+                using (var cmd = new SqliteCommand(
+                    "SELECT IFNULL(MAX(id), 0) + 1 FROM ADDSON", con))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            public int GetaddsonCountByAdmin(string adminname)
+            {
+                using (var con = db.GetConnection())
+                {
+                    con.Open();
+                    using (var cmd = new SqliteCommand(
+                        "SELECT COUNT(*) FROM ADDSON WHERE ADMINNAME = @A", con))
+                    {
+                        cmd.Parameters.AddWithValue("@A", adminname);
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
+            public bool Insertaddson(string adminname, string imagePath, string productname, string productprice)
+            {
+                using (SqliteConnection connection = db.GetConnection())
+                {
+                    connection.Open();
+
+
+
+                    int nextId = GetNextaddsonId(connection);
+
+                    string query =
+                        "INSERT INTO ADDSON (id, ADMINNAME, ADDSONTIMAGE, ADDSONNAME, ADDSONPRICE) " +
+                        "VALUES (@ID, @A, @IMG, @P, @PR)";
+
+                    using (SqliteCommand cmd = new SqliteCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", nextId);
+                        cmd.Parameters.AddWithValue("@A", adminname);
+                        cmd.Parameters.AddWithValue("@IMG", File.ReadAllBytes(imagePath));
+                        cmd.Parameters.AddWithValue("@P", productname);
+                        cmd.Parameters.AddWithValue("@PR", productprice);
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            public class addsonlist
+            {
+                public int addsonID { get; set; }   // DB id (internal)
+                public int DisplayNumber { get; set; } // UI number (1–10)
+                public byte[] addsonImage { get; set; }
+                public string addsonName { get; set; }
+                public string addsonprice { get; set; }
+                public string addsonNumber => $"ProductNumber#{DisplayNumber}";
+
+            }
+            public List<addsonlist> loadaddson(string manager)
+            {
+                List<addsonlist> products = new List<addsonlist>();
+
+                using (SqliteConnection connection = db.GetConnection())
+                {
+                    string query =
+                        "SELECT id, ADDSONTIMAGE, ADDSONNAME, ADDSONPRICE " +
+                        "FROM ADDSON WHERE ADMINNAME = @A ORDER BY id";
+
+                    SqliteCommand cmd = new SqliteCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@A", manager);
+
+                    connection.Open();
+                    SqliteDataReader reader = cmd.ExecuteReader();
+
+                    int displayCounter = 1; // 🔥 START FROM 1
+
+                    while (reader.Read())
+                    {
+                        products.Add(new addsonlist
+                        {
+                            addsonID = Convert.ToInt32(reader["id"]), // DB id
+                            DisplayNumber = displayCounter++,          // UI number
+                            addsonImage = (byte[])reader["ADDSONTIMAGE"],
+                            addsonName = reader["ADDSONNAME"].ToString(),
+                            addsonprice = reader["ADDSONPRICE"].ToString()
+                        });
+                    }
+                }
+
+                return products;
+
+            }
+            public SqliteDataReader loadaddsonByAdmin(string adminname)
+            {
+                SqliteConnection con = db.GetConnection();
+                con.Open();
+
+                SqliteCommand cmd = con.CreateCommand();
+                cmd.CommandText =
+                    "SELECT id, ADDSONTIMAGE, ADDSONNAME, ADDSONPRICE " +
+                    "FROM ADDSON " +
+                    "WHERE ADMINNAME = @A " +
+                    "ORDER BY id";
+
+                cmd.Parameters.AddWithValue("@A", adminname);
+
+                return cmd.ExecuteReader();
+            }
+
         }
 
 

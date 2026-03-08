@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace WINFORMS_FOOD_ORDER__POS_
 {
@@ -17,7 +17,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
         string manager { get; set; }
         string productname { get; set; }
         string productprice { get; set; }
+        TextBox[] addonPriceTextBoxes;
         Image productImage { get; set; }
+        CheckBox[] addonBoxes;
+        PictureBox[] addonImages;
+        
+        List<Class1.auth.addsonlist> addons = new List<Class1.auth.addsonlist>();
+    
 
         public frm_Addson(string cashiers, string managername, string productsname, string productporices, Image productImage)
         {
@@ -50,29 +56,24 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
-            int addonPrice = 30;
-            int addonCount = 0;
-            string addons = "";
+            string addonsText = "";
 
-            if (checkBox1.Checked) { addons += "Add-on1, "; addonCount++; }
-            if (checkBox2.Checked) { addons += "Add-on2, "; addonCount++; }
-            if (checkBox3.Checked) { addons += "Add-on3, "; addonCount++; }
-            if (checkBox4.Checked) { addons += "Add-on4, "; addonCount++; }
-            if (checkBox5.Checked) { addons += "Add-on5, "; addonCount++; }
-            if (checkBox6.Checked) { addons += "Add-on6, "; addonCount++; }
+            foreach (CheckBox chk in addonBoxes)
+            {
+                if (chk.Visible && chk.Checked)
+                {
+                    addonsText += chk.Text + ", ";
+                }
+            }
 
             int qty = int.Parse(txt_quantity.Text);
-            int basePrice = int.Parse(txt_price.Text);
-
-            int total = (basePrice * qty) + (addonCount * addonPrice);
+            int total = int.Parse(txt_ordertotal.Text);
 
             string orderName = txt_ordername.Text + " x" + qty;
 
-            // 🔹 KUNIN ANG EXISTING FORM1
             frm_cashierDashboard f =
                 (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
 
-            // 🔹 CHECK DUPLICATE ORDER
             if (f.OrderExists(orderName))
             {
                 MessageBox.Show(
@@ -81,37 +82,36 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-                return; // Stop execution, cashier cannot confirm
+                return;
             }
 
-            // 🔹 ADD SA LISTVIEW
-            bool added = f.AddOrderWithCheck(orderName, addons, total.ToString());
+            bool added = f.AddOrderWithCheck(orderName, addonsText, total.ToString());
 
             if (added)
             {
                 f.Show();
-                this.Close(); // Only close if order was added
+                this.Close();
             }
 
         }
         private void CalculateTotal()
         {
-            int addonPrice = 30;
-            int addonCount = 0;
+            int addonTotal = 0;
 
-            if (checkBox1.Checked) addonCount++;
-            if (checkBox2.Checked) addonCount++;
-            if (checkBox3.Checked) addonCount++;
-            if (checkBox4.Checked) addonCount++;
-            if (checkBox5.Checked) addonCount++;
-            if (checkBox6.Checked) addonCount++;
+            for (int i = 0; i < addonBoxes.Length; i++)
+            {
+                if (addonBoxes[i].Visible && addonBoxes[i].Checked)
+                {
+                    addonTotal += int.Parse(addonPriceTextBoxes[i].Text);
+                }
+            }
 
             if (txt_quantity.Text == "") return;
 
             int qty = int.Parse(txt_quantity.Text);
             int basePrice = int.Parse(txt_price.Text);
 
-            int total = (basePrice * qty) + (addonCount * addonPrice);
+            int total = (basePrice * qty) + addonTotal;
 
             txt_ordertotal.Text = total.ToString();
         }
@@ -153,9 +153,72 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 CalculateTotal();
             }
         }
+        private void LoadAddons()
+        {
+            Class1.auth db = new Class1.auth();
+            addons = db.loadaddson(manager);
+
+            for (int i = 0; i < addonBoxes.Length; i++)
+            {
+                if (i < addons.Count)
+                {
+                    // Checkbox = pangalan lang
+                    addonBoxes[i].Text = addons[i].addsonName;
+                    addonBoxes[i].Visible = true;
+
+                    // TextBox = presyo
+                    addonPriceTextBoxes[i].Text = addons[i].addsonprice;
+                    addonPriceTextBoxes[i].Visible = true;
+                    addonPriceTextBoxes[i].ReadOnly = true;
+
+                    // Picture
+                    byte[] img = addons[i].addsonImage;
+                    using (MemoryStream ms = new MemoryStream(img))
+                    {
+                        addonImages[i].Image = Image.FromStream(ms);
+                    }
+                    addonImages[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                    addonImages[i].Visible = true;
+                }
+                else
+                {
+                    addonBoxes[i].Visible = false;
+                    addonImages[i].Visible = false;
+                    addonPriceTextBoxes[i].Visible = false;
+                }
+            }
+        }
 
         private void frm_Addson_Load(object sender, EventArgs e)
         {
+            addonBoxes = new CheckBox[]
+     {
+        checkBox1,
+        checkBox2,
+        checkBox3,
+        checkBox4,
+        checkBox5,
+        checkBox6
+     };
+            addonImages = new PictureBox[]
+{
+    pictureBox2,
+    pictureBox3,
+    pictureBox4,
+    pictureBox5,
+    pictureBox6,
+    pictureBox7
+}; addonPriceTextBoxes = new TextBox[]
+{
+    textBox1,
+    textBox2,
+    textBox3,
+    textBox4,
+    textBox5,
+    textBox6
+};
+
+            LoadAddons();
             CalculateTotal();
         }
 

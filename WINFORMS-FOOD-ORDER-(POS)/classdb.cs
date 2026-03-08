@@ -21,6 +21,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 CASHIERACC(conn);
                 CASHIERSELLS(conn);
                 CASHIEREPORT(conn);
+                ADDSON(conn);
             }
         }
          private static void ADMINACC(SqliteConnection conn)
@@ -53,6 +54,19 @@ namespace WINFORMS_FOOD_ORDER__POS_
                         PRODUCTIMAGE BLOB,
                         PRODUCTNAME TEXT NOT NULL,
                         PRODUCTPRICE TEXT NOT NULL
+                       
+                    );";
+            Execute(conn, query);
+        }
+        private static void ADDSON(SqliteConnection conn)
+        {
+            string query = @"CREATE TABLE IF NOT EXISTS ADDSON (
+                        id INTEGER ,
+                       
+                        ADMINNAME TEXT NOT NULL,
+                        ADDSONTIMAGE BLOB,
+                        ADDSONNAME TEXT NOT NULL,
+                        ADDSONPRICE TEXT NOT NULL
                        
                     );";
             Execute(conn, query);

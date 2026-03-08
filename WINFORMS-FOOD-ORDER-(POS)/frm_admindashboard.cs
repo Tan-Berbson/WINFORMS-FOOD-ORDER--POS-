@@ -21,6 +21,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             adminuser = username;
             txt_username.Text = username;
             LoadProducts();
+            Loadaddsom();
 
         }
 
@@ -167,6 +168,114 @@ namespace WINFORMS_FOOD_ORDER__POS_
             f.ShowDialog();   // Open Sales and wait here
             this.Show();      // When Sales is closed, Dashboard reappears with all data intact
         }
+
+        private void frm_admindashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+        void Loadaddsom()
+        {
+            dgv_addson.DataSource = null;
+            dgv_addson.AutoGenerateColumns = false; // use custom columns
+            dgv_addson.Columns.Clear();
+
+
+            DataGridViewTextBoxColumn numberCol = new DataGridViewTextBoxColumn();
+            numberCol.HeaderText = "Adds-on Number";
+            numberCol.DataPropertyName = "AddsonNumber"; // uses computed property
+            dgv_addson.Columns.Add(numberCol);
+
+            // Image column
+            DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
+            imgCol.HeaderText = "Image";
+            imgCol.DataPropertyName = "AddsonImage";
+            imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            dgv_addson.Columns.Add(imgCol);
+
+            // Product Name column
+            DataGridViewTextBoxColumn nameCol = new DataGridViewTextBoxColumn();
+            nameCol.HeaderText = "Adds-on Name";
+            nameCol.DataPropertyName = "AddsonName";
+            dgv_addson.Columns.Add(nameCol);
+
+            // Price column
+            DataGridViewTextBoxColumn priceCol = new DataGridViewTextBoxColumn();
+            priceCol.HeaderText = "Price";
+            priceCol.DataPropertyName = "Addsonprice";
+            dgv_addson.Columns.Add(priceCol);
+
+            dgv_addson.DataSource = admin.loadaddson(adminuser);
+
+            dgv_addson.RowTemplate.Height = 100;
+            dgv_addson.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_addson.AllowUserToResizeRows = false;
+            dgv_addson.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv_addson.MultiSelect = false;
+            dgv_addson.ReadOnly = true;
+        }
+
+        private void dgv_addson_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgv_addson.Columns[e.ColumnIndex].Name == "AddsonImage"
+       && e.Value != null)
+            {
+                byte[] bytes = (byte[])e.Value;
+
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    e.Value = Image.FromStream(ms);
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Check if image is selected
+            if (pictureBox1.Image == null)
+            {
+                MessageBox.Show("Please select an image first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check if product name and price are entered
+            if (string.IsNullOrWhiteSpace(txt_productname.Text) || string.IsNullOrWhiteSpace(txt_productprice.Text))
+            {
+                MessageBox.Show("Please enter adds-on name and price.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            // ✅ Check product limit first
+            if (admin.GetaddsonCountByAdmin(txt_username.Text) >= 6)
+            {
+                MessageBox.Show("You can only add up to 6 adds-on.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop here
+            }
+
+            // Insert the product
+            bool success = admin.Insertaddson(
+                txt_username.Text,
+                pictureBox1.Tag.ToString(), // image path
+                txt_productname.Text,
+                txt_productprice.Text
+            );
+
+            if (success)
+            {
+                MessageBox.Show("Product saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Loadaddsom();
+
+                // Clear fields
+                pictureBox1.Image = null;
+                pictureBox1.Tag = null;
+                txt_productname.Clear();
+                txt_productprice.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Failed to save adds-on.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
-    
+
 }
