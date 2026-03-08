@@ -12,6 +12,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
             // see https://aka.ms/applicationconfiguration.
             classdb.Initialize();
             ApplicationConfiguration.Initialize();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frm_login());
         }
     }

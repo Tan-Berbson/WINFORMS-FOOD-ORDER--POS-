@@ -60,19 +60,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private static void CASHIERSELLS(SqliteConnection conn)
         {
             string query = @"CREATE TABLE IF NOT EXISTS CASHIERSELLS (
-                       
-                       
-                        CASHIERNAME TEXT NOT NULL,
-                        CUSTOMERNAME TEXT NOT NULL,
-                        ORDERID TEXT NOT NULL,
-                        PAYMENTMETHOD TEXT NOT NULL,
-                        ORDERTOTAL TEXT NOT NULL,
-                        CUSTOMERMONEY TEXT NOT NULL,
-                        CUSTOMERCHANGE TEXT NOT NULL
+        CASHIERNAME TEXT NOT NULL,
+        CUSTOMERNAME TEXT NOT NULL,
+        ORDERID TEXT NOT NULL,
+        PAYMENTMETHOD TEXT NOT NULL,
+        ORDERTOTAL TEXT NOT NULL,
+        CUSTOMERMONEY TEXT NOT NULL,
+        CUSTOMERCHANGE TEXT NOT NULL,
+        CREATEDATE TEXT NOT NULL
+    );";
 
-                        
-                       
-                    );";
             Execute(conn, query);
         }
         private static void CASHIEREPORT(SqliteConnection conn)

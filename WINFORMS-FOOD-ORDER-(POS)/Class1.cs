@@ -252,13 +252,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 public string CustomerMoney { get; set; }
                 public string CustomerChange { get; set; }
             }
-            public bool cashiertotalsell(string cashiername, string customername, string orderid, string paymentmethod, string ordertotal, string customermoney, string customerchange)
+            public bool cashiertotalsell(string cashiername, string customername, string orderid,
+ string paymentmethod, string ordertotal, string customermoney, string customerchange)
             {
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "INSERT INTO CASHIERSELLS ( CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE) VALUES (@CN,@CUN, @OID, @PM, @OT, @CM, @CC)";
-                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    string query = @"INSERT INTO CASHIERSELLS 
+        (CASHIERNAME, CUSTOMERNAME, ORDERID, PAYMENTMETHOD, ORDERTOTAL, CUSTOMERMONEY, CUSTOMERCHANGE, CREATEDATE) 
+        VALUES (@CN,@CUN,@OID,@PM,@OT,@CM,@CC,@CD)";
 
+                    SqliteCommand cmd = new SqliteCommand(query, con);
 
                     cmd.Parameters.AddWithValue("@CN", cashiername.Trim());
                     cmd.Parameters.AddWithValue("@CUN", customername.Trim());
@@ -267,13 +270,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     cmd.Parameters.AddWithValue("@OT", ordertotal.Trim());
                     cmd.Parameters.AddWithValue("@CM", customermoney.Trim());
                     cmd.Parameters.AddWithValue("@CC", customerchange.Trim());
+                    cmd.Parameters.AddWithValue("@CD", DateTime.Now.ToString("yyyy-MM-dd"));
 
                     con.Open();
                     return cmd.ExecuteNonQuery() > 0;
-
                 }
             }
-
             public List<salesreport> loadSalesReportBycashier(string cashiername)
             {
                 List<salesreport> salesReports = new List<salesreport>();
@@ -386,6 +388,53 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 }
 
 
+            }
+            // Sa auth class
+            public DataTable GetSales(string filter, int year)
+            {
+                DataTable dt = new DataTable();
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "";
+
+                    if (filter == "day")
+                    {
+                        query = @"SELECT CREATEDATE AS Period, TOTALSELLS AS TotalSales
+                      FROM CASHIEREPORT
+                      WHERE strftime('%Y', CREATEDATE) = @Y
+                      ORDER BY CREATEDATE ASC";
+                    }
+                    else if (filter == "week")
+                    {
+                        query = @"SELECT strftime('%W', CREATEDATE) AS Period, SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
+                      FROM CASHIEREPORT
+                      WHERE strftime('%Y', CREATEDATE) = @Y
+                      GROUP BY Period
+                      ORDER BY Period ASC";
+                    }
+                    else if (filter == "month")
+                    {
+                        query = @"SELECT strftime('%m', CREATEDATE) AS Period, SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
+                      FROM CASHIEREPORT
+                      WHERE strftime('%Y', CREATEDATE) = @Y
+                      GROUP BY Period
+                      ORDER BY Period ASC";
+                    }
+                    else if (filter == "year")
+                    {
+                        query = @"SELECT strftime('%Y', CREATEDATE) AS Period, SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
+                      FROM CASHIEREPORT
+                      GROUP BY Period
+                      ORDER BY Period ASC";
+                    }
+
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Y", year.ToString());
+
+                    con.Open();
+                    dt.Load(cmd.ExecuteReader());
+                }
+                return dt;
             }
         }
 
