@@ -179,6 +179,7 @@
             dgv_product.ReadOnly = true;
             dgv_product.Size = new Size(740, 473);
             dgv_product.TabIndex = 0;
+            dgv_product.CellContentClick += dgv_product_CellContentClick;
             dgv_product.CellFormatting += dgv_product_CellFormatting;
             // 
             // panel5
@@ -382,6 +383,7 @@
             dgv_addson.ReadOnly = true;
             dgv_addson.Size = new Size(747, 300);
             dgv_addson.TabIndex = 0;
+            dgv_addson.CellContentClick += dgv_addson_CellContentClick;
             dgv_addson.CellFormatting += dgv_addson_CellFormatting;
             // 
             // frm_admindashboard

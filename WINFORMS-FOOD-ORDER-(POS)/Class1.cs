@@ -239,6 +239,53 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     return cmd.ExecuteScalar()?.ToString();
                 }
             }
+            public bool DeleteProduct(int productId, string adminName)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    // Must match both the ID and the Admin Name for security
+                    string query = "DELETE FROM PRODUCTS WHERE id = @ID AND ADMINNAME = @A";
+                    using (SqliteCommand cmd = new SqliteCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", productId);
+                        cmd.Parameters.AddWithValue("@A", adminName);
+                        con.Open();
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+
+            public bool UpdateProduct(int productId, string adminName, string name, string price, string imagePath = null)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    con.Open();
+                    SqliteCommand cmd = new SqliteCommand();
+                    cmd.Connection = con;
+
+                    string query;
+                    if (!string.IsNullOrEmpty(imagePath))
+                    {
+                        query = "UPDATE PRODUCTS SET PRODUCTNAME = @N, PRODUCTPRICE = @P, PRODUCTIMAGE = @IMG " +
+                                "WHERE id = @ID AND ADMINNAME = @A";
+                        cmd.Parameters.AddWithValue("@IMG", File.ReadAllBytes(imagePath));
+                    }
+                    else
+                    {
+                        query = "UPDATE PRODUCTS SET PRODUCTNAME = @N, PRODUCTPRICE = @P " +
+                                "WHERE id = @ID AND ADMINNAME = @A";
+                    }
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@N", name);
+                    cmd.Parameters.AddWithValue("@P", price);
+                    cmd.Parameters.AddWithValue("@ID", productId);
+                    cmd.Parameters.AddWithValue("@A", adminName);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
 
             public class salesreport
             {
@@ -436,7 +483,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 }
                 return dt;
             }
-          
+
             private int GetNextaddsonId(SqliteConnection con)
             {
                 using (var cmd = new SqliteCommand(
@@ -544,9 +591,58 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
                 return cmd.ExecuteReader();
             }
+            public bool DeleteAddson(int addsonId, string adminName)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    // Must match both the ID and the Admin Name for security
+                    string query = "DELETE FROM ADDSON WHERE id = @ID AND ADMINNAME = @A";
+                    using (SqliteCommand cmd = new SqliteCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", addsonId);
+                        cmd.Parameters.AddWithValue("@A", adminName);
+                        con.Open();
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
 
-        }
+            public bool UpdateAddson(int addsonId, string adminName, string name, string price, string imagePath = null)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    con.Open();
+                    SqliteCommand cmd = new SqliteCommand();
+                    cmd.Connection = con;
 
+                    string query;
+                    if (!string.IsNullOrEmpty(imagePath))
+                    {
+                        query = "UPDATE ADDSON SET ADDSONNAME = @N, ADDSONPRICE = @P, ADDSONIMAGE = @IMG " +
+                                "WHERE id = @ID AND ADMINNAME = @A";
+                        cmd.Parameters.AddWithValue("@IMG", File.ReadAllBytes(imagePath));
+                    }
+                    else
+                    {
+                        query = "UPDATE ADDSON SET ADDSONNAME = @N, ADDSONPRICE = @P " +
+                                "WHERE id = @ID AND ADMINNAME = @A";
+                    }
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@N", name);
+                    cmd.Parameters.AddWithValue("@P", price);
+                    cmd.Parameters.AddWithValue("@ID", addsonId);
+                    cmd.Parameters.AddWithValue("@A", adminName);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+
+
+
+        } // This brace ends 'pu
 
     }
 }
+

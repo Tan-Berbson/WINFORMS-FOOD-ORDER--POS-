@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static WINFORMS_FOOD_ORDER__POS_.Class1;
+using static WINFORMS_FOOD_ORDER__POS_.Class1.auth;
 
 namespace WINFORMS_FOOD_ORDER__POS_
 {
@@ -101,43 +103,135 @@ namespace WINFORMS_FOOD_ORDER__POS_
         void LoadProducts()
         {
             dgv_product.DataSource = null;
-            dgv_product.AutoGenerateColumns = false; // use custom columns
+            dgv_product.AutoGenerateColumns = false;
             dgv_product.Columns.Clear();
 
-
+            // 1. Product Number
             DataGridViewTextBoxColumn numberCol = new DataGridViewTextBoxColumn();
-            numberCol.HeaderText = "Product Number";
-            numberCol.DataPropertyName = "ProductNumber"; // uses computed property
+            numberCol.HeaderText = "No.";
+            numberCol.DataPropertyName = "ProductNumber";
             dgv_product.Columns.Add(numberCol);
 
-            // Image column
+            // 2. Image
             DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
             imgCol.HeaderText = "Image";
             imgCol.DataPropertyName = "ProductImage";
             imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
             dgv_product.Columns.Add(imgCol);
 
-            // Product Name column
+            // 3. Product Name
             DataGridViewTextBoxColumn nameCol = new DataGridViewTextBoxColumn();
             nameCol.HeaderText = "Product Name";
             nameCol.DataPropertyName = "ProductName";
             dgv_product.Columns.Add(nameCol);
 
-            // Price column
+            // 4. Price
             DataGridViewTextBoxColumn priceCol = new DataGridViewTextBoxColumn();
             priceCol.HeaderText = "Price";
             priceCol.DataPropertyName = "Productprice";
             dgv_product.Columns.Add(priceCol);
 
+            // --- ADDING ACTION BUTTONS HERE ---
+
+            // 5. EDIT BUTTON
+            DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
+            btnEdit.Name = "btnEdit";
+            btnEdit.HeaderText = "Edit";
+            btnEdit.Text = "📝";
+            btnEdit.UseColumnTextForButtonValue = true;
+            dgv_product.Columns.Add(btnEdit);
+
+            // 6. DELETE BUTTON
+            DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+            btnDelete.Name = "btnDelete";
+            btnDelete.HeaderText = "Delete";
+            btnDelete.Text = "🗑️";
+            btnDelete.UseColumnTextForButtonValue = true;
+            dgv_product.Columns.Add(btnDelete);
+
+            // Bind Data
             dgv_product.DataSource = admin.loadproducts(adminuser);
 
-            dgv_product.RowTemplate.Height = 100;
+            // Styling
+            dgv_product.RowTemplate.Height = 80;
             dgv_product.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_product.AllowUserToResizeRows = false;
             dgv_product.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv_product.MultiSelect = false;
             dgv_product.ReadOnly = true;
         }
+
+        private void dgv_product_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignore clicks on headers or invalid rows
+            if (e.RowIndex < 0) return;
+
+            // Get the product object from the clicked row
+            var product = (produtlist)dgv_product.Rows[e.RowIndex].DataBoundItem;
+
+            // 🗑️ DELETE LOGIC
+            if (dgv_product.Columns[e.ColumnIndex].Name == "btnDelete")
+            {
+                DialogResult confirm = MessageBox.Show(
+                    $"Are you sure you want to delete {product.ProductName}?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    if (admin.DeleteProduct(product.ProductID, adminuser))
+                    {
+                        MessageBox.Show("Product removed successfully.", "Success");
+                        LoadProducts(); // Refresh the grid
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+            // 📝 EDIT LOGIC
+            if (dgv_product.Columns[e.ColumnIndex].Name == "btnEdit")
+            {
+                string newName = Interaction.InputBox("Edit Product Name:", "Update Name", product.ProductName);
+                if (string.IsNullOrWhiteSpace(newName)) return;
+
+                string newPrice = Interaction.InputBox("Edit Product Price:", "Update Price", product.Productprice);
+                if (string.IsNullOrWhiteSpace(newPrice)) return;
+
+                string imagePath = null;
+
+                // Ask the admin if they want to edit the product image
+                DialogResult askImage = MessageBox.Show(
+                    "Would you like to edit the product image?",
+                    "Edit Image",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (askImage == DialogResult.Yes)
+                {
+                    OpenFileDialog ofd = new OpenFileDialog();
+                    ofd.Title = "Select New Product Image";
+                    ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        imagePath = ofd.FileName;
+                    }
+                }
+
+                if (admin.UpdateProduct(product.ProductID, adminuser, newName, newPrice, imagePath))
+                {
+                    MessageBox.Show("Product updated successfully!", "Success");
+                    LoadProducts(); // Refresh the grid
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
 
         private void dgv_product_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -176,42 +270,59 @@ namespace WINFORMS_FOOD_ORDER__POS_
         void Loadaddsom()
         {
             dgv_addson.DataSource = null;
-            dgv_addson.AutoGenerateColumns = false; // use custom columns
+            dgv_addson.AutoGenerateColumns = false;
             dgv_addson.Columns.Clear();
 
-
+            // 1. Add-on Number
             DataGridViewTextBoxColumn numberCol = new DataGridViewTextBoxColumn();
-            numberCol.HeaderText = "Adds-on Number";
-            numberCol.DataPropertyName = "AddsonNumber"; // uses computed property
+            numberCol.HeaderText = "No.";
+            numberCol.DataPropertyName = "AddsonNumber"; // must match your model property
             dgv_addson.Columns.Add(numberCol);
 
-            // Image column
+            // 2. Image
             DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
             imgCol.HeaderText = "Image";
-            imgCol.DataPropertyName = "AddsonImage";
+            imgCol.DataPropertyName = "AddsonImage"; // must match your model property
             imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
             dgv_addson.Columns.Add(imgCol);
 
-            // Product Name column
+            // 3. Add-on Name
             DataGridViewTextBoxColumn nameCol = new DataGridViewTextBoxColumn();
-            nameCol.HeaderText = "Adds-on Name";
-            nameCol.DataPropertyName = "AddsonName";
+            nameCol.HeaderText = "Name";
+            nameCol.DataPropertyName = "addsonName"; // must match your model property
             dgv_addson.Columns.Add(nameCol);
 
-            // Price column
+            // 4. Price
             DataGridViewTextBoxColumn priceCol = new DataGridViewTextBoxColumn();
             priceCol.HeaderText = "Price";
-            priceCol.DataPropertyName = "Addsonprice";
+            priceCol.DataPropertyName = "addsonprice"; // must match your model property
             dgv_addson.Columns.Add(priceCol);
 
+            // 5. EDIT BUTTON
+            DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
+            btnEdit.Name = "btnEditAddon";
+            btnEdit.HeaderText = "Edit";
+            btnEdit.Text = "📝";
+            btnEdit.UseColumnTextForButtonValue = true;
+            dgv_addson.Columns.Add(btnEdit);
+
+            // 6. DELETE BUTTON
+            DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+            btnDelete.Name = "btnDeleteAddon";
+            btnDelete.HeaderText = "Delete";
+            btnDelete.Text = "🗑️";
+            btnDelete.UseColumnTextForButtonValue = true;
+            dgv_addson.Columns.Add(btnDelete);
+
+            // Bind Data
             dgv_addson.DataSource = admin.loadaddson(adminuser);
 
+            // Styling
             dgv_addson.RowTemplate.Height = 100;
             dgv_addson.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_addson.AllowUserToResizeRows = false;
             dgv_addson.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv_addson.MultiSelect = false;
             dgv_addson.ReadOnly = true;
+
         }
 
         private void dgv_addson_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -276,6 +387,82 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 MessageBox.Show("Failed to save adds-on.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void dgv_addson_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignore clicks on headers or invalid rows
+            if (e.RowIndex < 0) return;
+
+            // Get the add-on object from the clicked row
+            var addon = (addsonlist)dgv_addson.Rows[e.RowIndex].DataBoundItem;
+
+            // 🗑️ DELETE LOGIC
+            if (dgv_addson.Columns[e.ColumnIndex].Name == "btnDeleteAddon")
+            {
+                DialogResult confirm = MessageBox.Show(
+                    $"Are you sure you want to delete {addon.addsonName}?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    if (admin.DeleteAddson(addon.addsonID, adminuser))
+                    {
+                        MessageBox.Show("Add-on removed successfully.", "Success");
+                        Loadaddsom(); // Refresh the grid
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete add-on.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+            // 📝 EDIT LOGIC
+            if (dgv_addson.Columns[e.ColumnIndex].Name == "btnEditAddon")
+            {
+                string newName = Interaction.InputBox("Edit Add-on Name:", "Update Name", addon.addsonName);
+                if (string.IsNullOrWhiteSpace(newName)) return;
+
+                string newPrice = Interaction.InputBox("Edit Add-on Price:", "Update Price", addon.addsonprice);
+                if (string.IsNullOrWhiteSpace(newPrice)) return;
+
+                string imagePath = null;
+
+                // Ask the admin if they want to edit the image
+                DialogResult askImage = MessageBox.Show(
+                    "Would you like to edit the add-on image?",
+                    "Edit Image",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (askImage == DialogResult.Yes)
+                {
+                    OpenFileDialog ofd = new OpenFileDialog();
+                    ofd.Title = "Select New Add-on Image";
+                    ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        imagePath = ofd.FileName;
+                    }
+                }
+
+                if (admin.UpdateAddson(addon.addsonID, adminuser, newName, newPrice, imagePath))
+                {
+                    MessageBox.Show("Add-on updated successfully!", "Success");
+                    Loadaddsom();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update add-on.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+
+        }
+
     }
 
 }
