@@ -98,6 +98,7 @@
             txt_total = new TextBox();
             panel5 = new Panel();
             label5 = new Label();
+            btn_delete = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
@@ -726,6 +727,7 @@
             // panel7
             // 
             panel7.BackColor = Color.White;
+            panel7.Controls.Add(btn_delete);
             panel7.Controls.Add(btn_checkout);
             panel7.Location = new Point(6, 649);
             panel7.Name = "panel7";
@@ -735,9 +737,9 @@
             // btn_checkout
             // 
             btn_checkout.BackColor = Color.FromArgb(200, 205, 210);
-            btn_checkout.Location = new Point(6, 9);
+            btn_checkout.Location = new Point(172, 9);
             btn_checkout.Name = "btn_checkout";
-            btn_checkout.Size = new Size(321, 38);
+            btn_checkout.Size = new Size(155, 38);
             btn_checkout.TabIndex = 15;
             btn_checkout.Text = "Check Out";
             btn_checkout.UseVisualStyleBackColor = false;
@@ -803,6 +805,19 @@
             label5.Size = new Size(213, 32);
             label5.TabIndex = 19;
             label5.Text = "Order Information";
+            // 
+            // btn_delete
+            // 
+            btn_delete.BackColor = Color.Red;
+            btn_delete.FlatStyle = FlatStyle.Flat;
+            btn_delete.ForeColor = SystemColors.Control;
+            btn_delete.Location = new Point(17, 9);
+            btn_delete.Name = "btn_delete";
+            btn_delete.Size = new Size(149, 38);
+            btn_delete.TabIndex = 16;
+            btn_delete.Text = "Delete ";
+            btn_delete.UseVisualStyleBackColor = false;
+            btn_delete.Click += btn_delete_Click;
             // 
             // frm_cashierDashboard
             // 
@@ -933,5 +948,6 @@
         private PictureBox pictureBox_5;
         private TextBox txt_productprice5;
         private TextBox txt_productnanme5;
+        private Button btn_delete;
     }
 }

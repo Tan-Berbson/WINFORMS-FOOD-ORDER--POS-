@@ -55,39 +55,32 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
+        void ShowOrHideProduct(List<Class1.auth.produtlist> products, int index,
+             PictureBox pic, TextBox name, TextBox price, Button btn)
+        {
+            if (products.Count > index)
+            {
+                ShowProduct(products[index], pic, name, price);
+            }
+            else
+            {
+                HideProduct(pic, name, price, btn);
+            }
+        }
         private void LoadProductsEasy()
         {
             var products = db.loadproducts(txt_managername.Text);
 
-            if (products.Count > 0)
-                ShowProduct(products[0], pictureBox1, txt_productnanme1, txt_productprice1);
-
-            if (products.Count > 1)
-                ShowProduct(products[1], pictureBox2, txt_productnanme2, txt_productprice2);
-
-            if (products.Count > 2)
-                ShowProduct(products[2], pictureBox3, txt_productnanme3, txt_productprice3);
-
-            if (products.Count > 3)
-                ShowProduct(products[3], pictureBox4, txt_productnanme4, txt_productprice4);
-
-            if (products.Count > 4)
-                ShowProduct(products[4], pictureBox_5, txt_productnanme5, txt_productprice5);
-
-            if (products.Count > 5)
-                ShowProduct(products[5], pictureBox__6, txt_productnanme6, txt_productprice6);
-
-            if (products.Count > 6)
-                ShowProduct(products[6], pictureBox_7, txt_productnanme7, txt_productprice7);
-
-            if (products.Count > 7)
-                ShowProduct(products[7], pictureBox_8, txt_productnanme8, txt_productprice8);
-
-            if (products.Count > 8)
-                ShowProduct(products[8], pictureBox_9, txt_productnanme9, txt_productprice9);
-
-            if (products.Count > 9)
-                ShowProduct(products[9], pictureBox_10, txt_productnanme10, txt_productprice10);
+            ShowOrHideProduct(products, 0, pictureBox1, txt_productnanme1, txt_productprice1, btn_order1);
+            ShowOrHideProduct(products, 1, pictureBox2, txt_productnanme2, txt_productprice2, btn_order2);
+            ShowOrHideProduct(products, 2, pictureBox3, txt_productnanme3, txt_productprice3, btn_order3);
+            ShowOrHideProduct(products, 3, pictureBox4, txt_productnanme4, txt_productprice4, btn_order4);
+            ShowOrHideProduct(products, 4, pictureBox_5, txt_productnanme5, txt_productprice5, btn_order5);
+            ShowOrHideProduct(products, 5, pictureBox__6, txt_productnanme6, txt_productprice6, btn_order6);
+            ShowOrHideProduct(products, 6, pictureBox_7, txt_productnanme7, txt_productprice7, btn_order7);
+            ShowOrHideProduct(products, 7, pictureBox_8, txt_productnanme8, txt_productprice8, btn_order8);
+            ShowOrHideProduct(products, 8, pictureBox_9, txt_productnanme9, txt_productprice9, btn_order9);
+            ShowOrHideProduct(products, 9, pictureBox_10, txt_productnanme10, txt_productprice10, btn_order10);
         }
 
         private void frm_cashierDashboard_Load(object sender, EventArgs e)
@@ -105,9 +98,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             foreach (ListViewItem item in listView1.Items)
             {
-                if (item.SubItems[0].Text == productName)
+                if (item.SubItems[0].Text
+                    .ToLower()
+                    .Contains(productName.Trim().ToLower()))
+                {
                     return true;
+                }
             }
+
             return false;
         }
         private void btn_order1_Click(object sender, EventArgs e)
@@ -217,7 +215,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 f.Show();
                 this.Hide();
             }
-             
+
         }
 
         private void btn_order2_Click(object sender, EventArgs e)
@@ -498,6 +496,22 @@ namespace WINFORMS_FOOD_ORDER__POS_
             );
 
             f.ShowDialog();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem item in listView1.SelectedItems)
+            {
+                listView1.Items.Remove(item);
+            }
+            CalculateGrandTotal();
+        }
+        void HideProduct(PictureBox pic, TextBox name, TextBox price, Button btn)
+        {
+            pic.Visible = false;
+            name.Visible = false;
+            price.Visible = false;
+            btn.Visible = false;
         }
     }
 }

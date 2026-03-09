@@ -123,13 +123,23 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             double total;
             double customermoney;
+
             double.TryParse(txt_total.Text, out total);
             double.TryParse(txt_customermoney.Text, out customermoney);
-            double change = customermoney - total;
-           
-            
-               txt_customerchange.Text = change.ToString();
-            
+
+            if (customermoney < total)
+            {
+                txt_customerchange.Text = "Insufficient Money";
+                txt_customerchange.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+                txt_customerchange.ForeColor = Color.Red;
+            }
+            else
+            {
+                double change = customermoney - total;
+                txt_customerchange.Text = change.ToString("N2");
+                txt_customerchange.Font = new Font("Segoe UI", 18, FontStyle.Regular);
+                txt_customerchange.ForeColor = Color.Black;
+            }
         }
 
         private void btn_neworder_Click(object sender, EventArgs e)
@@ -137,6 +147,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
             if (string.IsNullOrWhiteSpace(txt_customermoney.Text) || string.IsNullOrWhiteSpace(txt_customerchange.Text))
             {
                 MessageBox.Show("Please enter customer money and change.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (txt_customerchange.Text == "Insufficient Money")
+            {
+                MessageBox.Show("Customer money is not enough.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else if (sells.cashiertotalsell(
