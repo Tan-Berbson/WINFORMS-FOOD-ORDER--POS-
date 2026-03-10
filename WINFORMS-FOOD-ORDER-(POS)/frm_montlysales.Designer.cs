@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_montlysales));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             btn_dashboard = new Button();
             pictureBox2 = new PictureBox();
@@ -48,10 +48,6 @@
             panel5 = new Panel();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel7 = new Panel();
-            btn_year = new Button();
-            btn_month = new Button();
-            btn_week = new Button();
-            btn_day = new Button();
             comboBoxYear = new ComboBox();
             label7 = new Label();
             panel6 = new Panel();
@@ -137,7 +133,7 @@
             panel2.Controls.Add(label1);
             panel2.Location = new Point(10, 86);
             panel2.Name = "panel2";
-            panel2.Size = new Size(708, 116);
+            panel2.Size = new Size(837, 116);
             panel2.TabIndex = 2;
             // 
             // label1
@@ -152,7 +148,7 @@
             // panel4
             // 
             panel4.Controls.Add(label5);
-            panel4.Location = new Point(734, 86);
+            panel4.Location = new Point(853, 86);
             panel4.Name = "panel4";
             panel4.Size = new Size(350, 116);
             panel4.TabIndex = 3;
@@ -172,78 +168,35 @@
             panel5.Controls.Add(panel7);
             panel5.Location = new Point(12, 213);
             panel5.Name = "panel5";
-            panel5.Size = new Size(711, 581);
+            panel5.Size = new Size(835, 581);
             panel5.TabIndex = 0;
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            chart1.Legends.Add(legend3);
-            chart1.Location = new Point(3, 36);
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart1.Legends.Add(legend1);
+            chart1.Location = new Point(3, 38);
             chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chart1.Series.Add(series3);
-            chart1.Size = new Size(703, 543);
-            chart1.TabIndex = 5;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(829, 540);
+            chart1.TabIndex = 9;
             chart1.Text = "chart1";
             // 
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(52, 94, 104);
-            panel7.Controls.Add(btn_year);
-            panel7.Controls.Add(btn_month);
-            panel7.Controls.Add(btn_week);
-            panel7.Controls.Add(btn_day);
             panel7.Controls.Add(comboBoxYear);
             panel7.Controls.Add(label7);
             panel7.Location = new Point(1, 1);
             panel7.Name = "panel7";
-            panel7.Size = new Size(705, 31);
+            panel7.Size = new Size(831, 31);
             panel7.TabIndex = 0;
-            // 
-            // btn_year
-            // 
-            btn_year.Location = new Point(621, 5);
-            btn_year.Name = "btn_year";
-            btn_year.Size = new Size(75, 23);
-            btn_year.TabIndex = 8;
-            btn_year.Text = "year";
-            btn_year.UseVisualStyleBackColor = true;
-            btn_year.Click += btn_year_Click;
-            // 
-            // btn_month
-            // 
-            btn_month.Location = new Point(540, 5);
-            btn_month.Name = "btn_month";
-            btn_month.Size = new Size(75, 23);
-            btn_month.TabIndex = 7;
-            btn_month.Text = "Month";
-            btn_month.UseVisualStyleBackColor = true;
-            btn_month.Click += btn_month_Click;
-            // 
-            // btn_week
-            // 
-            btn_week.Location = new Point(459, 5);
-            btn_week.Name = "btn_week";
-            btn_week.Size = new Size(75, 23);
-            btn_week.TabIndex = 6;
-            btn_week.Text = "week";
-            btn_week.UseVisualStyleBackColor = true;
-            btn_week.Click += btn_week_Click;
-            // 
-            // btn_day
-            // 
-            btn_day.Location = new Point(378, 5);
-            btn_day.Name = "btn_day";
-            btn_day.Size = new Size(75, 23);
-            btn_day.TabIndex = 5;
-            btn_day.Text = "day";
-            btn_day.UseVisualStyleBackColor = true;
-            btn_day.Click += btn_day_Click;
             // 
             // comboBoxYear
             // 
@@ -269,30 +222,30 @@
             // panel6
             // 
             panel6.Controls.Add(chart2);
-            panel6.Location = new Point(734, 213);
+            panel6.Location = new Point(853, 213);
             panel6.Name = "panel6";
             panel6.Size = new Size(350, 570);
             panel6.TabIndex = 0;
             // 
             // chart2
             // 
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisY.MajorGrid.Enabled = false;
-            chartArea4.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea4.AxisY.Title = "Total Sells";
-            chartArea4.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea4);
-            legend4.Enabled = false;
-            legend4.Name = "Legend1";
-            chart2.Legends.Add(legend4);
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
+            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea2.AxisY.Title = "Total Sells";
+            chartArea2.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            chart2.Legends.Add(legend2);
             chart2.Location = new Point(29, 60);
             chart2.Name = "chart2";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series4.Color = Color.FromArgb(52, 152, 219);
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chart2.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series2.Color = Color.FromArgb(52, 152, 219);
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chart2.Series.Add(series2);
             chart2.Size = new Size(339, 521);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
@@ -301,7 +254,7 @@
             // 
             panel8.BackColor = Color.FromArgb(52, 94, 104);
             panel8.Controls.Add(label6);
-            panel8.Location = new Point(734, 213);
+            panel8.Location = new Point(853, 213);
             panel8.Name = "panel8";
             panel8.Size = new Size(350, 31);
             panel8.TabIndex = 1;
@@ -321,7 +274,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1099, 806);
+            ClientSize = new Size(1215, 806);
             Controls.Add(panel8);
             Controls.Add(panel6);
             Controls.Add(panel5);
@@ -364,15 +317,11 @@
         private Panel panel7;
         private Panel panel8;
         private Label label5;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private Label label7;
         private Label label6;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private Button btn_dashboard;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private ComboBox comboBoxYear;
-        private Button btn_year;
-        private Button btn_month;
-        private Button btn_week;
-        private Button btn_day;
     }
 }

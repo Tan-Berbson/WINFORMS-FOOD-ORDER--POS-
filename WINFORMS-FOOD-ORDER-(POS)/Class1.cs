@@ -437,53 +437,39 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             }
             // Sa auth class
-            public DataTable GetSales(string filter, int year)
+            public DataTable weeksales()
             {
                 DataTable dt = new DataTable();
+                dt.Columns.Add("createdate", typeof(DateTime));
+                dt.Columns.Add("totalsales", typeof(double));
+
                 using (SqliteConnection con = db.GetConnection())
                 {
-                    string query = "";
-
-                    if (filter == "day")
-                    {
-                        query = @"SELECT CREATEDATE AS Period, TOTALSELLS AS TotalSales
-                      FROM CASHIEREPORT
-                      WHERE strftime('%Y', CREATEDATE) = @Y
-                      ORDER BY CREATEDATE ASC";
-                    }
-                    else if (filter == "week")
-                    {
-                        query = @"SELECT strftime('%W', CREATEDATE) AS Period, SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
-                      FROM CASHIEREPORT
-                      WHERE strftime('%Y', CREATEDATE) = @Y
-                      GROUP BY Period
-                      ORDER BY Period ASC";
-                    }
-                    else if (filter == "month")
-                    {
-                        query = @"SELECT strftime('%m', CREATEDATE) AS Period, SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
-                      FROM CASHIEREPORT
-                      WHERE strftime('%Y', CREATEDATE) = @Y
-                      GROUP BY Period
-                      ORDER BY Period ASC";
-                    }
-                    else if (filter == "year")
-                    {
-                        query = @"SELECT strftime('%Y', CREATEDATE) AS Period, SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
-                      FROM CASHIEREPORT
-                      GROUP BY Period
-                      ORDER BY Period ASC";
-                    }
-
-                    SqliteCommand cmd = new SqliteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Y", year.ToString());
-
                     con.Open();
-                    dt.Load(cmd.ExecuteReader());
+                    string query = @"
+            SELECT date(CREATEDATE) AS createdate,
+                   SUM(CAST(TOTALSELLS AS REAL)) AS totalsales
+            FROM CASHIEREPORT
+            GROUP BY date(CREATEDATE)
+            ORDER BY date(CREATEDATE)
+        ";
+
+                    using (SqliteCommand cmd = new SqliteCommand(query, con))
+                    using (SqliteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime createdate = Convert.ToDateTime(reader["createdate"]);
+                            double totalsales = reader["totalsales"] != DBNull.Value
+                                                ? Convert.ToDouble(reader["totalsales"])
+                                                : 0;
+                            dt.Rows.Add(createdate, totalsales);
+                        }
+                    }
                 }
+
                 return dt;
             }
-
             private int GetNextaddsonId(SqliteConnection con)
             {
                 using (var cmd = new SqliteCommand(
@@ -637,7 +623,71 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
+            public DataTable GetAvailableYears()
+            {
+                DataTable dt = new DataTable();
 
+                using (SqliteConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"SELECT DISTINCT strftime('%Y', CREATEDATE) AS SaleYear
+                                 FROM CASHIEREPORT
+                                 ORDER BY SaleYear DESC";
+
+                    using (SqliteCommand cmd = new SqliteCommand(query, conn))
+                    using (SqliteDataReader reader = cmd.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
+                }
+
+                return dt;
+            }
+            public DataTable GetMonthlySales(int year)
+            {
+                DataTable dt = new DataTable();
+
+                using (SqliteConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+               WITH months(m) AS (
+SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4
+UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8
+UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
+)
+
+SELECT 
+m AS MonthNumber,
+IFNULL(SUM(CAST(TOTALSELLS AS REAL)),0) AS TotalSales
+
+FROM months
+LEFT JOIN CASHIEREPORT 
+ON CAST(strftime('%m', CREATEDATE) AS INTEGER) = m
+AND strftime('%Y', CREATEDATE) = @year
+
+GROUP BY m
+ORDER BY m
+                ";
+
+                    using (SqliteCommand cmd = new SqliteCommand(query, conn))
+                    {
+                        
+
+                        // TO THIS: ✅ pass as string to match strftime TEXT output
+                        cmd.Parameters.AddWithValue("@year", year.ToString());
+
+                        using (SqliteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                }
+
+                return dt;
+            }
 
 
 

@@ -22,9 +22,29 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 CASHIERSELLS(conn);
                 CASHIEREPORT(conn);
                 ADDSON(conn);
+                TESTDATA(conn);
             }
         }
-         private static void ADMINACC(SqliteConnection conn)
+        private static void TESTDATA(SqliteConnection conn)
+        {
+            string query = @"
+    INSERT INTO CASHIEREPORT VALUES ('John','1200','Good','2026-01-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','1500','Good','2026-02-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','1800','Good','2026-03-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','2000','Good','2026-04-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','1700','Good','2026-05-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','2100','Good','2026-06-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','2400','Good','2026-07-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','2600','Good','2026-08-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','2200','Good','2026-09-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','3000','Good','2026-10-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','3500','Good','2026-11-10');
+    INSERT INTO CASHIEREPORT VALUES ('John','4000','Good','2026-12-10');
+    ";
+
+            Execute(conn, query);
+        }
+        private static void ADMINACC(SqliteConnection conn)
          {
             string query = @"CREATE TABLE IF NOT EXISTS ADMINACC (
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
