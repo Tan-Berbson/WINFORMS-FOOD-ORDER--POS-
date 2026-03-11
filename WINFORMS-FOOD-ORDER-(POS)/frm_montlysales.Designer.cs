@@ -76,7 +76,7 @@
             panel1.Controls.Add(btn_logout);
             panel1.Location = new Point(3, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1099, 57);
+            panel1.Size = new Size(1304, 57);
             panel1.TabIndex = 1;
             // 
             // btn_dashboard
@@ -141,7 +141,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(16, 15);
             label1.Name = "label1";
-            label1.Size = new Size(62, 15);
+            label1.Size = new Size(61, 15);
             label1.TabIndex = 0;
             label1.Text = "Total Sales";
             // 
@@ -150,7 +150,7 @@
             panel4.Controls.Add(label5);
             panel4.Location = new Point(853, 86);
             panel4.Name = "panel4";
-            panel4.Size = new Size(350, 116);
+            panel4.Size = new Size(454, 116);
             panel4.TabIndex = 3;
             // 
             // label5
@@ -158,7 +158,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(22, 15);
             label5.Name = "label5";
-            label5.Size = new Size(75, 15);
+            label5.Size = new Size(74, 15);
             label5.TabIndex = 2;
             label5.Text = "Total Cashier";
             // 
@@ -224,7 +224,7 @@
             panel6.Controls.Add(chart2);
             panel6.Location = new Point(853, 213);
             panel6.Name = "panel6";
-            panel6.Size = new Size(350, 570);
+            panel6.Size = new Size(454, 578);
             panel6.TabIndex = 0;
             // 
             // chart2
@@ -238,7 +238,7 @@
             legend2.Enabled = false;
             legend2.Name = "Legend1";
             chart2.Legends.Add(legend2);
-            chart2.Location = new Point(29, 60);
+            chart2.Location = new Point(6, 37);
             chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
@@ -246,9 +246,10 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             chart2.Series.Add(series2);
-            chart2.Size = new Size(339, 521);
+            chart2.Size = new Size(448, 541);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
+            chart2.Click += chart2_Click;
             // 
             // panel8
             // 
@@ -256,7 +257,7 @@
             panel8.Controls.Add(label6);
             panel8.Location = new Point(853, 213);
             panel8.Name = "panel8";
-            panel8.Size = new Size(350, 31);
+            panel8.Size = new Size(454, 31);
             panel8.TabIndex = 1;
             // 
             // label6
@@ -274,7 +275,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1215, 806);
+            ClientSize = new Size(1308, 806);
             Controls.Add(panel8);
             Controls.Add(panel6);
             Controls.Add(panel5);

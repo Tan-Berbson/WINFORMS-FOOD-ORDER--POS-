@@ -27,6 +27,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             LoadYears();
             UpdateChart();
+            UpdateChart2();
         }
 
         void LoadYears()
@@ -39,6 +40,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateChart();
+            UpdateChart2();
         }
 
         void UpdateChart()
@@ -101,9 +103,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             // ✅ MAXIMIZE CHART AREA - Clean layout
             chartArea.Position.X = 7;
-            chartArea.Position.Y = 16;  // ✅ Less space (no subtitle)
+            chartArea.Position.Y = 16;
             chartArea.Position.Width = 88;
-            chartArea.Position.Height = 72;  // ✅ More chart height
+            chartArea.Position.Height = 72;
 
             // ✅ PROFESSIONAL BACKGROUND
             chartArea.BackColor = System.Drawing.Color.FromArgb(250, 250, 255);
@@ -170,9 +172,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
             if (chart1.Legends.Count > 0)
             {
                 chart1.Legends[0].Enabled = true;
-                chart1.Legends[0].Docking = Docking.Top;  // ✅ Under title
-                chart1.Legends[0].Alignment = System.Drawing.StringAlignment.Center;  // ✅ Centered
-                chart1.Legends[0].Font = new System.Drawing.Font("Segoe UI", 8, System.Drawing.FontStyle.Regular);  // ✅ Small font
+                chart1.Legends[0].Docking = Docking.Top;
+                chart1.Legends[0].Alignment = System.Drawing.StringAlignment.Center;
+                chart1.Legends[0].Font = new System.Drawing.Font("Segoe UI", 8, System.Drawing.FontStyle.Regular);
                 chart1.Legends[0].ForeColor = System.Drawing.Color.FromArgb(80, 80, 80);
                 chart1.Legends[0].BorderColor = System.Drawing.Color.FromArgb(200, 200, 200);
                 chart1.Legends[0].BorderWidth = 1;
@@ -185,18 +187,94 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             // ✅ CHART TITLE - Simple, clean, bold
             Title chartTitle = new Title();
-            chartTitle.Text = "Monthly Sales";  // ✅ Simple title
-            chartTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);  // ✅ Segoe UI 14pt Bold
+            chartTitle.Text = "Monthly Sales";
+            chartTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
             chartTitle.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             chartTitle.Alignment = System.Drawing.ContentAlignment.TopCenter;
 
             chart1.Titles.Clear();
             chart1.Titles.Add(chartTitle);
-            // ✅ No subtitle - clean design
 
             chart1.Invalidate();
         }
 
+        // ✅ UpdateChart2 - EXACT SAME APPROACH AS CHART1
+        void UpdateChart2()
+        {
+            // 1. Validation
+            if (comboBoxYear.SelectedValue == null) return;
+            if (!int.TryParse(comboBoxYear.SelectedValue.ToString(), out int selectedYear)) return;
+
+            // 2. Data Fetching
+            DataTable dt = sales.GetCashierRankingByYear(selectedYear);
+            if (chart2 == null || dt.Rows.Count == 0) return;
+
+            // 3. Reset Chart
+            chart2.Series.Clear();
+            chart2.Titles.Clear();
+            ChartArea chartArea2 = chart2.ChartAreas[0];
+            chartArea2.AxisX.CustomLabels.Clear();
+            chartArea2.AxisY.CustomLabels.Clear();
+
+            // 4. Create Series (Bar Type)
+            Series barseries = new Series("Sales Volume");
+            barseries.ChartType = SeriesChartType.Bar; // Horizontal
+            barseries.IsValueShownAsLabel = true;
+            barseries.LabelFormat = "$#,##0";
+
+            // Design
+            barseries.Color = System.Drawing.Color.FromArgb(200, 220, 240);
+            barseries.BorderColor = System.Drawing.Color.FromArgb(178, 34, 34);
+            barseries.BorderWidth = 1;
+            barseries.Font = new System.Drawing.Font("Segoe UI", 9, System.Drawing.FontStyle.Bold);
+
+            // 5. Explicit Data Point Mapping & CUSTOM LABELS
+            int positionIndex = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+                string cashierName = row["CASHIERNAME"].ToString();
+                double totalSales = Convert.ToDouble(row["TotalSales"]);
+
+                // Plot explicitly at X=1, X=2, X=3...
+                barseries.Points.AddXY(positionIndex, totalSales);
+
+                // ✨ THE FIX: Pin the Cashier Name directly to this specific bar's position
+                chartArea2.AxisX.CustomLabels.Add(positionIndex - 0.5, positionIndex + 0.5, cashierName);
+
+                positionIndex++;
+            }
+            chart2.Series.Add(barseries);
+
+            // 6. Axis Styling
+            // X-AXIS (Vertical - The Names)
+            chartArea2.AxisX.Interval = 1;
+
+            // ✨ Font set to Segoe UI 11 as requested!
+            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 11, System.Drawing.FontStyle.Regular);
+
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.IsReversed = true; // Puts #1 at the top
+            chartArea2.AxisX.Minimum = 0.5;
+            chartArea2.AxisX.Maximum = dt.Rows.Count + 0.5;
+
+            // Y-AXIS (Horizontal - The Money)
+            chartArea2.AxisY.LabelStyle.Format = "$#,##0";
+            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9);
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(230, 230, 230);
+            chartArea2.AxisY.Minimum = 0;
+
+            // 7. Visual Layout
+            chartArea2.BackColor = System.Drawing.Color.White;
+            chartArea2.Position.Auto = true;
+
+            // Title
+            Title chartTitle = new Title($"Top Performing Cashiers ({selectedYear})", Docking.Top,
+                                new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold),
+                                System.Drawing.Color.FromArgb(40, 40, 40));
+            chart2.Titles.Add(chartTitle);
+
+            chart2.Invalidate();
+        }
         private void btn_dashboard_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -207,6 +285,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
             frm_login f = new frm_login();
             f.Show();
             this.Close();
+        }
+
+        private void chart2_Click(object sender, EventArgs e)
+        {
         }
     }
 }

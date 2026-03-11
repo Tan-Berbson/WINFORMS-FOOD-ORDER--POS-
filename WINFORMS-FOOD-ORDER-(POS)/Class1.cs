@@ -688,7 +688,37 @@ ORDER BY m
 
                 return dt;
             }
+            public DataTable GetCashierRankingByYear(int year)
+            {
+                DataTable dt = new DataTable();
 
+                using (SqliteConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                    SELECT 
+                        CASHIERNAME,
+                        SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
+                    FROM CASHIEREPORT
+                    WHERE strftime('%Y', CREATEDATE) = @year
+                    GROUP BY CASHIERNAME
+                    ORDER BY TotalSales DESC
+                    ";
+
+                    using (SqliteCommand cmd = new SqliteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@year", year.ToString());
+
+                        using (SqliteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                }
+
+                return dt;
+            }
 
 
         } // This brace ends 'pu
