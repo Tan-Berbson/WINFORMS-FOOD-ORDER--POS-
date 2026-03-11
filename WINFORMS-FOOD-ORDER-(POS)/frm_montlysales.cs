@@ -45,81 +45,64 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         void UpdateChart()
         {
+            // 1. Validation
             if (comboBoxYear.SelectedValue == null)
                 return;
 
             if (!int.TryParse(comboBoxYear.SelectedValue.ToString(), out int selectedYear))
                 return;
 
+            // 2. Data Fetching
             DataTable dt = sales.GetMonthlySales(selectedYear);
 
+            // 3. Reset Chart State
             chart1.Series.Clear();
+            chart1.Titles.Clear();
             chart1.ChartAreas[0].AxisX.CustomLabels.Clear();
 
-            // ✅ SERIES 1: COLUMNS (Monthly Sales Background)
+            // 4. Create Column Series
             Series columnseries = new Series("Monthly Sales");
             columnseries.ChartType = SeriesChartType.Column;
-            columnseries.IsValueShownAsLabel = false;
 
-            // ✅ COLUMN STYLING - Light blue background
-            columnseries.Color = System.Drawing.Color.FromArgb(200, 220, 240);
-            columnseries.BorderColor = System.Drawing.Color.FromArgb(200, 220, 240);
-            columnseries.BorderWidth = 0;
+            // Show the total amounts on top of the bars
+            columnseries.IsValueShownAsLabel = true;
+            columnseries.LabelFormat = "$#,##0";
+
+            // Professional Styling
+            columnseries.Color = System.Drawing.Color.FromArgb(200, 220, 240); // Light blue fill
+            columnseries.BorderColor = System.Drawing.Color.FromArgb(178, 34, 34); // Dark red border
+            columnseries.BorderWidth = 1;
+            columnseries.LabelForeColor = System.Drawing.Color.FromArgb(50, 50, 50);
+            columnseries.Font = new System.Drawing.Font("Segoe UI", 9, System.Drawing.FontStyle.Bold);
             columnseries.YAxisType = AxisType.Primary;
 
             chart1.Series.Add(columnseries);
 
-            // ✅ SERIES 2: LINE (Trend Line)
-            Series lineseries = new Series("Sales Trend");
-            lineseries.ChartType = SeriesChartType.Line;
-            lineseries.IsValueShownAsLabel = true;
-            lineseries.LabelFormat = "$#,##0";
-
-            // ✅ LINE STYLING - Professional dark red
-            lineseries.BorderWidth = 4;
-            lineseries.Color = System.Drawing.Color.FromArgb(178, 34, 34);
-            lineseries.MarkerStyle = MarkerStyle.Circle;
-            lineseries.MarkerSize = 10;
-            lineseries.MarkerColor = System.Drawing.Color.FromArgb(178, 34, 34);
-            lineseries.MarkerBorderColor = System.Drawing.Color.White;
-            lineseries.MarkerBorderWidth = 2;
-            lineseries.LabelForeColor = System.Drawing.Color.FromArgb(50, 50, 50);
-            lineseries.Font = new System.Drawing.Font("Segoe UI", 9, System.Drawing.FontStyle.Bold);
-            lineseries.YAxisType = AxisType.Primary;
-
-            chart1.Series.Add(lineseries);
-
-            // ✅ ADD DATA TO BOTH SERIES
+            // 5. Populate Data
             foreach (DataRow row in dt.Rows)
             {
                 int monthNumber = Convert.ToInt32(row["MonthNumber"]);
                 double totalSales = Convert.ToDouble(row["TotalSales"]);
-
                 columnseries.Points.AddXY(monthNumber, totalSales);
-                lineseries.Points.AddXY(monthNumber, totalSales);
             }
 
+            // 6. Chart Area Configuration
             ChartArea chartArea = chart1.ChartAreas[0];
 
-            // ✅ MAXIMIZE CHART AREA - Clean layout
-            chartArea.Position.X = 7;
-            chartArea.Position.Y = 16;
-            chartArea.Position.Width = 88;
-            chartArea.Position.Height = 72;
+            // ✨ FIX 1: Auto-positioning ensures large labels on the left aren't cut off
+            chartArea.Position.Auto = true;
+            chartArea.InnerPlotPosition.Auto = true;
 
-            // ✅ PROFESSIONAL BACKGROUND
             chartArea.BackColor = System.Drawing.Color.FromArgb(250, 250, 255);
 
+            // X-Axis Scaling
             chartArea.AxisX.Minimum = 0;
             chartArea.AxisX.Maximum = 13;
             chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.MajorGrid.Enabled = false; // Keep it clean
 
-            // ✅ X-AXIS MONTH LABELS
+            // X-Axis Month Labels
             chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Regular);
-            chartArea.AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(80, 80, 80);
-            chartArea.AxisX.LabelStyle.Interval = 1;
-
-            // ✅ CUSTOM LABELS FOR MONTHS
             for (int i = 1; i <= 12; i++)
             {
                 CustomLabel label = new CustomLabel();
@@ -129,76 +112,42 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 chartArea.AxisX.CustomLabels.Add(label);
             }
 
-            // ✅ Y-AXIS STYLING
+            // Y-Axis Scaling & Formatting
             chartArea.AxisY.Minimum = 0;
             chartArea.AxisY.IsStartedFromZero = true;
             chartArea.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Regular);
-            chartArea.AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(60, 60, 60);
             chartArea.AxisY.LabelStyle.Format = "$#,##0";
 
-            // ✅ Auto-calculate Y-axis interval
-            double maxValue = 0;
-            foreach (DataRow row in dt.Rows)
-            {
-                double val = Convert.ToDouble(row["TotalSales"]);
-                if (val > maxValue) maxValue = val;
-            }
+            // ✨ FIX 2: Auto-calculate interval to prevent "squished" labels on the left
+            chartArea.AxisY.Interval = double.NaN;
 
-            int interval = (int)(maxValue / 50000) * 5000;
-            if (interval < 5000) interval = 5000;
-            if (interval > 20000) interval = 10000;
-
-            chartArea.AxisY.Interval = interval;
-
-            // ✅ PROFESSIONAL GRID LINES
-            chartArea.AxisY.MajorGrid.Enabled = true;
+            // Grid Lines
             chartArea.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(220, 220, 230);
-            chartArea.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
-            chartArea.AxisY.MajorGrid.LineWidth = 1;
 
-            // ✅ REMOVE X-AXIS GRID
-            chartArea.AxisX.MajorGrid.Enabled = false;
-
-            // ✅ AXIS TITLES
+            // Axis Titles
             chartArea.AxisY.Title = "Sales ($)";
             chartArea.AxisY.TitleFont = new System.Drawing.Font("Segoe UI", 11, System.Drawing.FontStyle.Bold);
-            chartArea.AxisY.TitleForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
 
-            chartArea.AxisX.Title = "";
-            chartArea.AxisX.TitleFont = new System.Drawing.Font("Segoe UI", 11, System.Drawing.FontStyle.Bold);
-            chartArea.AxisX.TitleForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
-
-            // ✅ LEGEND - Small, clean, centered under title
+            // 7. Legend & Global Appearance
             if (chart1.Legends.Count > 0)
             {
                 chart1.Legends[0].Enabled = true;
                 chart1.Legends[0].Docking = Docking.Top;
                 chart1.Legends[0].Alignment = System.Drawing.StringAlignment.Center;
-                chart1.Legends[0].Font = new System.Drawing.Font("Segoe UI", 8, System.Drawing.FontStyle.Regular);
-                chart1.Legends[0].ForeColor = System.Drawing.Color.FromArgb(80, 80, 80);
-                chart1.Legends[0].BorderColor = System.Drawing.Color.FromArgb(200, 200, 200);
-                chart1.Legends[0].BorderWidth = 1;
             }
 
-            // ✅ OVERALL APPEARANCE
             chart1.BackColor = System.Drawing.Color.White;
-            chart1.BorderlineColor = System.Drawing.Color.FromArgb(100, 100, 100);
-            chart1.BorderlineWidth = 1;
 
-            // ✅ CHART TITLE - Simple, clean, bold
+            // 8. Title
             Title chartTitle = new Title();
-            chartTitle.Text = "Monthly Sales";
+            chartTitle.Text = $"Monthly Sales Report - {selectedYear}";
             chartTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
-            chartTitle.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
-            chartTitle.Alignment = System.Drawing.ContentAlignment.TopCenter;
-
-            chart1.Titles.Clear();
             chart1.Titles.Add(chartTitle);
 
+            // Refresh
             chart1.Invalidate();
         }
-
-        // ✅ UpdateChart2 - EXACT SAME APPROACH AS CHART1
+        // ✅ UpdateChart2 remains exactly the same
         void UpdateChart2()
         {
             // 1. Validation
@@ -238,7 +187,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 // Plot explicitly at X=1, X=2, X=3...
                 barseries.Points.AddXY(positionIndex, totalSales);
 
-                // ✨ THE FIX: Pin the Cashier Name directly to this specific bar's position
+                // Pin the Cashier Name directly to this specific bar's position
                 chartArea2.AxisX.CustomLabels.Add(positionIndex - 0.5, positionIndex + 0.5, cashierName);
 
                 positionIndex++;
@@ -249,7 +198,6 @@ namespace WINFORMS_FOOD_ORDER__POS_
             // X-AXIS (Vertical - The Names)
             chartArea2.AxisX.Interval = 1;
 
-            // ✨ Font set to Segoe UI 11 as requested!
             chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 11, System.Drawing.FontStyle.Regular);
 
             chartArea2.AxisX.MajorGrid.Enabled = false;
