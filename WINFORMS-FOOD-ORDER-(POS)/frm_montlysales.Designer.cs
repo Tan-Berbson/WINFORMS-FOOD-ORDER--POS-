@@ -81,7 +81,7 @@
             // 
             // btn_dashboard
             // 
-            btn_dashboard.Location = new Point(837, 8);
+            btn_dashboard.Location = new Point(1043, 8);
             btn_dashboard.Name = "btn_dashboard";
             btn_dashboard.Size = new Size(122, 38);
             btn_dashboard.TabIndex = 14;
@@ -120,7 +120,7 @@
             // 
             // btn_logout
             // 
-            btn_logout.Location = new Point(965, 8);
+            btn_logout.Location = new Point(1171, 8);
             btn_logout.Name = "btn_logout";
             btn_logout.Size = new Size(122, 38);
             btn_logout.TabIndex = 9;
@@ -204,7 +204,7 @@
             comboBoxYear.FormattingEnabled = true;
             comboBoxYear.Location = new Point(90, 5);
             comboBoxYear.Name = "comboBoxYear";
-            comboBoxYear.Size = new Size(282, 23);
+            comboBoxYear.Size = new Size(738, 23);
             comboBoxYear.TabIndex = 4;
             comboBoxYear.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 

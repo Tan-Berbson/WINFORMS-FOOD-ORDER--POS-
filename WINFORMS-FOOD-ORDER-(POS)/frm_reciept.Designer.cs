@@ -37,6 +37,7 @@
             label3 = new Label();
             panel2 = new Panel();
             panel7 = new Panel();
+            label10 = new Label();
             label7 = new Label();
             txt_customerchange = new TextBox();
             panel6 = new Panel();
@@ -57,7 +58,6 @@
             txt_total = new TextBox();
             txt_ordernumber = new TextBox();
             txt_customername = new TextBox();
-            label10 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureboxlogo).BeginInit();
             panel2.SuspendLayout();
@@ -160,6 +160,17 @@
             panel7.Size = new Size(345, 153);
             panel7.TabIndex = 28;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            label10.ForeColor = Color.Red;
+            label10.Location = new Point(6, 13);
+            label10.Name = "label10";
+            label10.Size = new Size(339, 19);
+            label10.TabIndex = 28;
+            label10.Text = "Note: Negative Change Means money is not enough.";
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -207,6 +218,7 @@
             txt_customermoney.Size = new Size(319, 61);
             txt_customermoney.TabIndex = 1;
             txt_customermoney.TextChanged += txt_customermoney_TextChanged;
+            txt_customermoney.KeyPress += txt_customermoney_KeyPress;
             // 
             // panel3
             // 
@@ -356,17 +368,6 @@
             txt_customername.ReadOnly = true;
             txt_customername.Size = new Size(203, 29);
             txt_customername.TabIndex = 19;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
-            label10.ForeColor = Color.Red;
-            label10.Location = new Point(6, 13);
-            label10.Name = "label10";
-            label10.Size = new Size(339, 19);
-            label10.TabIndex = 28;
-            label10.Text = "Note: Negative Change Means money is not enough.";
             // 
             // frm_reciept
             // 

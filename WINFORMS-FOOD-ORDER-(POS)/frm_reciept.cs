@@ -117,7 +117,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void frm_reciept_Load(object sender, EventArgs e)
         {
-           
+
         }
         private void calculatecustomerchange()
         {
@@ -149,12 +149,25 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 MessageBox.Show("Please enter customer money and change.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+           
+
             else if (txt_customerchange.Text == "Insufficient Money")
             {
                 MessageBox.Show("Customer money is not enough.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if (sells.cashiertotalsell(
+
+
+            DialogResult result = MessageBox.Show(
+    "Warning: Please confirm the total before proceeding to a new order.\n\nThis action cannot be undone.\n\nDo you want to proceed?",
+    "Warning",
+    MessageBoxButtons.YesNo,
+    MessageBoxIcon.Warning);
+            if (result == DialogResult.Cancel) 
+            {
+                return;
+            }
+             if (sells.cashiertotalsell(
                     txt_cashiername.Text,
                     txt_customername.Text,
                     txt_ordernumber.Text,
@@ -187,6 +200,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void txt_customermoney_TextChanged(object sender, EventArgs e)
         {
             calculatecustomerchange();
+        }
+
+        private void txt_customermoney_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+                MessageBox.Show("Plss enter only numbers", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
         }
     }
 }
