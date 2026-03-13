@@ -39,8 +39,8 @@
             label5 = new Label();
             label4 = new Label();
             pictureBox1 = new PictureBox();
-            label2 = new Label();
-            label3 = new Label();
+            lbl_warningusername = new Label();
+            lbl_warningpassword = new Label();
             checkBox1 = new CheckBox();
             linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
@@ -50,7 +50,7 @@
             // txt_username
             // 
             txt_username.Font = new Font("Segoe UI", 13F);
-            txt_username.Location = new Point(609, 215);
+            txt_username.Location = new Point(609, 231);
             txt_username.Name = "txt_username";
             txt_username.Size = new Size(266, 31);
             txt_username.TabIndex = 0;
@@ -60,7 +60,7 @@
             btn_login.BackColor = Color.FromArgb(52, 94, 104);
             btn_login.FlatStyle = FlatStyle.Popup;
             btn_login.ForeColor = SystemColors.Control;
-            btn_login.Location = new Point(609, 347);
+            btn_login.Location = new Point(609, 356);
             btn_login.Name = "btn_login";
             btn_login.Size = new Size(266, 34);
             btn_login.TabIndex = 1;
@@ -82,7 +82,7 @@
             // txt_password
             // 
             txt_password.Font = new Font("Segoe UI", 13F);
-            txt_password.Location = new Point(609, 285);
+            txt_password.Location = new Point(609, 301);
             txt_password.Name = "txt_password";
             txt_password.Size = new Size(266, 31);
             txt_password.TabIndex = 3;
@@ -92,7 +92,7 @@
             btn_signup.BackColor = Color.FromArgb(200, 205, 210);
             btn_signup.FlatStyle = FlatStyle.Popup;
             btn_signup.ForeColor = Color.FromArgb(45, 60, 70);
-            btn_signup.Location = new Point(609, 413);
+            btn_signup.Location = new Point(609, 406);
             btn_signup.Name = "btn_signup";
             btn_signup.Size = new Size(266, 34);
             btn_signup.TabIndex = 4;
@@ -155,32 +155,32 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // label2
+            // lbl_warningusername
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11F);
-            label2.ForeColor = Color.FromArgb(45, 60, 70);
-            label2.Location = new Point(609, 191);
-            label2.Name = "label2";
-            label2.Size = new Size(82, 20);
-            label2.TabIndex = 6;
-            label2.Text = "User Name";
+            lbl_warningusername.AutoSize = true;
+            lbl_warningusername.Font = new Font("Segoe UI", 11F);
+            lbl_warningusername.ForeColor = Color.FromArgb(45, 60, 70);
+            lbl_warningusername.Location = new Point(609, 208);
+            lbl_warningusername.Name = "lbl_warningusername";
+            lbl_warningusername.Size = new Size(82, 20);
+            lbl_warningusername.TabIndex = 6;
+            lbl_warningusername.Text = "User Name";
             // 
-            // label3
+            // lbl_warningpassword
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11F);
-            label3.ForeColor = Color.FromArgb(45, 60, 70);
-            label3.Location = new Point(609, 261);
-            label3.Name = "label3";
-            label3.Size = new Size(70, 20);
-            label3.TabIndex = 7;
-            label3.Text = "Password";
+            lbl_warningpassword.AutoSize = true;
+            lbl_warningpassword.Font = new Font("Segoe UI", 11F);
+            lbl_warningpassword.ForeColor = Color.FromArgb(45, 60, 70);
+            lbl_warningpassword.Location = new Point(609, 278);
+            lbl_warningpassword.Name = "lbl_warningpassword";
+            lbl_warningpassword.Size = new Size(70, 20);
+            lbl_warningpassword.TabIndex = 7;
+            lbl_warningpassword.Text = "Password";
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(855, 293);
+            checkBox1.Location = new Point(856, 309);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(15, 14);
             checkBox1.TabIndex = 8;
@@ -207,8 +207,8 @@
             ClientSize = new Size(967, 614);
             Controls.Add(linkLabel1);
             Controls.Add(checkBox1);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            Controls.Add(lbl_warningpassword);
+            Controls.Add(lbl_warningusername);
             Controls.Add(btn_signup);
             Controls.Add(txt_username);
             Controls.Add(btn_login);
@@ -221,6 +221,7 @@
             Name = "frm_login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            Load += frm_login_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -236,13 +237,13 @@
         private TextBox txt_password;
         private Button btn_signup;
         private Panel panel1;
-        private Label label2;
-        private Label label3;
+        private Label lbl_warningpassword;
         private CheckBox checkBox1;
         private Label label5;
         private Label label4;
         private PictureBox pictureBox1;
         private LinkLabel linkLabel1;
         private Label label6;
+        private Label lbl_warningusername;
     }
 }

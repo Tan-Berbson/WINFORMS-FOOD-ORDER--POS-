@@ -32,14 +32,29 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 MessageBox.Show("PLSS ENTER YOUR NAME AND PASSWORD DONT LEAVE BLANK SPACES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            if (txt_username.Text == "")
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username is required.";
+            }
+            if (txt_password.Text == "")
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password is required.";
+            }
             else if (signup.signupadmin(txt_username.Text, txt_password.Text))
             {
                 MessageBox.Show("CREATE ADMIN ACCOUNT SUCCESFULLY", "INFORMATION SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Username already exists. Please choose another username.", "Create Account",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Username already exists. Please choose another username.", "Create Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void frm_signup_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

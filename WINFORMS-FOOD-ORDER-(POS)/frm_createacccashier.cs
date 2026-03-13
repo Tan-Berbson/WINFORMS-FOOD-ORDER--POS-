@@ -27,6 +27,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 MessageBox.Show("PLSS ENTER YOUR NAME AND PASSWORD DONT LEAVE BLANK SPACES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            if (txt_username.Text == "")
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username is required.";
+            }
+            if(txt_password.Text == "")
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password is required.";
+            }
             else if (cashier.signupcashier(txt_managername.Text, txt_username.Text, txt_password.Text))
             {
                 MessageBox.Show("Cashier Account Create Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

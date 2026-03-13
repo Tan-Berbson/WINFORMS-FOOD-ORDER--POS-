@@ -21,5 +21,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
 
         }
+
+        private void linklbl_guide_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }

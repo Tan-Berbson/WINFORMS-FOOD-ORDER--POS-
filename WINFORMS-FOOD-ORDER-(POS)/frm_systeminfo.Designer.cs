@@ -35,13 +35,12 @@
             txt_username = new TextBox();
             btn_dashboard = new Button();
             btn_logout = new Button();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
+            panel8 = new Panel();
+            label2 = new Label();
+            panel6 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel3.SuspendLayout();
+            panel6.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -106,45 +105,41 @@
             btn_logout.Text = "Log Out";
             btn_logout.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // panel8
             // 
-            panel2.Location = new Point(12, 93);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(530, 698);
-            panel2.TabIndex = 2;
+            panel8.Location = new Point(12, 116);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(1073, 688);
+            panel8.TabIndex = 5;
             // 
-            // panel3
+            // label2
             // 
-            panel3.Controls.Add(panel4);
-            panel3.Location = new Point(560, 94);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(530, 698);
-            panel3.TabIndex = 3;
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.Control;
+            label2.Location = new Point(4, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(260, 25);
+            label2.TabIndex = 4;
+            label2.Text = " What Does This System Do?";
             // 
-            // panel4
+            // panel6
             // 
-            panel4.BackColor = Color.FromArgb(52, 94, 104);
-            panel4.Location = new Point(0, 0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(528, 44);
-            panel4.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(52, 94, 104);
-            panel5.Location = new Point(13, 93);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(528, 44);
-            panel5.TabIndex = 1;
+            panel6.BackColor = Color.FromArgb(52, 94, 104);
+            panel6.Controls.Add(label2);
+            panel6.Location = new Point(12, 67);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(1073, 43);
+            panel6.TabIndex = 2;
             // 
             // frm_systeminfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1099, 803);
-            Controls.Add(panel5);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
+            Controls.Add(panel8);
+            Controls.Add(panel6);
             Controls.Add(panel1);
             Name = "frm_systeminfo";
             Text = "frm_systeminfo";
@@ -152,7 +147,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel3.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -164,9 +160,8 @@
         private TextBox txt_username;
         private Button btn_dashboard;
         private Button btn_logout;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
+        private Panel panel8;
+        private Label label2;
+        private Panel panel6;
     }
 }

@@ -39,8 +39,8 @@
             label4 = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
-            label1 = new Label();
-            label3 = new Label();
+            lbl_warningusername = new Label();
+            lbl_warningpassword = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -152,27 +152,27 @@
             label2.TabIndex = 11;
             label2.Text = "Sign Up";
             // 
-            // label1
+            // lbl_warningusername
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F);
-            label1.ForeColor = Color.FromArgb(45, 60, 70);
-            label1.Location = new Point(104, 202);
-            label1.Name = "label1";
-            label1.Size = new Size(88, 21);
-            label1.TabIndex = 12;
-            label1.Text = "User Name";
+            lbl_warningusername.AutoSize = true;
+            lbl_warningusername.Font = new Font("Segoe UI", 12F);
+            lbl_warningusername.ForeColor = Color.FromArgb(45, 60, 70);
+            lbl_warningusername.Location = new Point(104, 202);
+            lbl_warningusername.Name = "lbl_warningusername";
+            lbl_warningusername.Size = new Size(88, 21);
+            lbl_warningusername.TabIndex = 12;
+            lbl_warningusername.Text = "User Name";
             // 
-            // label3
+            // lbl_warningpassword
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F);
-            label3.ForeColor = Color.FromArgb(45, 60, 70);
-            label3.Location = new Point(104, 276);
-            label3.Name = "label3";
-            label3.Size = new Size(76, 21);
-            label3.TabIndex = 13;
-            label3.Text = "Password";
+            lbl_warningpassword.AutoSize = true;
+            lbl_warningpassword.Font = new Font("Segoe UI", 12F);
+            lbl_warningpassword.ForeColor = Color.FromArgb(45, 60, 70);
+            lbl_warningpassword.Location = new Point(104, 276);
+            lbl_warningpassword.Name = "lbl_warningpassword";
+            lbl_warningpassword.Size = new Size(76, 21);
+            lbl_warningpassword.TabIndex = 13;
+            lbl_warningpassword.Text = "Password";
             // 
             // frm_signup
             // 
@@ -180,8 +180,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 242, 242);
             ClientSize = new Size(967, 614);
-            Controls.Add(label3);
-            Controls.Add(label1);
+            Controls.Add(lbl_warningpassword);
+            Controls.Add(lbl_warningusername);
             Controls.Add(label2);
             Controls.Add(panel1);
             Controls.Add(btn_back);
@@ -191,6 +191,7 @@
             Name = "frm_signup";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frm_signup";
+            Load += frm_signup_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -210,7 +211,7 @@
         private Label label4;
         private PictureBox pictureBox1;
         private Label label2;
-        private Label label1;
-        private Label label3;
+        private Label lbl_warningusername;
+        private Label lbl_warningpassword;
     }
 }

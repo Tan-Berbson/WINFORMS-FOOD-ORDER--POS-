@@ -14,11 +14,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
     public partial class frm_login : Form
     {
         auth login = new auth();
-        private int loginAttempts = 0; 
-        private const int MaxLoginAttempts = 6; 
-        private const int LockoutDuration = 60; 
+        private int loginAttempts = 0;
+        private const int MaxLoginAttempts = 6;
+        private const int LockoutDuration = 60;
         private System.Windows.Forms.Timer lockoutTimer;
-        private DateTime lockoutEndTime; 
+        private DateTime lockoutEndTime;
 
         public frm_login()
         {
@@ -26,7 +26,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             this.ControlBox = false;
             txt_password.UseSystemPasswordChar = true;
             lockoutTimer = new System.Windows.Forms.Timer();
-            lockoutTimer.Interval = 1000; 
+            lockoutTimer.Interval = 1000;
             lockoutTimer.Tick += LockoutTimer_Tick;
         }
 
@@ -40,6 +40,18 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                 MessageBoxIcon.Warning);
 
             }
+            if (txt_username.Text == "")
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text  = "Username is required.";
+
+            }
+            if(txt_password.Text == "")
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password is required.";
+            }
+        
             else if (lockoutTimer.Enabled)
             {
                 TimeSpan remainingTime = lockoutEndTime - DateTime.Now;
@@ -86,7 +98,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             if (DateTime.Now >= lockoutEndTime)
             {
                 lockoutTimer.Stop();
-                loginAttempts = 0; 
+                loginAttempts = 0;
                 MessageBox.Show("You can now try logging in again.", "Lockout Ended", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -116,6 +128,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Stop);
             }
+        }
+
+        private void frm_login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
