@@ -42,7 +42,7 @@
             lbl_warningusername = new Label();
             lbl_warningpassword = new Label();
             checkBox1 = new CheckBox();
-            linkLabel1 = new LinkLabel();
+            linllbl_systeminfo = new LinkLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -92,7 +92,7 @@
             btn_signup.BackColor = Color.FromArgb(200, 205, 210);
             btn_signup.FlatStyle = FlatStyle.Popup;
             btn_signup.ForeColor = Color.FromArgb(45, 60, 70);
-            btn_signup.Location = new Point(609, 406);
+            btn_signup.Location = new Point(609, 409);
             btn_signup.Name = "btn_signup";
             btn_signup.Size = new Size(266, 34);
             btn_signup.TabIndex = 4;
@@ -187,17 +187,18 @@
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
-            // linkLabel1
+            // linllbl_systeminfo
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI", 10F);
-            linkLabel1.ForeColor = Color.FromArgb(40, 90, 160);
-            linkLabel1.Location = new Point(684, 588);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(118, 19);
-            linkLabel1.TabIndex = 9;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Forgot Password?";
+            linllbl_systeminfo.AutoSize = true;
+            linllbl_systeminfo.Font = new Font("Segoe UI", 10F);
+            linllbl_systeminfo.ForeColor = Color.FromArgb(40, 90, 160);
+            linllbl_systeminfo.Location = new Point(679, 588);
+            linllbl_systeminfo.Name = "linllbl_systeminfo";
+            linllbl_systeminfo.Size = new Size(163, 19);
+            linllbl_systeminfo.TabIndex = 9;
+            linllbl_systeminfo.TabStop = true;
+            linllbl_systeminfo.Text = "How to Use the System? ";
+            linllbl_systeminfo.LinkClicked += linllbl_systeminfo_LinkClicked;
             // 
             // frm_login
             // 
@@ -205,7 +206,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 242, 242);
             ClientSize = new Size(967, 614);
-            Controls.Add(linkLabel1);
+            Controls.Add(linllbl_systeminfo);
             Controls.Add(checkBox1);
             Controls.Add(lbl_warningpassword);
             Controls.Add(lbl_warningusername);
@@ -242,7 +243,7 @@
         private Label label5;
         private Label label4;
         private PictureBox pictureBox1;
-        private LinkLabel linkLabel1;
+        private LinkLabel linllbl_systeminfo;
         private Label label6;
         private Label lbl_warningusername;
     }

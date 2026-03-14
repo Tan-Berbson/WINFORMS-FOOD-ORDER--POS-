@@ -32,6 +32,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            lbl_warningusername.Text = "";
+            lbl_warningusername.ForeColor = Color.Black;
+            lbl_warningpassword.Text = "";
+            lbl_warningpassword.ForeColor = Color.Black;
+
+
             if (string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrWhiteSpace(txt_password.Text))
             {
                 MessageBox.Show("Please enter username and password.",
@@ -40,18 +46,62 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                 MessageBoxIcon.Warning);
 
             }
+            if(!login.checkpasswordadmin(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password Incorect.";
+            }
+            if (login.checkpasswordadmin(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password.";
+            }
+            if (!login.checkpasswordcashier(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password Incorect.";
+            }
+            if (!login.checkusernamecashier(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username does not exist.";
+            }
+            if (!login.checkusernameadmin(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username does not exist.";
+
+            }
+           
+
+            if (login.checkpasswordcashier(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password";
+            }
+            if (login.checkusernamecashier(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "User Name";
+            }
+            if (login.checkusernameadmin(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "User Name";
+
+            }
             if (txt_username.Text == "")
             {
                 lbl_warningusername.ForeColor = Color.Red;
-                lbl_warningusername.Text  = "Username is required.";
+                lbl_warningusername.Text = "Username is required.";
 
             }
-            if(txt_password.Text == "")
+            if (txt_password.Text == "")
             {
                 lbl_warningpassword.ForeColor = Color.Red;
                 lbl_warningpassword.Text = "Password is required.";
             }
-        
+
             else if (lockoutTimer.Enabled)
             {
                 TimeSpan remainingTime = lockoutEndTime - DateTime.Now;
@@ -62,6 +112,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 MessageBox.Show("Log In Successfully Admin", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frm_admindashboard f = new frm_admindashboard(txt_username.Text);
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "Username";
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password";
                 f.Show();
                 this.Hide();
                 loginAttempts = 0;
@@ -70,6 +124,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 MessageBox.Show("Log In Successfully Cashier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frm_cashierDashboard f = new frm_cashierDashboard(txt_username.Text);
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "Username";
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password";
                 f.Show();
                 this.Hide();
                 loginAttempts = 0;
@@ -133,6 +191,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void frm_login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void linllbl_systeminfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frm_systeminfo f = new frm_systeminfo();
+            f.Show();
+            this.Hide();
         }
     }
 }

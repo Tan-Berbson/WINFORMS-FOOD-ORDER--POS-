@@ -26,5 +26,17 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
 
         }
+
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            frm_login f = new frm_login();
+            f.Show();
+            this.Close();
+        }
     }
 }

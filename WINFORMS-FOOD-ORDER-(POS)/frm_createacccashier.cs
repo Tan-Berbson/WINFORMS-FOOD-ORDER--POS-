@@ -19,10 +19,22 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             InitializeComponent();
             txt_managername.Text = usernameadmin;
+            txt_password.UseSystemPasswordChar = true;
         }
 
         private void btn_create_Click(object sender, EventArgs e)
         {
+            lbl_warningusername.Text = "";
+            if (cashier.UsernameExistsCashier(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username already exists.";
+            }
+            else if (!cashier.UsernameExistsCashier(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "User Name";
+            }
             if (txt_username.Text == "" || txt_password.Text == "")
             {
                 MessageBox.Show("PLSS ENTER YOUR NAME AND PASSWORD DONT LEAVE BLANK SPACES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -32,7 +44,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 lbl_warningusername.ForeColor = Color.Red;
                 lbl_warningusername.Text = "Username is required.";
             }
-            if(txt_password.Text == "")
+            if (txt_password.Text == "")
             {
                 lbl_warningpassword.ForeColor = Color.Red;
                 lbl_warningpassword.Text = "Password is required.";
@@ -40,6 +52,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
             else if (cashier.signupcashier(txt_managername.Text, txt_username.Text, txt_password.Text))
             {
                 MessageBox.Show("Cashier Account Create Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password";
 
 
             }
@@ -55,6 +69,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
             frm_managecashieraccount f = new frm_managecashieraccount(txt_managername.Text);
             f.Show();
             this.Close();
+        }
+
+        private void chk_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_password.UseSystemPasswordChar = !chk_showpass.Checked;
         }
     }
 }

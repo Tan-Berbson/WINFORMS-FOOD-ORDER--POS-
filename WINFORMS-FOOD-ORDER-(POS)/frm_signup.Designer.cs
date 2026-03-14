@@ -146,11 +146,11 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(45, 60, 70);
-            label2.Location = new Point(165, 89);
+            label2.Location = new Point(100, 89);
             label2.Name = "label2";
-            label2.Size = new Size(150, 47);
+            label2.Size = new Size(270, 47);
             label2.TabIndex = 11;
-            label2.Text = "Sign Up";
+            label2.Text = "Sign Up Admin";
             // 
             // lbl_warningusername
             // 

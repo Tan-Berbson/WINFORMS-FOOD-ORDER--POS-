@@ -25,6 +25,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             manager = managername;
             txt_cashiername.Text = cashiername;
             txt_managername.Text = managername;
+            txt_password.UseSystemPasswordChar = true;
         }
 
         private void frm_cashierlogoutauth_Load(object sender, EventArgs e)
@@ -61,6 +62,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
             f.Show();
             // 🔹 BUMALIK SA FORM1
             this.Close(); ;
+        }
+
+        private void chk_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_password.UseSystemPasswordChar = !chk_showpass.Checked;
         }
     }
 }

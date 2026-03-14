@@ -43,6 +43,7 @@
             label1 = new Label();
             lbl_warningusername = new Label();
             lbl_warningpassword = new Label();
+            chk_showpass = new CheckBox();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -196,11 +197,22 @@
             lbl_warningpassword.TabIndex = 15;
             lbl_warningpassword.Text = "Password";
             // 
+            // chk_showpass
+            // 
+            chk_showpass.AutoSize = true;
+            chk_showpass.Location = new Point(358, 328);
+            chk_showpass.Name = "chk_showpass";
+            chk_showpass.Size = new Size(15, 14);
+            chk_showpass.TabIndex = 16;
+            chk_showpass.UseVisualStyleBackColor = true;
+            chk_showpass.CheckedChanged += chk_showpass_CheckedChanged;
+            // 
             // frm_createacccashier
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(967, 614);
+            Controls.Add(chk_showpass);
             Controls.Add(lbl_warningpassword);
             Controls.Add(lbl_warningusername);
             Controls.Add(label1);
@@ -236,5 +248,6 @@
         private Label label1;
         private Label lbl_warningusername;
         private Label lbl_warningpassword;
+        private CheckBox chk_showpass;
     }
 }

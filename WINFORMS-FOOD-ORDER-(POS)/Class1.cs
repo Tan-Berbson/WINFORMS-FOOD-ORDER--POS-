@@ -36,6 +36,54 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     return resut == 1;
                 }
             }
+            public bool checkusernameadmin(string username)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM ADMINACC WHERE USERNAME = @UA";
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@UA", username);
+                    con.Open();
+                    long result = (long)cmd.ExecuteScalar();
+                    return result > 0;
+                }
+            }
+            public bool checkusernamecashier(string username)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM CASHIERACC WHERE USERNAME = @CA";
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@CA", username);
+                    con.Open();
+                    long result = (long)cmd.ExecuteScalar();
+                    return result > 0;
+                }
+            }
+            public bool checkpasswordadmin(string password)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM ADMINACC WHERE PASSWORD = @PA";
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@PA", password);
+                    con.Open();
+                    long result = (long)cmd.ExecuteScalar();
+                    return result > 0;
+                }
+            }
+            public bool checkpasswordcashier(string password)
+            {
+                using (SqliteConnection con = db.GetConnection())
+                {
+                    string query = "SELECT COUNT(*) FROM CASHIERACC WHERE PASSWORD = @PA";
+                    SqliteCommand cmd = new SqliteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@PA", password);
+                    con.Open();
+                    long result = (long)cmd.ExecuteScalar();
+                    return result > 0;
+                }
+            }
             public bool UsernameExistsCashier(string username)
             {
                 using (SqliteConnection con = db.GetConnection())

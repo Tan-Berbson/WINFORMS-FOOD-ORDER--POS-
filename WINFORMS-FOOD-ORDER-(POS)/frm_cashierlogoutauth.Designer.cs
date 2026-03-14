@@ -43,6 +43,7 @@
             label7 = new Label();
             txt_cashiername = new TextBox();
             btn_back = new Button();
+            chk_showpass = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -198,11 +199,22 @@
             btn_back.UseVisualStyleBackColor = false;
             btn_back.Click += btn_back_Click;
             // 
+            // chk_showpass
+            // 
+            chk_showpass.AutoSize = true;
+            chk_showpass.Location = new Point(846, 381);
+            chk_showpass.Name = "chk_showpass";
+            chk_showpass.Size = new Size(15, 14);
+            chk_showpass.TabIndex = 21;
+            chk_showpass.UseVisualStyleBackColor = true;
+            chk_showpass.CheckedChanged += chk_showpass_CheckedChanged;
+            // 
             // frm_cashierlogoutauth
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(967, 614);
+            Controls.Add(chk_showpass);
             Controls.Add(btn_back);
             Controls.Add(label7);
             Controls.Add(txt_cashiername);
@@ -239,5 +251,6 @@
         private Label label7;
         private TextBox txt_cashiername;
         private Button btn_back;
+        private CheckBox chk_showpass;
     }
 }

@@ -28,6 +28,18 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_create_Click(object sender, EventArgs e)
         {
+            lbl_warningusername.Text = "";
+         
+            if(signup.UsernameExistsAdmin(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username already exists.";
+            }
+            else if (!signup.UsernameExistsAdmin(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "User Name";
+            }
             if (string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrWhiteSpace(txt_password.Text))
             {
                 MessageBox.Show("PLSS ENTER YOUR NAME AND PASSWORD DONT LEAVE BLANK SPACES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -41,10 +53,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
             {
                 lbl_warningpassword.ForeColor = Color.Red;
                 lbl_warningpassword.Text = "Password is required.";
+               
             }
+            
             else if (signup.signupadmin(txt_username.Text, txt_password.Text))
             {
                 MessageBox.Show("CREATE ADMIN ACCOUNT SUCCESFULLY", "INFORMATION SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             else
             {

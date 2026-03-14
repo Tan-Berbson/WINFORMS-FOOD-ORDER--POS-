@@ -463,6 +463,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         }
 
+        private void btn_systeminfo_Click(object sender, EventArgs e)
+        {
+        }
     }
 
 }

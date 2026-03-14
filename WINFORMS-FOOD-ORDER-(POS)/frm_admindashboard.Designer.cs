@@ -35,7 +35,6 @@
             txt_username = new TextBox();
             btn_sales = new Button();
             btn_cashier = new Button();
-            btn_systeminfo = new Button();
             btn_logout = new Button();
             panel2 = new Panel();
             dgv_product = new DataGridView();
@@ -79,7 +78,6 @@
             panel1.Controls.Add(txt_username);
             panel1.Controls.Add(btn_sales);
             panel1.Controls.Add(btn_cashier);
-            panel1.Controls.Add(btn_systeminfo);
             panel1.Controls.Add(btn_logout);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -119,7 +117,7 @@
             // 
             btn_sales.BackColor = Color.FromArgb(200, 205, 210);
             btn_sales.FlatStyle = FlatStyle.Popup;
-            btn_sales.Location = new Point(581, 8);
+            btn_sales.Location = new Point(696, 8);
             btn_sales.Name = "btn_sales";
             btn_sales.Size = new Size(122, 38);
             btn_sales.TabIndex = 12;
@@ -131,24 +129,13 @@
             // 
             btn_cashier.BackColor = Color.FromArgb(200, 205, 210);
             btn_cashier.FlatStyle = FlatStyle.Popup;
-            btn_cashier.Location = new Point(709, 8);
+            btn_cashier.Location = new Point(832, 8);
             btn_cashier.Name = "btn_cashier";
             btn_cashier.Size = new Size(122, 38);
             btn_cashier.TabIndex = 11;
             btn_cashier.Text = "Manage Cashier";
             btn_cashier.UseVisualStyleBackColor = false;
             btn_cashier.Click += btn_cashier_Click;
-            // 
-            // btn_systeminfo
-            // 
-            btn_systeminfo.BackColor = Color.FromArgb(200, 205, 210);
-            btn_systeminfo.FlatStyle = FlatStyle.Popup;
-            btn_systeminfo.Location = new Point(837, 8);
-            btn_systeminfo.Name = "btn_systeminfo";
-            btn_systeminfo.Size = new Size(122, 38);
-            btn_systeminfo.TabIndex = 10;
-            btn_systeminfo.Text = "System Info";
-            btn_systeminfo.UseVisualStyleBackColor = false;
             // 
             // btn_logout
             // 
@@ -391,7 +378,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
-            ClientSize = new Size(1099, 935);
+            ClientSize = new Size(1099, 881);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -440,7 +427,6 @@
         private TextBox txt_username;
         private Button btn_sales;
         private Button btn_cashier;
-        private Button btn_systeminfo;
         private Button btn_logout;
         private Label label5;
         private Label label6;
