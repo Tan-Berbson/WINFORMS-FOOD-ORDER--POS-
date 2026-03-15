@@ -32,11 +32,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            lbl_warningusername.Text = "";
+            lbl_warningusername.Text = "Username";
             lbl_warningusername.ForeColor = Color.Black;
-            lbl_warningpassword.Text = "";
-            lbl_warningpassword.ForeColor = Color.Black;
 
+            lbl_warningpassword.Text = "Password";
+            lbl_warningpassword.ForeColor = Color.Black;
 
             if (string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrWhiteSpace(txt_password.Text))
             {
@@ -46,50 +46,60 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                 MessageBoxIcon.Warning);
 
             }
-            if(!login.checkpasswordadmin(txt_password.Text))
-            {
-                lbl_warningpassword.ForeColor = Color.Red;
-                lbl_warningpassword.Text = "Password Incorect.";
-            }
-            if (login.checkpasswordadmin(txt_password.Text))
-            {
-                lbl_warningpassword.ForeColor = Color.Black;
-                lbl_warningpassword.Text = "Password.";
-            }
-            if (!login.checkpasswordcashier(txt_password.Text))
-            {
-                lbl_warningpassword.ForeColor = Color.Red;
-                lbl_warningpassword.Text = "Password Incorect.";
-            }
-            if (!login.checkusernamecashier(txt_username.Text))
-            {
-                lbl_warningusername.ForeColor = Color.Red;
-                lbl_warningusername.Text = "Username does not exist.";
-            }
+            // admin checking
+           
             if (!login.checkusernameadmin(txt_username.Text))
             {
                 lbl_warningusername.ForeColor = Color.Red;
                 lbl_warningusername.Text = "Username does not exist.";
 
             }
-           
+            else if (!login.checkusernamecashier(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Red;
+                lbl_warningusername.Text = "Username does not exist.";
+            }
 
-            if (login.checkpasswordcashier(txt_password.Text))
-            {
-                lbl_warningpassword.ForeColor = Color.Black;
-                lbl_warningpassword.Text = "Password";
-            }
-            if (login.checkusernamecashier(txt_username.Text))
-            {
-                lbl_warningusername.ForeColor = Color.Black;
-                lbl_warningusername.Text = "User Name";
-            }
             if (login.checkusernameadmin(txt_username.Text))
             {
                 lbl_warningusername.ForeColor = Color.Black;
                 lbl_warningusername.Text = "User Name";
 
             }
+           else if (login.checkusernamecashier(txt_username.Text))
+            {
+                lbl_warningusername.ForeColor = Color.Black;
+                lbl_warningusername.Text = "User Name";
+            }
+            if (login.checkpasswordadmin(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password.";
+            }
+            else if (login.checkpasswordcashier(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password";
+            }
+            if (!login.checkpasswordadmin(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password Incorect.";
+            }
+            else if (!login.checkpasswordcashier(txt_password.Text))
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password Incorect.";
+            }
+
+            // cashier check
+
+
+
+
+           
+
+            // validation for empty fields and login logic
             if (txt_username.Text == "")
             {
                 lbl_warningusername.ForeColor = Color.Red;
@@ -110,24 +120,26 @@ namespace WINFORMS_FOOD_ORDER__POS_
             }
             else if (login.loginadmin(txt_username.Text, txt_password.Text))
             {
-                MessageBox.Show("Log In Successfully Admin", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frm_admindashboard f = new frm_admindashboard(txt_username.Text);
                 lbl_warningusername.ForeColor = Color.Black;
                 lbl_warningusername.Text = "Username";
                 lbl_warningpassword.ForeColor = Color.Black;
                 lbl_warningpassword.Text = "Password";
+                MessageBox.Show("Log In Successfully Admin", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frm_admindashboard f = new frm_admindashboard(txt_username.Text);
+                
                 f.Show();
                 this.Hide();
                 loginAttempts = 0;
             }
             else if (login.logincashier(txt_username.Text, txt_password.Text))
             {
-                MessageBox.Show("Log In Successfully Cashier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frm_cashierDashboard f = new frm_cashierDashboard(txt_username.Text);
-                lbl_warningusername.ForeColor = Color.Black;
                 lbl_warningusername.Text = "Username";
                 lbl_warningpassword.ForeColor = Color.Black;
                 lbl_warningpassword.Text = "Password";
+                MessageBox.Show("Log In Successfully Cashier", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frm_cashierDashboard f = new frm_cashierDashboard(txt_username.Text);
+                lbl_warningusername.ForeColor = Color.Black;
+               
                 f.Show();
                 this.Hide();
                 loginAttempts = 0;

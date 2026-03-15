@@ -692,7 +692,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
                 return dt;
             }
-            public DataTable GetMonthlySales(int year)
+            public DataTable GetMonthlySales(int year, string adminname)
             {
                 DataTable dt = new DataTable();
 
@@ -701,42 +701,37 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     conn.Open();
 
                     string query = @"
-               WITH months(m) AS (
-SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4
-UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8
-UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
-)
-
-SELECT 
-m AS MonthNumber,
-IFNULL(SUM(CAST(TOTALSELLS AS REAL)),0) AS TotalSales
-
-FROM months
-LEFT JOIN CASHIEREPORT 
-ON CAST(strftime('%m', CREATEDATE) AS INTEGER) = m
-AND strftime('%Y', CREATEDATE) = @year
-
-GROUP BY m
-ORDER BY m
-                ";
+            WITH months(m) AS (
+                SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4
+                UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8
+                UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
+            )
+            SELECT 
+                m AS MonthNumber,
+                IFNULL(SUM(CAST(TOTALSELLS AS REAL)), 0) AS TotalSales
+            FROM months
+            LEFT JOIN CASHIEREPORT 
+                ON CAST(strftime('%m', CREATEDATE) AS INTEGER) = m
+                AND strftime('%Y', CREATEDATE) = @year
+                -- ✅ SECURITY: Only include cashiers that belong to this admin
+                AND CASHIERNAME IN (
+                    SELECT USERNAME FROM CASHIERACC WHERE ADMINUSERNAME = @admin
+                )
+            GROUP BY m
+            ORDER BY m";
 
                     using (SqliteCommand cmd = new SqliteCommand(query, conn))
                     {
-                        
-
-                        // TO THIS: ✅ pass as string to match strftime TEXT output
                         cmd.Parameters.AddWithValue("@year", year.ToString());
-
+                        cmd.Parameters.AddWithValue("@admin", adminname); // ✅ NEW
                         using (SqliteDataReader reader = cmd.ExecuteReader())
-                        {
                             dt.Load(reader);
-                        }
                     }
                 }
-
                 return dt;
             }
-            public DataTable GetCashierRankingByYear(int year)
+
+            public DataTable GetCashierRankingByYear(int year, string adminname)
             {
                 DataTable dt = new DataTable();
 
@@ -745,32 +740,29 @@ ORDER BY m
                     conn.Open();
 
                     string query = @"
-                    SELECT 
-                        CASHIERNAME,
-                        SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
-                    FROM CASHIEREPORT
-                    WHERE strftime('%Y', CREATEDATE) = @year
-                    GROUP BY CASHIERNAME
-                    ORDER BY TotalSales DESC
-                    ";
+            SELECT 
+                CASHIERNAME,
+                SUM(CAST(TOTALSELLS AS REAL)) AS TotalSales
+            FROM CASHIEREPORT
+            WHERE strftime('%Y', CREATEDATE) = @year
+            -- ✅ SECURITY: Only include cashiers that belong to this admin
+            AND CASHIERNAME IN (
+                SELECT USERNAME FROM CASHIERACC WHERE ADMINUSERNAME = @admin
+            )
+            GROUP BY CASHIERNAME
+            ORDER BY TotalSales DESC";
 
                     using (SqliteCommand cmd = new SqliteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@year", year.ToString());
-
+                        cmd.Parameters.AddWithValue("@admin", adminname); // ✅ NEW
                         using (SqliteDataReader reader = cmd.ExecuteReader())
-                        {
                             dt.Load(reader);
-                        }
                     }
                 }
-
                 return dt;
             }
-
-
-        } // This brace ends 'pu
-
+        }
     }
 }
 

@@ -46,14 +46,11 @@ namespace WINFORMS_FOOD_ORDER__POS_
         void UpdateChart()
         {
             // 1. Validation
-            if (comboBoxYear.SelectedValue == null)
-                return;
+            if (comboBoxYear.SelectedValue == null) return;
+            if (!int.TryParse(comboBoxYear.SelectedValue.ToString(), out int selectedYear)) return;
 
-            if (!int.TryParse(comboBoxYear.SelectedValue.ToString(), out int selectedYear))
-                return;
-
-            // 2. Data Fetching
-            DataTable dt = sales.GetMonthlySales(selectedYear);
+            // ✅ Pass adminuser here
+            DataTable dt = sales.GetMonthlySales(selectedYear, adminuser);
 
             // 3. Reset Chart State
             chart1.Series.Clear();
@@ -154,10 +151,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
             if (comboBoxYear.SelectedValue == null) return;
             if (!int.TryParse(comboBoxYear.SelectedValue.ToString(), out int selectedYear)) return;
 
-            // 2. Data Fetching
-            DataTable dt = sales.GetCashierRankingByYear(selectedYear);
-            if (chart2 == null || dt.Rows.Count == 0) return;
-
+            // ✅ Pass adminuser here
+            DataTable dt = sales.GetCashierRankingByYear(selectedYear, adminuser);
             // 3. Reset Chart
             chart2.Series.Clear();
             chart2.Titles.Clear();

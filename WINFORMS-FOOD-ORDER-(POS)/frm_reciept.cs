@@ -163,7 +163,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
     "Warning",
     MessageBoxButtons.YesNo,
     MessageBoxIcon.Warning);
-            if (result == DialogResult.Cancel) 
+            if (result == DialogResult.No) 
             {
                 return;
             }
