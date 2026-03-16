@@ -36,9 +36,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            frm_cashierlogoutauth f = new frm_cashierlogoutauth(txt_cashiername.Text, txt_managername.Text);
+            frm_cashierlogoutauth f = new frm_cashierlogoutauth(cashier, txt_managername.Text, this);
             f.Show();
-            this.Hide();
+         this.Close();
         }
         private void ShowProduct(
     Class1.auth.produtlist p,
@@ -133,7 +133,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme1.Text,
                 txt_productprice1.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -247,7 +248,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme2.Text,
                 txt_productprice2.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -278,7 +280,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme3.Text,
                 txt_productprice3.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -309,7 +312,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme4.Text,
                 txt_productprice4.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -340,7 +344,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme5.Text,
                 txt_productprice5.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -371,7 +376,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme6.Text,
                 txt_productprice6.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -402,7 +408,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme7.Text,
                 txt_productprice7.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -434,7 +441,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme8.Text,
                 txt_productprice8.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -465,7 +473,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme9.Text,
                 txt_productprice9.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();
@@ -496,7 +505,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 txt_managername.Text,
                 txt_productnanme10.Text,
                 txt_productprice10.Text,
-                productImage
+                productImage,
+                this
             );
 
             f.ShowDialog();

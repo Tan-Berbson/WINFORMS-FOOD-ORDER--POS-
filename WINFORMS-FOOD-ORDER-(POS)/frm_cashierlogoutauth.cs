@@ -18,6 +18,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         string cashier { get; set; }
         string manager { get; set; }
         private frm_cashierDashboard _dashboard; // ← dagdag
+        private frm_cashiersells frm_cashiersells;
 
         public frm_cashierlogoutauth(string cashiername, string managername, frm_cashierDashboard dashboard)
         {
@@ -28,6 +29,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_managername.Text = managername;
             txt_password.UseSystemPasswordChar = true;
             _dashboard = dashboard;
+        }
+
+        public frm_cashierlogoutauth(string cashier, string manager, frm_cashiersells frm_cashiersells)
+        {
+            this.cashier = cashier;
+            this.manager = manager;
+            this.frm_cashiersells = frm_cashiersells;
         }
 
         private void frm_cashierlogoutauth_Load(object sender, EventArgs e)

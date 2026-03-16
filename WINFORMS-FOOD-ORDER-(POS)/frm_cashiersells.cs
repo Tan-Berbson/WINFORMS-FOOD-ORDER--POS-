@@ -29,14 +29,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
             dgv_totalsells.Columns.Clear();
 
             dgv_totalsells.DataSource = sells.loadSalesReportBycashier(cashier);
-            dgv_totalsells.AutoGenerateColumns = false;
+            dgv_totalsells.AutoGenerateColumns = true;
 
 
         }
 
         private void frm_cashiersells_Load(object sender, EventArgs e)
         {
-            dgv_totalsells.DataSource = sells.loadSalesReportBycashier(cashier);
+           
             CalculateTotalSales();
         }
 
@@ -114,9 +114,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            frm_cashierlogoutauth f = new frm_cashierlogoutauth(cashier, manager);
+            frm_cashierlogoutauth f = new frm_cashierlogoutauth(cashier, manager, this);
             f.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }

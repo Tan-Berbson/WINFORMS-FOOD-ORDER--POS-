@@ -151,7 +151,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     paymentMethod,
                     dineType,
                     total,
-                    ordernumber
+                    ordernumber,
+                   _parentDashboard
+
                 );
                 receiptForm.Show();
                 this.Hide();
