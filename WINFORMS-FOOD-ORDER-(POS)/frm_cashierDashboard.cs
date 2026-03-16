@@ -205,16 +205,20 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             if (listView1.Items.Count == 0)
             {
-                MessageBox.Show("No orders to checkout.", "Empty Order List", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No orders to checkout.", "Empty Order List",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else
-            {
-                var orders = GetOrders(); // Kunin lahat ng orders mula sa cashierDashboard
-                frm_orderconfimation f = new(orders, txt_managername.Text, txt_cashiername.Text);
-                f.Show();
-                this.Hide();
-            }
+
+            var orders = GetOrders();
+            frm_orderconfimation f = new frm_orderconfimation(
+                orders,
+                txt_managername.Text,
+                txt_cashiername.Text,
+                this // ← i-pass ang sarili
+            );
+            f.Show();
+            this.Hide();
 
         }
 

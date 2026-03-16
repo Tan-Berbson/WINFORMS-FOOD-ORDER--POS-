@@ -21,6 +21,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private readonly string _dineType;
         private readonly string _ordernumber;
         auth sells = new auth();
+        private frm_cashierDashboard _dashboard; // ← dagdag
 
         public frm_reciept(List<string[]> orders,
             string manager,
@@ -28,7 +29,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             string customer,
             string paymentMethod,
             string dineType,
-            string total, string ordernumber)
+            string total, string ordernumber, frm_cashierDashboard dashboard)
         {
             InitializeComponent();
             _orders = orders;
@@ -44,11 +45,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_managername.Text = manager;
             txt_cashiername.Text = cashier;
             _ordernumber = ordernumber;
+            _dashboard = dashboard;
 
 
             txt_payment.Text = paymentMethod;
 
             GenerateReceipt();
+            _dashboard = dashboard;
         }
         private void GenerateReceipt()
         {
@@ -144,30 +147,31 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_neworder_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt_customermoney.Text) || string.IsNullOrWhiteSpace(txt_customerchange.Text))
+            if (string.IsNullOrWhiteSpace(txt_customermoney.Text) ||
+        string.IsNullOrWhiteSpace(txt_customerchange.Text))
             {
-                MessageBox.Show("Please enter customer money and change.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter customer money and change.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           
-
             else if (txt_customerchange.Text == "Insufficient Money")
             {
-                MessageBox.Show("Customer money is not enough.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Customer money is not enough.",
+                    "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
 
             DialogResult result = MessageBox.Show(
-    "Warning: Please confirm the total before proceeding to a new order.\n\nThis action cannot be undone.\n\nDo you want to proceed?",
-    "Warning",
-    MessageBoxButtons.YesNo,
-    MessageBoxIcon.Warning);
-            if (result == DialogResult.No) 
-            {
+                "Warning: Please confirm the total before proceeding to a new order.\n\n" +
+                "This action cannot be undone.\n\nDo you want to proceed?",
+                "Warning",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.No)
                 return;
-            }
-             if (sells.cashiertotalsell(
+
+            if (sells.cashiertotalsell(
                     txt_cashiername.Text,
                     txt_customername.Text,
                     txt_ordernumber.Text,
@@ -176,23 +180,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     txt_customermoney.Text,
                     txt_customerchange.Text))
             {
-                MessageBox.Show("Order Completed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Order Completed!", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                // Optionally refresh dashboard
-                frm_cashierDashboard f = (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
-                if (f != null)
-                {
-                    f.ClearOrders();
-                    f.Show();
-                }
-                else
-                {
-                    f = new frm_cashierDashboard(txt_cashiername.Text);
-                    f.Show();
-                }
+                // ← Palitan ang buong OpenForms block ng ito:
+                _dashboard.ClearOrders();
+                _dashboard.Show();
             }
-
 
             this.Close();
         }

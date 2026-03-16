@@ -35,17 +35,20 @@ namespace WINFORMS_FOOD_ORDER__POS_
         List<string[]> orderList = new List<string[]>();
         string manager { get; set; }
         string cashier { get; set; }
-        public frm_orderconfimation(List<string[]> orders, string managername, string cashiername)
+        private frm_cashierDashboard _parentDashboard;
+
+        // Update constructor
+        public frm_orderconfimation(List<string[]> orders, string managername,
+            string cashiername, frm_cashierDashboard parent) // ← dagdag na parameter
         {
             InitializeComponent();
-
             orderList = orders;
             cashier = cashiername;
             manager = managername;
+            _parentDashboard = parent; // ← i-store ang reference
             txt_cashiername.Text = cashiername;
             txt_managername.Text = managername;
             LoadOrdersToListView();
-
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,9 +100,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            frm_cashierDashboard f =
-                (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
-            f.Show();
+            _parentDashboard.Show(); // ← direkta, hindi na OpenForms
             this.Close();
 
 

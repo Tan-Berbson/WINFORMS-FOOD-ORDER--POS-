@@ -466,6 +466,16 @@ namespace WINFORMS_FOOD_ORDER__POS_
         private void btn_systeminfo_Click(object sender, EventArgs e)
         {
         }
+
+        private void txt_productprice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+                MessageBox.Show("Plss enter only numbers", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+        }
     }
 
 }

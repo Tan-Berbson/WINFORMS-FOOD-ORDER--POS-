@@ -312,6 +312,7 @@
             txt_productprice.Name = "txt_productprice";
             txt_productprice.Size = new Size(173, 29);
             txt_productprice.TabIndex = 3;
+            txt_productprice.KeyPress += txt_productprice_KeyPress;
             // 
             // txt_productname
             // 

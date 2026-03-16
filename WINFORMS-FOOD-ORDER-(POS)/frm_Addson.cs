@@ -23,11 +23,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
         PictureBox[] addonImages;
         
         List<Class1.auth.addsonlist> addons = new List<Class1.auth.addsonlist>();
-    
 
-        public frm_Addson(string cashiers, string managername, string productsname, string productporices, Image productImage)
+        private frm_cashierDashboard _dashboard; // ← dagdag na field
+        public frm_Addson(string cashiers, string managername, string productsname, string productporices, Image productImage, frm_cashierDashboard dashboard)
         {
             InitializeComponent();
+            _dashboard = dashboard;
             this.ControlBox = false;
             cashier = cashiers;
             manager = managername;
@@ -43,21 +44,14 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            // 🔹 KUNIN ANG EXISTING FORM1
-            frm_cashierDashboard f =
-                (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
-
-            
-
-            // 🔹 BUMALIK SA FORM1
-            this.Close(); ;
+            _dashboard.Show(); // ← direkta, safe
+            this.Close();
         }
         
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
             string addonsText = "";
-
             foreach (CheckBox chk in addonBoxes)
             {
                 if (chk.Visible && chk.Checked)
@@ -68,13 +62,10 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             int qty = int.Parse(txt_quantity.Text);
             int total = int.Parse(txt_ordertotal.Text);
-
             string orderName = txt_ordername.Text + " x" + qty;
 
-            frm_cashierDashboard f =
-                (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
-
-            if (f.OrderExists(orderName))
+            // ← Palitan ang Application.OpenForms ng _dashboard
+            if (_dashboard.OrderExists(orderName))
             {
                 MessageBox.Show(
                     "Order already in the list.\nIf you want to proceed, delete it first.",
@@ -85,11 +76,12 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 return;
             }
 
-            bool added = f.AddOrderWithCheck(orderName, addonsText, total.ToString());
+            bool added = _dashboard.AddOrderWithCheck(orderName, addonsText, total.ToString());
 
             if (added)
             {
-                f.Show();
+                // ← Hindi na kailangan ng f.Show() dahil ShowDialog() ang ginamit
+                //    sa pag-open ng frm_Addson, awtomatiko bumabalik sa dashboard
                 this.Close();
             }
 
