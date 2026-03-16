@@ -32,7 +32,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         void LoadYears()
         {
-            comboBoxYear.DataSource = sales.GetAvailableYears();
+            comboBoxYear.DataSource = sales.GetAvailableYears(adminuser); // ← pass adminuser
             comboBoxYear.DisplayMember = "SaleYear";
             comboBoxYear.ValueMember = "SaleYear";
         }

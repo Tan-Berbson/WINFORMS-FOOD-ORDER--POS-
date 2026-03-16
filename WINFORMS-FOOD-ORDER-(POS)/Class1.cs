@@ -485,7 +485,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             }
             // Sa auth class
-            public DataTable weeksales()
+            public DataTable weeksales(string adminname) // ← dagdag na parameter
             {
                 DataTable dt = new DataTable();
                 dt.Columns.Add("createdate", typeof(DateTime));
@@ -494,24 +494,30 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 using (SqliteConnection con = db.GetConnection())
                 {
                     con.Open();
+
                     string query = @"
             SELECT date(CREATEDATE) AS createdate,
                    SUM(CAST(TOTALSELLS AS REAL)) AS totalsales
             FROM CASHIEREPORT
+            WHERE CASHIERNAME IN (
+                SELECT USERNAME FROM CASHIERACC WHERE ADMINUSERNAME = @admin
+            )
             GROUP BY date(CREATEDATE)
-            ORDER BY date(CREATEDATE)
-        ";
+            ORDER BY date(CREATEDATE)";
 
                     using (SqliteCommand cmd = new SqliteCommand(query, con))
-                    using (SqliteDataReader reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        cmd.Parameters.AddWithValue("@admin", adminname); // ← scoped to this admin only
+                        using (SqliteDataReader reader = cmd.ExecuteReader())
                         {
-                            DateTime createdate = Convert.ToDateTime(reader["createdate"]);
-                            double totalsales = reader["totalsales"] != DBNull.Value
-                                                ? Convert.ToDouble(reader["totalsales"])
-                                                : 0;
-                            dt.Rows.Add(createdate, totalsales);
+                            while (reader.Read())
+                            {
+                                DateTime createdate = Convert.ToDateTime(reader["createdate"]);
+                                double totalsales = reader["totalsales"] != DBNull.Value
+                                                    ? Convert.ToDouble(reader["totalsales"])
+                                                    : 0;
+                                dt.Rows.Add(createdate, totalsales);
+                            }
                         }
                     }
                 }
@@ -671,7 +677,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
-            public DataTable GetAvailableYears()
+            public DataTable GetAvailableYears(string adminname) // ← dagdag na parameter
             {
                 DataTable dt = new DataTable();
 
@@ -680,13 +686,19 @@ namespace WINFORMS_FOOD_ORDER__POS_
                     conn.Open();
 
                     string query = @"SELECT DISTINCT strftime('%Y', CREATEDATE) AS SaleYear
-                                 FROM CASHIEREPORT
-                                 ORDER BY SaleYear DESC";
+                         FROM CASHIEREPORT
+                         WHERE CASHIERNAME IN (
+                             SELECT USERNAME FROM CASHIERACC WHERE ADMINUSERNAME = @admin
+                         )
+                         ORDER BY SaleYear DESC";
 
-                    using (SqliteCommand cmd = new SqliteCommand(query, conn))
-                    using (SqliteDataReader reader = cmd.ExecuteReader())
+                    using (SqliteCommand cmd = new SqliteCommand(query, conn)) // ← cmd declared first
                     {
-                        dt.Load(reader);
+                        cmd.Parameters.AddWithValue("@admin", adminname); // ← then parameters inside
+                        using (SqliteDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
                     }
                 }
 

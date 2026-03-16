@@ -17,8 +17,9 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         string cashier { get; set; }
         string manager { get; set; }
+        private frm_cashierDashboard _dashboard; // ← dagdag
 
-        public frm_cashierlogoutauth(string cashiername, string managername)
+        public frm_cashierlogoutauth(string cashiername, string managername, frm_cashierDashboard dashboard)
         {
             InitializeComponent();
             cashier = cashiername;
@@ -26,6 +27,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
             txt_cashiername.Text = cashiername;
             txt_managername.Text = managername;
             txt_password.UseSystemPasswordChar = true;
+            _dashboard = dashboard;
         }
 
         private void frm_cashierlogoutauth_Load(object sender, EventArgs e)
@@ -55,13 +57,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            frm_cashierDashboard f =
-                 (frm_cashierDashboard)Application.OpenForms["frm_cashierDashboard"];
-
-
-            f.Show();
-            // 🔹 BUMALIK SA FORM1
-            this.Close(); ;
+            _dashboard?.Show(); // Use stored reference instead (as discussed before)
+            this.Close();
         }
 
         private void chk_showpass_CheckedChanged(object sender, EventArgs e)
