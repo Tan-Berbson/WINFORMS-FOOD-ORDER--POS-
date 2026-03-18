@@ -92,7 +92,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                 lbl_warningpassword.Text = "Password Incorect.";
             }
 
-            // cashier check
+          
 
 
 

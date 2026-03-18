@@ -51,39 +51,22 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
-            string addonsText = "";
+            List<string> selectedAddons = new List<string>();
             foreach (CheckBox chk in addonBoxes)
             {
                 if (chk.Visible && chk.Checked)
                 {
-                    addonsText += chk.Text + ", ";
+                    // Add the " x1" suffix here
+                    selectedAddons.Add(chk.Text + " x1");
                 }
             }
 
+            string addonsText = string.Join(", ", selectedAddons);
             int qty = int.Parse(txt_quantity.Text);
             int total = int.Parse(txt_ordertotal.Text);
-            string orderName = txt_ordername.Text + " x" + qty;
 
-            // ← Palitan ang Application.OpenForms ng _dashboard
-            if (_dashboard.OrderExists(orderName))
-            {
-                MessageBox.Show(
-                    "Order already in the list.\nIf you want to proceed, delete it first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return;
-            }
-
-            bool added = _dashboard.AddOrderWithCheck(orderName, addonsText, total.ToString());
-
-            if (added)
-            {
-                // ← Hindi na kailangan ng f.Show() dahil ShowDialog() ang ginamit
-                //    sa pag-open ng frm_Addson, awtomatiko bumabalik sa dashboard
-                this.Close();
-            }
+            bool added = _dashboard.AddOrderWithCheck(txt_ordername.Text, addonsText, total, qty);
+            if (added) this.Close();
 
         }
         private void CalculateTotal()

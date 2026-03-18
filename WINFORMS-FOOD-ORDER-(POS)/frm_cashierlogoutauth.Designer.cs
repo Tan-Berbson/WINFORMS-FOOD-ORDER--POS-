@@ -34,7 +34,7 @@
             label5 = new Label();
             label4 = new Label();
             pictureBox1 = new PictureBox();
-            label3 = new Label();
+            lbl_warningpassword = new Label();
             label2 = new Label();
             txt_managername = new TextBox();
             btn_procced = new Button();
@@ -103,16 +103,16 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // label3
+            // lbl_warningpassword
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11F);
-            label3.ForeColor = Color.FromArgb(45, 60, 70);
-            label3.Location = new Point(600, 349);
-            label3.Name = "label3";
-            label3.Size = new Size(133, 20);
-            label3.TabIndex = 17;
-            label3.Text = "Manager Password";
+            lbl_warningpassword.AutoSize = true;
+            lbl_warningpassword.Font = new Font("Segoe UI", 11F);
+            lbl_warningpassword.ForeColor = Color.FromArgb(45, 60, 70);
+            lbl_warningpassword.Location = new Point(600, 349);
+            lbl_warningpassword.Name = "lbl_warningpassword";
+            lbl_warningpassword.Size = new Size(133, 20);
+            lbl_warningpassword.TabIndex = 17;
+            lbl_warningpassword.Text = "Manager Password";
             // 
             // label2
             // 
@@ -218,7 +218,7 @@
             Controls.Add(btn_back);
             Controls.Add(label7);
             Controls.Add(txt_cashiername);
-            Controls.Add(label3);
+            Controls.Add(lbl_warningpassword);
             Controls.Add(panel1);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -242,7 +242,7 @@
         private Label label5;
         private Label label4;
         private PictureBox pictureBox1;
-        private Label label3;
+        private Label lbl_warningpassword;
         private Label label2;
         private TextBox txt_managername;
         private Button btn_procced;

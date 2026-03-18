@@ -17,7 +17,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         string cashier { get; set; }
         string manager { get; set; }
-        private frm_cashierDashboard _dashboard; // ← dagdag
+        private frm_cashierDashboard _dashboard; 
         private frm_cashiersells frm_cashiersells;
 
         public frm_cashierlogoutauth(string cashiername, string managername, frm_cashierDashboard dashboard)
@@ -45,8 +45,23 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void btn_procced_Click(object sender, EventArgs e)
         {
-            if (logout.loginadmin(txt_managername.Text, txt_password.Text))
+            
+            if(!logout.checkpasswordadmin(txt_password.Text))
             {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Invalid Password";
+            }
+            if (txt_password.Text == "")
+            {
+                lbl_warningpassword.ForeColor = Color.Red;
+                lbl_warningpassword.Text = "Password Is Required";
+            }
+            else if (logout.loginadmin(txt_managername.Text, txt_password.Text))
+            {
+                // return original password text and color if the credential is valid
+                lbl_warningpassword.ForeColor = Color.Black;
+                lbl_warningpassword.Text = "Password";
+
                 MessageBox.Show("Logout Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frm_cashiersells f = new frm_cashiersells(txt_managername.Text, txt_cashiername.Text);
                 f.Show();
@@ -55,6 +70,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
 
             }
+
             else
             {
                 MessageBox.Show("Invalid Credentials!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -30,8 +30,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
         }
         public void ClearOrders()
         {
-            listView1.Items.Clear();   // Clear all existing orders
-            txt_total.Text = "0";      // Reset total
+            listView1.Items.Clear();   
+            txt_total.Text = "0";     
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
@@ -91,39 +91,13 @@ namespace WINFORMS_FOOD_ORDER__POS_
             listView1.Columns.Add("Total", 120);
 
         }
-        public bool OrderExists(string productName)
-        {
-            if (string.IsNullOrWhiteSpace(productName))
-                return false;
-
-            foreach (ListViewItem item in listView1.Items)
-            {
-                if (item.SubItems[0].Text
-                    .ToLower()
-                    .Contains(productName.Trim().ToLower()))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+       
         private void btn_order1_Click(object sender, EventArgs e)
         {
             string productName = txt_productnanme1.Text;
 
             // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+            
 
             // Open add-ons form
             Image productImage = pictureBox1.Image;
@@ -142,34 +116,64 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
 
         }
-        // 🔹 TATAWAGIN NI FORM2
-
-        // 🔹 Put AddOrderWithCheck right here
-        public bool AddOrderWithCheck(string orderName, string addons, string total)
+        public bool AddOrderWithCheck(string orderName, string addons, int total, int qty)
         {
-            // 🔹 Check if order already exists
-            if (OrderExists(orderName))
+            foreach (ListViewItem item in listView1.Items)
             {
-                MessageBox.Show(
-                    "Order already exists in the list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return false; // Do not add the order
+                // 1. Check if the Main Product exists
+                if (item.Text.StartsWith(orderName))
+                {
+                    // Update Quantity (e.g., sd x14)
+                    string currentText = item.Text;
+                    int xIndex = currentText.LastIndexOf(" x");
+                    int existingQty = int.Parse(currentText.Substring(xIndex + 2));
+                    item.Text = orderName + " x" + (existingQty + qty);
+
+                    // 2. Handle Add-ons Professional Formatting
+                    if (!string.IsNullOrWhiteSpace(addons))
+                    {
+                        // Clean the incoming addons (remove trailing commas)
+                        string cleanedIncoming = addons.Trim().TrimEnd(',');
+
+                        if (string.IsNullOrWhiteSpace(item.SubItems[1].Text))
+                        {
+                            item.SubItems[1].Text = cleanedIncoming;
+                        }
+                        else
+                        {
+                            // Logic to stack add-ons on new lines
+                            // If you want them to stack vertically, use Environment.NewLine
+                            item.SubItems[1].Text += Environment.NewLine + cleanedIncoming;
+                        }
+                    }
+
+                    // 3. Update Total
+                    int currentTotal = int.Parse(item.SubItems[2].Text);
+                    item.SubItems[2].Text = (currentTotal + total).ToString();
+
+                    FinalizeListView();
+                    return true;
+                }
             }
 
-            // 🔹 Add the order
-            ListViewItem newItem = new ListViewItem(orderName);
-            newItem.SubItems.Add(addons);
-            newItem.SubItems.Add(total);
+            // New Item
+            ListViewItem newItem = new ListViewItem(orderName + " x" + qty);
+            newItem.SubItems.Add(addons.Trim().TrimEnd(','));
+            newItem.SubItems.Add(total.ToString());
             listView1.Items.Add(newItem);
 
-            // 🔹 Update grand total
-            CalculateGrandTotal();
+            FinalizeListView();
+            return true;
+        }
 
-            return true; // Added successfully
+        // Created this helper method to keep your code clean
+        private void FinalizeListView()
+        {
+            // Make columns "Clean" by auto-fitting the longest text
+            listView1.Columns[0].Width = -2; // Auto-fit Order Details
+            listView1.Columns[1].Width = -2; // Auto-fit Add-ons
+
+            CalculateGrandTotal();
         }
         private void CalculateGrandTotal()
         {
@@ -227,19 +231,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme2.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
-
+           
             // Open add-ons form
             Image productImage = pictureBox2.Image;
 
@@ -259,18 +251,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme3.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+            
 
             // Open add-ons form
             Image productImage = pictureBox3.Image;
@@ -291,18 +272,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme4.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+           
 
             // Open add-ons form
             Image productImage = pictureBox4.Image;
@@ -323,18 +293,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme5.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+           
 
             // Open add-ons form
             Image productImage = pictureBox_5.Image;
@@ -355,18 +314,8 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme6.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+         
+           
 
             // Open add-ons form
             Image productImage = pictureBox__6.Image;
@@ -387,18 +336,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme7.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+            
 
             // Open add-ons form
             Image productImage = pictureBox_7.Image;
@@ -420,18 +358,6 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
             string productName = txt_productnanme8.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
 
             // Open add-ons form
             Image productImage = pictureBox_8.Image;
@@ -452,18 +378,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme9.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+           
 
             // Open add-ons form
             Image productImage = pictureBox_9.Image;
@@ -484,18 +399,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
         {
             string productName = txt_productnanme10.Text;
 
-            // Check if product already exists
-            if (OrderExists(productName))
-            {
-                MessageBox.Show(
-                    "This product is already in the order list.\n" +
-                    "If you want to add it again, delete the existing order first.",
-                    "Duplicate Order",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // Stop here
-            }
+           
 
             // Open add-ons form
             Image productImage = pictureBox_10.Image;
