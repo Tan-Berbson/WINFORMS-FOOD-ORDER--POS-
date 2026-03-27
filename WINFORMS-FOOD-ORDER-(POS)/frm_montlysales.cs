@@ -17,7 +17,7 @@ namespace WINFORMS_FOOD_ORDER__POS_
                                                 "September", "October", "November", "December" };
 
         public frm_montlysales(string managername)
-        {
+        { 
             InitializeComponent();
             this.adminuser = managername;
             txt_username.Text = managername;
@@ -25,6 +25,18 @@ namespace WINFORMS_FOOD_ORDER__POS_
 
         private void frm_montlysales_Load(object sender, EventArgs e)
         {
+            if (comboBoxYear.Items.Count == 0)
+            {
+                MessageBox.Show(
+           "No sales data available.\nPlease create a sale first.",
+           "No Data Available",
+           MessageBoxButtons.OK,
+           MessageBoxIcon.Warning);
+                this.Close();
+                return;
+
+
+            }
             LoadYears();
             UpdateChart();
             UpdateChart2();

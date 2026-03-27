@@ -680,28 +680,44 @@ namespace WINFORMS_FOOD_ORDER__POS_
             public DataTable GetAvailableYears(string adminname) // ← dagdag na parameter
             {
                 DataTable dt = new DataTable();
-
-                using (SqliteConnection conn = db.GetConnection())
+                try
                 {
-                    conn.Open();
+                    using (SqliteConnection conn = db.GetConnection())
+                    {
+                        conn.Open();
 
-                    string query = @"SELECT DISTINCT strftime('%Y', CREATEDATE) AS SaleYear
+                        string query = @"SELECT DISTINCT strftime('%Y', CREATEDATE) AS SaleYear
                          FROM CASHIEREPORT
                          WHERE CASHIERNAME IN (
                              SELECT USERNAME FROM CASHIERACC WHERE ADMINUSERNAME = @admin
                          )
                          ORDER BY SaleYear DESC";
 
-                    using (SqliteCommand cmd = new SqliteCommand(query, conn)) // ← cmd declared first
-                    {
-                        cmd.Parameters.AddWithValue("@admin", adminname); // ← then parameters inside
-                        using (SqliteDataReader reader = cmd.ExecuteReader())
+                        using (SqliteCommand cmd = new SqliteCommand(query, conn)) // ← cmd declared first
                         {
-                            dt.Load(reader);
+                            cmd.Parameters.AddWithValue("@admin", adminname); // ← then parameters inside
+                            using (SqliteDataReader reader = cmd.ExecuteReader())
+                            {
+                                dt.Load(reader);
+                            }
                         }
                     }
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show(
+    "No sales data found.\nPlease create a sale first before viewing reports.",
+    "No Data Available",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning
+);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error" + ex.Message);
                 }
 
+                
                 return dt;
             }
             public DataTable GetMonthlySales(int year, string adminname)
